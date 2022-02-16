@@ -23,18 +23,38 @@ const AddCharacterScreen = (props: any) => {
   const [dataManipulation] = useState(new DataManipulation());
 
   const [name, setName] = useState("Unknown");
-  const [dangerLevel, setDangerLevel] = useState("Unknown");
-  const [species, setSpecies] = useState("Unknown");
-  const [color, setColor] = useState("Unknown");
-  const [appearance, setAppearance] = useState("Unknown");
-  const [size, setSize] = useState("Unknown");
-  const [statistics, setStatistics] = useState("Unknown");
-  const [abilities, setAbilities] = useState("Unknown");
-  const [description, setDescription] = useState("Unknown");
-  const [habitat, setHabitat] = useState("Unknown");
+  const [age, setAge] = useState("Unknown");
+  const [race, setRace] = useState("Unknown");
+  const [bodyType, setBodyType] = useState("Unknown");
+  const [disablingCharacteristics, setDisablingCharacteristics] =
+    useState("None");
+  const [strength, setStrength] = useState(0);
+  const [reflex, setReflex] = useState(0);
+  const [intelligence, setIntelligence] = useState(0);
+  const [endurance, setEndurance] = useState(0);
+  const [athletics, setAthletics] = useState(0);
+  const [grip, setGrip] = useState(0);
+  const [swim, setSwim] = useState(0);
+  const [skillThrow, setSkillThrow] = useState(0);
+  const [perception, setPerception] = useState(0);
+  const [acrobatics, setAcrobatics] = useState(0);
+  const [ridePilot, setRidePilot] = useState(0);
+  const [sleightOfHand, setSleightOfHand] = useState(0);
+  const [stealth, setStealth] = useState(0);
+  const [generalKnowledge, setGeneralKnowledge] = useState(0);
+  const [deception, setDeception] = useState(0);
+  const [infiltration, setInfiltration] = useState(0);
+  const [persuasion, setPersuasion] = useState(0);
+  const [survival, setSurvival] = useState(0);
+  const [vocations, setVocations] = useState([]);
+  const [proficiencies, setProficiencies] = useState([]);
+  const [injuries, setInjuries] = useState(0);
+  const [lingeringInjuries, setLingeringInjuries] = useState([]);
+  const [destinyPoints, setDestinyPoints] = useState(0);
+  const [commercePoints, setCommercePoints] = useState(0);
+  const [equipment, setEquipment] = useState("None");
   const [notes, setNotes] = useState("No Notes");
-  const [bgcolor, setBgcolor] = useState("#fff");
-  const [picture] = useState("N/A");
+  const [bgColor, setBgColor] = useState("gray");
 
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
@@ -64,18 +84,37 @@ const AddCharacterScreen = (props: any) => {
             const newCharacter = {
               id: uuid(),
               name: name,
-              dangerLevel: dangerLevel,
-              species: species,
-              color: color,
-              appearance: appearance,
-              size: size,
-              statistics: statistics,
-              abilities: abilities,
-              description: description,
-              habitat: habitat,
+              age: age,
+              race: race,
+              bodyType: bodyType,
+              disablingCharacteristics: disablingCharacteristics,
+              strength: strength,
+              reflex: reflex,
+              intelligence: intelligence,
+              endurance: endurance,
+              athletics: athletics,
+              grip: grip,
+              swim: swim,
+              skillThrow: skillThrow,
+              perception: perception,
+              acrobatics: acrobatics,
+              ridePilot: ridePilot,
+              sleightOfHand: sleightOfHand,
+              stealth: stealth,
+              generalKnowledge: generalKnowledge,
+              deception: deception,
+              infiltration: infiltration,
+              persuasion: persuasion,
+              survival: survival,
+              vocations: vocations,
+              proficiencies: proficiencies,
+              injuries: injuries,
+              lingeringInjuries: lingeringInjuries,
+              destinyPoints: destinyPoints,
+              commercePoints: commercePoints,
+              equipment: equipment,
               notes: notes,
-              picture: picture,
-              bgcolor: bgcolor,
+              bgColor: bgColor,
             };
 
             newCharacters.push(newCharacter);
@@ -93,17 +132,37 @@ const AddCharacterScreen = (props: any) => {
     props.navigation.setParams({ save: () => saveHandler() });
   }, [
     name,
-    dangerLevel,
-    species,
-    color,
-    appearance,
-    size,
-    statistics,
-    abilities,
-    description,
-    habitat,
+    age,
+    race,
+    bodyType,
+    disablingCharacteristics,
+    strength,
+    reflex,
+    intelligence,
+    endurance,
+    athletics,
+    grip,
+    swim,
+    skillThrow,
+    perception,
+    acrobatics,
+    ridePilot,
+    sleightOfHand,
+    stealth,
+    generalKnowledge,
+    deception,
+    infiltration,
+    persuasion,
+    survival,
+    vocations,
+    proficiencies,
+    injuries,
+    lingeringInjuries,
+    destinyPoints,
+    commercePoints,
+    equipment,
     notes,
-    bgcolor,
+    bgColor,
   ]);
 
   if (!dataIsLoaded) {
@@ -136,9 +195,36 @@ const AddCharacterScreen = (props: any) => {
                   : styles.introLightMode
               }
             >
-              Enter New Character Data:
+              Enter New Character:
             </BoldText>
           </View>
+
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.sectionContainerLargeDarkMode
+                  : styles.sectionContainerLargeLightMode
+                : isDarkMode
+                ? styles.sectionContainerDarkMode
+                : styles.sectionContainerLightMode
+            }
+          >
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.sectionTextLargeDarkMode
+                    : styles.sectionTextLargeLightMode
+                  : isDarkMode
+                  ? styles.sectionTextDarkMode
+                  : styles.sectionTextLightMode
+              }
+            >
+              Characteristics:
+            </DefaultText>
+          </View>
+
           <DefaultText
             style={
               Dimensions.get("window").width > 600
@@ -185,6 +271,7 @@ const AddCharacterScreen = (props: any) => {
               defaultValue=""
             />
           </View>
+
           <DefaultText
             style={
               Dimensions.get("window").width > 600
@@ -196,7 +283,7 @@ const AddCharacterScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Danger Level:
+            Age:
           </DefaultText>
           <View
             style={
@@ -219,18 +306,19 @@ const AddCharacterScreen = (props: any) => {
                   ? styles.inputTextDarkMode
                   : styles.inputTextLightMode
               }
-              placeholder="Enter Danger Level..."
+              placeholder="Enter Age..."
               placeholderTextColor={
                 isDarkMode
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setDangerLevel(text);
+                setAge(text);
               }}
               defaultValue=""
             />
           </View>
+
           <DefaultText
             style={
               Dimensions.get("window").width > 600
@@ -242,7 +330,7 @@ const AddCharacterScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Species:
+            Race:
           </DefaultText>
           <View
             style={
@@ -265,18 +353,19 @@ const AddCharacterScreen = (props: any) => {
                   ? styles.inputTextDarkMode
                   : styles.inputTextLightMode
               }
-              placeholder="Enter Species..."
+              placeholder="Enter Race..."
               placeholderTextColor={
                 isDarkMode
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setSpecies(text);
+                setRace(text);
               }}
               defaultValue=""
             />
           </View>
+
           <DefaultText
             style={
               Dimensions.get("window").width > 600
@@ -288,7 +377,7 @@ const AddCharacterScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Color:
+            Body Type:
           </DefaultText>
           <View
             style={
@@ -311,18 +400,19 @@ const AddCharacterScreen = (props: any) => {
                   ? styles.inputTextDarkMode
                   : styles.inputTextLightMode
               }
-              placeholder="Enter Color..."
+              placeholder="Enter Body Type..."
               placeholderTextColor={
                 isDarkMode
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setColor(text);
+                setBodyType(text);
               }}
               defaultValue=""
             />
           </View>
+
           <DefaultText
             style={
               Dimensions.get("window").width > 600
@@ -334,7 +424,7 @@ const AddCharacterScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Size:
+            Disabling Characteristics:
           </DefaultText>
           <View
             style={
@@ -357,69 +447,51 @@ const AddCharacterScreen = (props: any) => {
                   ? styles.inputTextDarkMode
                   : styles.inputTextLightMode
               }
-              placeholder="Enter Size..."
+              placeholder="Enter Disabling Characteristics..."
               placeholderTextColor={
                 isDarkMode
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setSize(text);
+                setDisablingCharacteristics(text);
               }}
               defaultValue=""
             />
           </View>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.titleLargeDarkMode
-                  : styles.titleLargeLightMode
-                : isDarkMode
-                ? styles.titleDarkMode
-                : styles.titleLightMode
-            }
-          >
-            Known Habitat:
-          </DefaultText>
-          <View
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.inputContainerLargeDarkMode
-                  : styles.inputContainerLargeLightMode
-                : isDarkMode
-                ? styles.inputContainerDarkMode
-                : styles.inputContainerLightMode
-            }
-          >
-            <TextInput
-              style={
-                Dimensions.get("window").width > 600
-                  ? isDarkMode
-                    ? styles.inputTextLargeDarkMode
-                    : styles.inputTextLargeLightMode
-                  : isDarkMode
-                  ? styles.inputTextDarkMode
-                  : styles.inputTextLightMode
-              }
-              placeholder="Enter Known Habitat..."
-              placeholderTextColor={
-                isDarkMode
-                  ? Colors.accentColorDarkMode
-                  : Colors.accentColorLightMode
-              }
-              onChangeText={(text) => {
-                setHabitat(text);
-              }}
-              defaultValue=""
-            />
-          </View>
+
           <View
             style={
               isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
             }
           ></View>
+
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.sectionContainerLargeDarkMode
+                  : styles.sectionContainerLargeLightMode
+                : isDarkMode
+                ? styles.sectionContainerDarkMode
+                : styles.sectionContainerLightMode
+            }
+          >
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.sectionTextLargeDarkMode
+                    : styles.sectionTextLargeLightMode
+                  : isDarkMode
+                  ? styles.sectionTextDarkMode
+                  : styles.sectionTextLightMode
+              }
+            >
+              Attributes:
+            </DefaultText>
+          </View>
+
           <DefaultText
             style={
               Dimensions.get("window").width > 600
@@ -431,17 +503,17 @@ const AddCharacterScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Stats:
+            Strength:
           </DefaultText>
           <View
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
-                  ? styles.inputContainerMultilineLargeDarkMode
-                  : styles.inputContainerMultilineLargeLightMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
                 : isDarkMode
-                ? styles.inputContainerMultilineDarkMode
-                : styles.inputContainerMultilineLightMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
             }
           >
             <TextInput
@@ -454,19 +526,19 @@ const AddCharacterScreen = (props: any) => {
                   ? styles.inputTextDarkMode
                   : styles.inputTextLightMode
               }
-              placeholder="Enter Stats..."
+              placeholder="Enter Strength..."
               placeholderTextColor={
                 isDarkMode
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setStatistics(text);
+                setStrength(parseInt(text));
               }}
               defaultValue=""
-              multiline={true}
             />
           </View>
+
           <DefaultText
             style={
               Dimensions.get("window").width > 600
@@ -478,17 +550,17 @@ const AddCharacterScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Abilities:
+            Reflex:
           </DefaultText>
           <View
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
-                  ? styles.inputContainerMultilineLargeDarkMode
-                  : styles.inputContainerMultilineLargeLightMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
                 : isDarkMode
-                ? styles.inputContainerMultilineDarkMode
-                : styles.inputContainerMultilineLightMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
             }
           >
             <TextInput
@@ -501,19 +573,19 @@ const AddCharacterScreen = (props: any) => {
                   ? styles.inputTextDarkMode
                   : styles.inputTextLightMode
               }
-              placeholder="Enter Abilities..."
+              placeholder="Enter Reflex..."
               placeholderTextColor={
                 isDarkMode
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setAbilities(text);
+                setReflex(parseInt(text));
               }}
               defaultValue=""
-              multiline={true}
             />
           </View>
+
           <DefaultText
             style={
               Dimensions.get("window").width > 600
@@ -525,17 +597,17 @@ const AddCharacterScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Appearance:
+            Intelligence:
           </DefaultText>
           <View
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
-                  ? styles.inputContainerMultilineLargeDarkMode
-                  : styles.inputContainerMultilineLargeLightMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
                 : isDarkMode
-                ? styles.inputContainerMultilineDarkMode
-                : styles.inputContainerMultilineLightMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
             }
           >
             <TextInput
@@ -548,118 +620,77 @@ const AddCharacterScreen = (props: any) => {
                   ? styles.inputTextDarkMode
                   : styles.inputTextLightMode
               }
-              placeholder="Enter Appearance..."
+              placeholder="Enter Intelligence..."
               placeholderTextColor={
                 isDarkMode
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setAppearance(text);
+                setIntelligence(parseInt(text));
               }}
               defaultValue=""
-              multiline={true}
             />
           </View>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.titleLargeDarkMode
-                  : styles.titleLargeLightMode
-                : isDarkMode
-                ? styles.titleDarkMode
-                : styles.titleLightMode
-            }
-          >
-            Description:
-          </DefaultText>
-          <View
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.inputContainerMultilineLargeDarkMode
-                  : styles.inputContainerMultilineLargeLightMode
-                : isDarkMode
-                ? styles.inputContainerMultilineDarkMode
-                : styles.inputContainerMultilineLightMode
-            }
-          >
-            <TextInput
-              style={
-                Dimensions.get("window").width > 600
-                  ? isDarkMode
-                    ? styles.inputTextLargeDarkMode
-                    : styles.inputTextLargeLightMode
-                  : isDarkMode
-                  ? styles.inputTextDarkMode
-                  : styles.inputTextLightMode
-              }
-              placeholder="Enter Description..."
-              placeholderTextColor={
-                isDarkMode
-                  ? Colors.accentColorDarkMode
-                  : Colors.accentColorLightMode
-              }
-              onChangeText={(text) => {
-                setDescription(text);
-              }}
-              defaultValue=""
-              multiline={true}
-            />
-          </View>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.titleLargeDarkMode
-                  : styles.titleLargeLightMode
-                : isDarkMode
-                ? styles.titleDarkMode
-                : styles.titleLightMode
-            }
-          >
-            Notes:
-          </DefaultText>
-          <View
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.inputContainerMultilineLargeDarkMode
-                  : styles.inputContainerMultilineLargeLightMode
-                : isDarkMode
-                ? styles.inputContainerMultilineDarkMode
-                : styles.inputContainerMultilineLightMode
-            }
-          >
-            <TextInput
-              style={
-                Dimensions.get("window").width > 600
-                  ? isDarkMode
-                    ? styles.inputTextLargeDarkMode
-                    : styles.inputTextLargeLightMode
-                  : isDarkMode
-                  ? styles.inputTextDarkMode
-                  : styles.inputTextLightMode
-              }
-              placeholder="Enter Notes..."
-              placeholderTextColor={
-                isDarkMode
-                  ? Colors.accentColorDarkMode
-                  : Colors.accentColorLightMode
-              }
-              onChangeText={(text) => {
-                setNotes(text);
-              }}
-              defaultValue=""
-              multiline={true}
-            />
-          </View>
+
           <View
             style={
               isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
             }
           ></View>
+
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.sectionContainerLargeDarkMode
+                  : styles.sectionContainerLargeLightMode
+                : isDarkMode
+                ? styles.sectionContainerDarkMode
+                : styles.sectionContainerLightMode
+            }
+          >
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.sectionTextLargeDarkMode
+                    : styles.sectionTextLargeLightMode
+                  : isDarkMode
+                  ? styles.sectionTextDarkMode
+                  : styles.sectionTextLightMode
+              }
+            >
+              Skills:
+            </DefaultText>
+          </View>
+
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.skillSectionContainerLargeDarkMode
+                  : styles.skillSectionContainerLargeLightMode
+                : isDarkMode
+                ? styles.skillSectionContainerDarkMode
+                : styles.skillSectionContainerLightMode
+            }
+          >
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.skillSectionTextLargeDarkMode
+                    : styles.skillSectionTextLargeLightMode
+                  : isDarkMode
+                  ? styles.skillSectionTextDarkMode
+                  : styles.skillSectionTextLightMode
+              }
+            >
+              Strength Based:
+            </DefaultText>
+          </View>
+
           <DefaultText
             style={
               Dimensions.get("window").width > 600
@@ -671,23 +702,749 @@ const AddCharacterScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Background Color:
+            Endurance:
           </DefaultText>
           <View
             style={
               Dimensions.get("window").width > 600
-                ? styles.colorPickerLarge
-                : styles.colorPicker
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
             }
           >
-            <ColorPicker
-              onColorChangeComplete={(color) => {
-                setBgcolor(color);
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Endurance..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setEndurance(parseInt(text));
               }}
-              thumbSize={30}
-              sliderSize={40}
-              noSnap={true}
-              row={false}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Athletics:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Athletics..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setAthletics(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Grip:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Grip..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setGrip(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Swim:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Swim..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setSwim(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Throw:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Throw..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setSkillThrow(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+
+          <View
+            style={
+              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
+            }
+          ></View>
+
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.skillSectionContainerLargeDarkMode
+                  : styles.skillSectionContainerLargeLightMode
+                : isDarkMode
+                ? styles.skillSectionContainerDarkMode
+                : styles.skillSectionContainerLightMode
+            }
+          >
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.skillSectionTextLargeDarkMode
+                    : styles.skillSectionTextLargeLightMode
+                  : isDarkMode
+                  ? styles.skillSectionTextDarkMode
+                  : styles.skillSectionTextLightMode
+              }
+            >
+              Reflex Based:
+            </DefaultText>
+          </View>
+
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Perception:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Perception..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setPerception(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Acrobatics:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Acrobatics..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setAcrobatics(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Ride/Pilot:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Ride/Pilot..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setRidePilot(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Sleight of Hand:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Sleight of Hand..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setSleightOfHand(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Stealth:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Stealth..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setStealth(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+
+          <View
+            style={
+              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
+            }
+          ></View>
+
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.skillSectionContainerLargeDarkMode
+                  : styles.skillSectionContainerLargeLightMode
+                : isDarkMode
+                ? styles.skillSectionContainerDarkMode
+                : styles.skillSectionContainerLightMode
+            }
+          >
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.skillSectionTextLargeDarkMode
+                    : styles.skillSectionTextLargeLightMode
+                  : isDarkMode
+                  ? styles.skillSectionTextDarkMode
+                  : styles.skillSectionTextLightMode
+              }
+            >
+              Intelligence Based:
+            </DefaultText>
+          </View>
+
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            General Knowledge:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter General Knowledge..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setGeneralKnowledge(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Deception:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Deception..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setDeception(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Infiltration:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Infiltration..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setInfiltration(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Persuasion:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Persuasion..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setPersuasion(parseInt(text));
+              }}
+              defaultValue=""
+            />
+          </View>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Survival:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Survival..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setSurvival(parseInt(text));
+              }}
+              defaultValue=""
             />
           </View>
         </View>
@@ -723,6 +1480,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primaryColorLightMode,
   },
+
   introDarkMode: {
     color: Colors.accentColorDarkMode,
     fontSize: 30,
@@ -739,6 +1497,7 @@ const styles = StyleSheet.create({
     color: Colors.accentColorLightMode,
     fontSize: 55,
   },
+
   inputContainerDarkMode: {
     backgroundColor: Colors.textBoxColorDarkMode,
     width: "70%",
@@ -775,6 +1534,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     borderRadius: 20,
   },
+
   colorPicker: {
     height: 200,
     width: "70%",
@@ -785,6 +1545,7 @@ const styles = StyleSheet.create({
     width: "40%",
     marginBottom: 100,
   },
+
   inputContainerMultilineDarkMode: {
     backgroundColor: Colors.textBoxColorDarkMode,
     width: "70%",
@@ -829,6 +1590,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: 20,
   },
+
   dividerDarkMode: {
     height: 1,
     width: "70%",
@@ -845,9 +1607,11 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     marginTop: 30,
   },
+
   introContainer: {
     marginBottom: 20,
   },
+
   titleDarkMode: {
     color: Colors.accentColorDarkMode,
   },
@@ -862,6 +1626,7 @@ const styles = StyleSheet.create({
     color: Colors.accentColorLightMode,
     fontSize: 50,
   },
+
   inputTextDarkMode: {
     fontSize: 16,
     color: Colors.accentColorDarkMode,
@@ -877,6 +1642,62 @@ const styles = StyleSheet.create({
   inputTextLargeLightMode: {
     fontSize: 25,
     color: Colors.accentColorLightMode,
+  },
+
+  sectionTextDarkMode: {
+    fontSize: 30,
+    color: Colors.accentColorDarkMode,
+  },
+  sectionTextLightMode: {
+    fontSize: 30,
+    color: Colors.accentColorLightMode,
+  },
+  sectionTextLargeDarkMode: {
+    fontSize: 55,
+    color: Colors.accentColorDarkMode,
+  },
+  sectionTextLargeLightMode: {
+    fontSize: 55,
+    color: Colors.accentColorLightMode,
+  },
+
+  sectionContainerDarkMode: {},
+  sectionContainerLightMode: {},
+  sectionContainerLargeDarkMode: {},
+  sectionContainerLargeLightMode: {},
+
+  skillSectionTextDarkMode: {
+    fontSize: 22,
+    color: Colors.accentColorDarkMode,
+  },
+  skillSectionTextLightMode: {
+    fontSize: 22,
+    color: Colors.accentColorLightMode,
+  },
+  skillSectionTextLargeDarkMode: {
+    fontSize: 40,
+    color: Colors.accentColorDarkMode,
+  },
+  skillSectionTextLargeLightMode: {
+    fontSize: 40,
+    color: Colors.accentColorLightMode,
+  },
+
+  skillSectionContainerDarkMode: {
+    margin: 15,
+    marginTop: 23,
+  },
+  skillSectionContainerLightMode: {
+    margin: 15,
+    marginTop: 23,
+  },
+  skillSectionContainerLargeDarkMode: {
+    margin: 15,
+    marginTop: 23,
+  },
+  skillSectionContainerLargeLightMode: {
+    margin: 15,
+    marginTop: 23,
   },
 });
 

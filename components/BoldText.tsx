@@ -5,7 +5,9 @@ import Colors from "../constants/Colors";
 
 const BoldText = (props: any) => {
   return (
-    <Text style={{ ...styles.text, ...props.style }}>{props.children}</Text>
+    <Text style={{ ...styles.text, ...props.style }}>
+      {props.children + " "}
+    </Text>
   );
 };
 
