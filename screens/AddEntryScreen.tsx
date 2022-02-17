@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   TextInput,
-  ScrollView,
   Alert,
   StyleSheet,
   Dimensions,
+  ScrollView,
+  TouchableNativeFeedback,
 } from "react-native";
 import AppLoading from "expo-app-loading";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
@@ -18,6 +19,7 @@ import BoldText from "../components/BoldText";
 import Colors from "../constants/Colors";
 import DataManipulation from "../functions/DataManipulation";
 import CustomHeaderButton from "../components/HeaderButton";
+import Vocations from "../components/NewVocations";
 
 const AddCharacterScreen = (props: any) => {
   const [dataManipulation] = useState(new DataManipulation());
@@ -46,7 +48,9 @@ const AddCharacterScreen = (props: any) => {
   const [infiltration, setInfiltration] = useState(0);
   const [persuasion, setPersuasion] = useState(0);
   const [survival, setSurvival] = useState(0);
-  const [vocations, setVocations] = useState([]);
+  const [vocations, setVocations] = useState([
+    { id: uuid(), name: "", stat: "", bonus: 0 },
+  ]);
   const [proficiencies, setProficiencies] = useState([]);
   const [injuries, setInjuries] = useState(0);
   const [lingeringInjuries, setLingeringInjuries] = useState([]);
@@ -55,6 +59,9 @@ const AddCharacterScreen = (props: any) => {
   const [equipment, setEquipment] = useState("None");
   const [notes, setNotes] = useState("No Notes");
   const [bgColor, setBgColor] = useState("gray");
+
+  // { id: uuid(), name: "Death", stat: "str", bonus: 1 },
+  // { id: uuid(), name: "Life", stat: "ref", bonus: 2 },
 
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
@@ -1447,6 +1454,69 @@ const AddCharacterScreen = (props: any) => {
               defaultValue=""
             />
           </View>
+
+          <View
+            style={
+              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
+            }
+          ></View>
+
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.sectionContainerLargeDarkMode
+                  : styles.sectionContainerLargeLightMode
+                : isDarkMode
+                ? styles.sectionContainerDarkMode
+                : styles.sectionContainerLightMode
+            }
+          >
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.sectionTextLargeDarkMode
+                    : styles.sectionTextLargeLightMode
+                  : isDarkMode
+                  ? styles.sectionTextDarkMode
+                  : styles.sectionTextLightMode
+              }
+            >
+              Vocations:
+            </DefaultText>
+            <Vocations
+              onSelect={() => {
+                let tempVocations = vocations;
+                tempVocations.push({
+                  id: uuid(),
+                  name: "",
+                  stat: "",
+                  bonus: 0,
+                });
+                setVocations(tempVocations);
+              }}
+              data={vocations}
+              textStyle={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.vocationTextLargeDarkMode
+                    : styles.vocationTextLargeLightMode
+                  : isDarkMode
+                  ? styles.vocationTextDarkMode
+                  : styles.vocationTextLightMode
+              }
+              textInputStyle={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputContainerLargeDarkMode
+                    : styles.inputContainerLargeLightMode
+                  : isDarkMode
+                  ? styles.inputContainerDarkMode
+                  : styles.inputContainerLightMode
+              }
+            />
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -1661,10 +1731,22 @@ const styles = StyleSheet.create({
     color: Colors.accentColorLightMode,
   },
 
-  sectionContainerDarkMode: {},
-  sectionContainerLightMode: {},
-  sectionContainerLargeDarkMode: {},
-  sectionContainerLargeLightMode: {},
+  sectionContainerDarkMode: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  sectionContainerLightMode: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  sectionContainerLargeDarkMode: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  sectionContainerLargeLightMode: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
   skillSectionTextDarkMode: {
     fontSize: 22,
@@ -1698,6 +1780,23 @@ const styles = StyleSheet.create({
   skillSectionContainerLargeLightMode: {
     margin: 15,
     marginTop: 23,
+  },
+
+  vocationTextDarkMode: {
+    fontSize: 22,
+    color: Colors.accentColorDarkMode,
+  },
+  vocationTextLightMode: {
+    fontSize: 22,
+    color: Colors.accentColorLightMode,
+  },
+  vocationTextLargeDarkMode: {
+    fontSize: 40,
+    color: Colors.accentColorDarkMode,
+  },
+  vocationTextLargeLightMode: {
+    fontSize: 40,
+    color: Colors.accentColorLightMode,
   },
 });
 
