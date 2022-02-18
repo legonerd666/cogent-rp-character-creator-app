@@ -6,17 +6,16 @@ import Colors from "../constants/Colors";
 
 import DefaultText from "./DefaultText";
 
-const Vocation = (props: any) => {
-  const [stat, setStat] = useState(props.itemData.stat);
+const Injury = (props: any) => {
   const [name, setName] = useState(props.itemData.name);
-  const [bonus, setBonus] = useState(props.itemData.bonus);
+  const [penalty, setPenalty] = useState(props.itemData.penalty);
 
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
 
   return (
-    <View style={styles.vocation}>
+    <View style={styles.injury}>
       <View style={styles.header}>
         <DefaultText
           style={
@@ -29,7 +28,7 @@ const Vocation = (props: any) => {
               : styles.textLightMode
           }
         >
-          Vocation:
+          Injury:
         </DefaultText>
         <View
           style={
@@ -52,7 +51,7 @@ const Vocation = (props: any) => {
                 ? styles.inputTextDarkMode
                 : styles.inputTextLightMode
             }
-            placeholder="Enter Vocation Name..."
+            placeholder="Enter Injury Name..."
             placeholderTextColor={
               isDarkMode
                 ? Colors.accentColorDarkMode
@@ -65,101 +64,7 @@ const Vocation = (props: any) => {
           />
         </View>
       </View>
-      <View style={styles.checkboxes}>
-        <View style={styles.checkbox}>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.textLargeDarkMode
-                  : styles.textLargeLightMode
-                : isDarkMode
-                ? styles.textDarkMode
-                : styles.textLightMode
-            }
-          >
-            Str:
-          </DefaultText>
-          <RadioButton
-            value="str"
-            status={stat === "str" ? "checked" : "unchecked"}
-            onPress={() => setStat("str")}
-            color={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-            uncheckedColor={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-          />
-        </View>
-
-        <View style={styles.checkbox}>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.textLargeDarkMode
-                  : styles.textLargeLightMode
-                : isDarkMode
-                ? styles.textDarkMode
-                : styles.textLightMode
-            }
-          >
-            Ref:
-          </DefaultText>
-          <RadioButton
-            value="ref"
-            status={stat === "ref" ? "checked" : "unchecked"}
-            onPress={() => setStat("ref")}
-            color={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-            uncheckedColor={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-          />
-        </View>
-
-        <View style={styles.checkbox}>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.textLargeDarkMode
-                  : styles.textLargeLightMode
-                : isDarkMode
-                ? styles.textDarkMode
-                : styles.textLightMode
-            }
-          >
-            Int:
-          </DefaultText>
-          <RadioButton
-            value="int"
-            status={stat === "int" ? "checked" : "unchecked"}
-            onPress={() => setStat("int")}
-            color={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-            uncheckedColor={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-          />
-        </View>
-      </View>
-      <View style={styles.bonus}>
+      <View style={styles.penalty}>
         <DefaultText
           style={
             Dimensions.get("window").width > 600
@@ -171,34 +76,34 @@ const Vocation = (props: any) => {
               : styles.textLightMode
           }
         >
-          Bonus:
+          Penalty:
         </DefaultText>
         <View
           style={
             Dimensions.get("window").width > 600
               ? isDarkMode
-                ? styles.bonusInputContainerLargeDarkMode
-                : styles.bonusInputContainerLargeLightMode
+                ? styles.penaltyInputContainerLargeDarkMode
+                : styles.penaltyInputContainerLargeLightMode
               : isDarkMode
-              ? styles.bonusInputContainerDarkMode
-              : styles.bonusInputContainerLightMode
+              ? styles.penaltyInputContainerDarkMode
+              : styles.penaltyInputContainerLightMode
           }
         >
           <TextInput
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
-                  ? styles.bonusInputTextLargeDarkMode
-                  : styles.bonusInputTextLargeLightMode
+                  ? styles.penaltyInputTextLargeDarkMode
+                  : styles.penaltyInputTextLargeLightMode
                 : isDarkMode
-                ? styles.bonusInputTextDarkMode
-                : styles.bonusInputTextLightMode
+                ? styles.penaltyInputTextDarkMode
+                : styles.penaltyInputTextLightMode
             }
             onChangeText={(text) => {
-              setBonus(isNaN(parseInt(text)) ? 0 : parseInt(text));
+              setPenalty(isNaN(parseInt(text)) ? 0 : parseInt(text));
             }}
             keyboardType={"number-pad"}
-            defaultValue={bonus.toString()}
+            defaultValue={penalty.toString()}
           />
         </View>
       </View>
@@ -210,7 +115,7 @@ const Vocation = (props: any) => {
 };
 
 const styles = StyleSheet.create({
-  vocation: {
+  injury: {
     justifyContent: "center",
     alignItems: "center",
   },
@@ -229,7 +134,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginHorizontal: 10,
   },
-  bonus: {
+  penalty: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -272,7 +177,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 
-  bonusInputContainerDarkMode: {
+  penaltyInputContainerDarkMode: {
     backgroundColor: Colors.textBoxColorDarkMode,
     width: 50,
     height: 50,
@@ -280,7 +185,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     borderRadius: 50,
   },
-  bonusInputContainerLightMode: {
+  penaltyInputContainerLightMode: {
     backgroundColor: Colors.textBoxColorLightMode,
     width: 50,
     height: 50,
@@ -288,7 +193,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     borderRadius: 50,
   },
-  bonusInputContainerLargeDarkMode: {
+  penaltyInputContainerLargeDarkMode: {
     backgroundColor: Colors.textBoxColorDarkMode,
     width: 70,
     height: 70,
@@ -296,7 +201,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     borderRadius: 50,
   },
-  bonusInputContainerLargeLightMode: {
+  penaltyInputContainerLargeLightMode: {
     backgroundColor: Colors.textBoxColorLightMode,
     width: 70,
     height: 70,
@@ -322,22 +227,22 @@ const styles = StyleSheet.create({
     color: Colors.accentColorLightMode,
   },
 
-  bonusInputTextDarkMode: {
+  penaltyInputTextDarkMode: {
     fontSize: 16,
     color: Colors.accentColorDarkMode,
     textAlign: "center",
   },
-  bonusInputTextLightMode: {
+  penaltyInputTextLightMode: {
     fontSize: 16,
     color: Colors.accentColorLightMode,
     textAlign: "center",
   },
-  bonusInputTextLargeDarkMode: {
+  penaltyInputTextLargeDarkMode: {
     fontSize: 25,
     color: Colors.accentColorDarkMode,
     textAlign: "center",
   },
-  bonusInputTextLargeLightMode: {
+  penaltyInputTextLargeLightMode: {
     fontSize: 25,
     color: Colors.accentColorLightMode,
     textAlign: "center",
@@ -376,4 +281,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Vocation;
+export default Injury;

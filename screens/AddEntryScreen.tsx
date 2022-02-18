@@ -21,6 +21,7 @@ import DataManipulation from "../functions/DataManipulation";
 import CustomHeaderButton from "../components/HeaderButton";
 import Vocation from "../components/NewVocation";
 import Proficiency from "../components/NewProficiency";
+import Injury from "../components/NewInjury";
 
 const AddCharacterScreen = (props: any) => {
   const [dataManipulation] = useState(new DataManipulation());
@@ -66,7 +67,12 @@ const AddCharacterScreen = (props: any) => {
     })
   );
   const [injuries, setInjuries] = useState(0);
-  const [lingeringInjuries, setLingeringInjuries] = useState([]);
+  const [lingeringInjuries, setLingeringInjuries]: any = useState([]);
+  const [injuryComponents, setInjuryComponents] = useState(
+    lingeringInjuries.map((item: any) => {
+      return <Injury key={item.id} itemData={item} />;
+    })
+  );
   const [destinyPoints, setDestinyPoints] = useState(0);
   const [commercePoints, setCommercePoints] = useState(0);
   const [equipment, setEquipment] = useState("None");
@@ -148,6 +154,50 @@ const AddCharacterScreen = (props: any) => {
               setProficiencyComponents(
                 proficiencies.map((item: any) => {
                   return <Proficiency key={item.id} itemData={item} />;
+                })
+              );
+            }}
+          >
+            <View>
+              <DefaultText
+                style={
+                  Dimensions.get("window").width > 600
+                    ? styles.addButtonTextLarge
+                    : styles.addButtonText
+                }
+              >
+                Add New
+              </DefaultText>
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+      </View>
+    );
+  };
+
+  const LingeringInjuries = (props: any) => {
+    return (
+      <View style={styles.customSkill}>
+        {injuryComponents}
+        <View
+          style={
+            Dimensions.get("window").width > 600
+              ? styles.addButtonContainerLarge
+              : styles.addButtonContainer
+          }
+        >
+          <TouchableNativeFeedback
+            onPress={() => {
+              let tempInjuries = lingeringInjuries;
+              tempInjuries.push({
+                id: uuid(),
+                name: "",
+                penalty: 0,
+              });
+              setLingeringInjuries(tempInjuries);
+              setInjuryComponents(
+                lingeringInjuries.map((item: any) => {
+                  return <Injury key={item.id} itemData={item} />;
                 })
               );
             }}
@@ -1524,16 +1574,49 @@ const AddCharacterScreen = (props: any) => {
               style={
                 Dimensions.get("window").width > 600
                   ? isDarkMode
-                    ? styles.sectionTextLargeDarkMode
-                    : styles.sectionTextLargeLightMode
+                    ? styles.skillSectionTextLargeDarkMode
+                    : styles.skillSectionTextLargeLightMode
                   : isDarkMode
-                  ? styles.sectionTextDarkMode
-                  : styles.sectionTextLightMode
+                  ? styles.skillSectionTextDarkMode
+                  : styles.skillSectionTextLightMode
               }
             >
               Vocations:
             </DefaultText>
             <Vocations />
+          </View>
+
+          <View
+            style={
+              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
+            }
+          ></View>
+
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.sectionContainerLargeDarkMode
+                  : styles.sectionContainerLargeLightMode
+                : isDarkMode
+                ? styles.sectionContainerDarkMode
+                : styles.sectionContainerLightMode
+            }
+          >
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.skillSectionTextLargeDarkMode
+                    : styles.skillSectionTextLargeLightMode
+                  : isDarkMode
+                  ? styles.skillSectionTextDarkMode
+                  : styles.skillSectionTextLightMode
+              }
+            >
+              Proficiencies:
+            </DefaultText>
+            <Proficiencies />
           </View>
 
           <View
@@ -1564,9 +1647,286 @@ const AddCharacterScreen = (props: any) => {
                   : styles.sectionTextLightMode
               }
             >
-              Proficiencies:
+              Current State:
             </DefaultText>
-            <Proficiencies />
+          </View>
+          <View style={styles.stat}>
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.titleLargeDarkMode
+                    : styles.titleLargeLightMode
+                  : isDarkMode
+                  ? styles.titleDarkMode
+                  : styles.titleLightMode
+              }
+            >
+              Injuries:
+            </DefaultText>
+            <View
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.bonusInputContainerLargeDarkMode
+                    : styles.bonusInputContainerLargeLightMode
+                  : isDarkMode
+                  ? styles.bonusInputContainerDarkMode
+                  : styles.bonusInputContainerLightMode
+              }
+            >
+              <TextInput
+                style={
+                  Dimensions.get("window").width > 600
+                    ? isDarkMode
+                      ? styles.bonusInputTextLargeDarkMode
+                      : styles.bonusInputTextLargeLightMode
+                    : isDarkMode
+                    ? styles.bonusInputTextDarkMode
+                    : styles.bonusInputTextLightMode
+                }
+                onChangeText={(text) => {
+                  setInjuries(isNaN(parseInt(text)) ? 0 : parseInt(text));
+                }}
+                keyboardType={"number-pad"}
+                defaultValue={injuries.toString()}
+              />
+            </View>
+          </View>
+
+          <View
+            style={
+              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
+            }
+          ></View>
+
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.skillSectionTextLargeDarkMode
+                  : styles.skillSectionTextLargeLightMode
+                : isDarkMode
+                ? styles.skillSectionTextDarkMode
+                : styles.skillSectionTextLightMode
+            }
+          >
+            Lingering Injuries:
+          </DefaultText>
+          <LingeringInjuries />
+
+          <View
+            style={
+              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
+            }
+          ></View>
+
+          <View style={styles.stat}>
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.titleLargeDarkMode
+                    : styles.titleLargeLightMode
+                  : isDarkMode
+                  ? styles.titleDarkMode
+                  : styles.titleLightMode
+              }
+            >
+              Destiny Points:
+            </DefaultText>
+            <View
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.bonusInputContainerLargeDarkMode
+                    : styles.bonusInputContainerLargeLightMode
+                  : isDarkMode
+                  ? styles.bonusInputContainerDarkMode
+                  : styles.bonusInputContainerLightMode
+              }
+            >
+              <TextInput
+                style={
+                  Dimensions.get("window").width > 600
+                    ? isDarkMode
+                      ? styles.bonusInputTextLargeDarkMode
+                      : styles.bonusInputTextLargeLightMode
+                    : isDarkMode
+                    ? styles.bonusInputTextDarkMode
+                    : styles.bonusInputTextLightMode
+                }
+                onChangeText={(text) => {
+                  setDestinyPoints(isNaN(parseInt(text)) ? 0 : parseInt(text));
+                }}
+                keyboardType={"number-pad"}
+                defaultValue={destinyPoints.toString()}
+              />
+            </View>
+          </View>
+
+          <View style={styles.stat}>
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.titleLargeDarkMode
+                    : styles.titleLargeLightMode
+                  : isDarkMode
+                  ? styles.titleDarkMode
+                  : styles.titleLightMode
+              }
+            >
+              Commerce Points:
+            </DefaultText>
+            <View
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.bonusInputContainerLargeDarkMode
+                    : styles.bonusInputContainerLargeLightMode
+                  : isDarkMode
+                  ? styles.bonusInputContainerDarkMode
+                  : styles.bonusInputContainerLightMode
+              }
+            >
+              <TextInput
+                style={
+                  Dimensions.get("window").width > 600
+                    ? isDarkMode
+                      ? styles.bonusInputTextLargeDarkMode
+                      : styles.bonusInputTextLargeLightMode
+                    : isDarkMode
+                    ? styles.bonusInputTextDarkMode
+                    : styles.bonusInputTextLightMode
+                }
+                onChangeText={(text) => {
+                  setCommercePoints(isNaN(parseInt(text)) ? 0 : parseInt(text));
+                }}
+                keyboardType={"number-pad"}
+                defaultValue={commercePoints.toString()}
+              />
+            </View>
+          </View>
+
+          <View
+            style={
+              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
+            }
+          ></View>
+
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.titleLargeDarkMode
+                  : styles.titleLargeLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            Equipment:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerMultilineLargeDarkMode
+                  : styles.inputContainerMultilineLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerMultilineDarkMode
+                : styles.inputContainerMultilineLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Equipment..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setEquipment(text);
+              }}
+              defaultValue={equipment}
+              multiline={true}
+            />
+          </View>
+
+          <View
+            style={
+              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
+            }
+          ></View>
+
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.sectionContainerLargeDarkMode
+                  : styles.sectionContainerLargeLightMode
+                : isDarkMode
+                ? styles.sectionContainerDarkMode
+                : styles.sectionContainerLightMode
+            }
+          >
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.sectionTextLargeDarkMode
+                    : styles.sectionTextLargeLightMode
+                  : isDarkMode
+                  ? styles.sectionTextDarkMode
+                  : styles.sectionTextLightMode
+              }
+            >
+              Notes:
+            </DefaultText>
+          </View>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLongMultilineLargeDarkMode
+                  : styles.inputContainerLongMultilineLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerLongMultilineDarkMode
+                : styles.inputContainerLongMultilineLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Notes..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text) => {
+                setNotes(text);
+              }}
+              defaultValue={notes}
+              multiline={true}
+            />
           </View>
         </View>
       </ScrollView>
@@ -1704,6 +2064,51 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.textBoxColorLightMode,
     width: "70%",
     height: 200,
+    justifyContent: "flex-start",
+    paddingLeft: 10,
+    marginVertical: 15,
+    padding: 8,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+  },
+
+  inputContainerLongMultilineDarkMode: {
+    backgroundColor: Colors.textBoxColorDarkMode,
+    width: "70%",
+    height: 300,
+    justifyContent: "flex-start",
+    paddingLeft: 10,
+    marginVertical: 15,
+    padding: 8,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+  },
+  inputContainerLongMultilineLightMode: {
+    backgroundColor: Colors.textBoxColorLightMode,
+    width: "70%",
+    height: 300,
+    justifyContent: "flex-start",
+    paddingLeft: 10,
+    marginVertical: 15,
+    padding: 8,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+  },
+  inputContainerLongMultilineLargeDarkMode: {
+    backgroundColor: Colors.textBoxColorDarkMode,
+    width: "70%",
+    height: 500,
+    justifyContent: "flex-start",
+    paddingLeft: 10,
+    marginVertical: 15,
+    padding: 8,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+  },
+  inputContainerLongMultilineLargeLightMode: {
+    backgroundColor: Colors.textBoxColorLightMode,
+    width: "70%",
+    height: 500,
     justifyContent: "flex-start",
     paddingLeft: 10,
     marginVertical: 15,

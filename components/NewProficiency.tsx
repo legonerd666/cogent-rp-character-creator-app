@@ -375,19 +375,17 @@ const styles = StyleSheet.create({
   },
 
   textDarkMode: {
-    fontSize: 22,
     color: Colors.accentColorDarkMode,
   },
   textLightMode: {
-    fontSize: 22,
     color: Colors.accentColorLightMode,
   },
   textLargeDarkMode: {
-    fontSize: 40,
+    fontSize: 50,
     color: Colors.accentColorDarkMode,
   },
   textLargeLightMode: {
-    fontSize: 40,
+    fontSize: 50,
     color: Colors.accentColorLightMode,
   },
 
