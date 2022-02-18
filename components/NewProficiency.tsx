@@ -6,7 +6,7 @@ import Colors from "../constants/Colors";
 
 import DefaultText from "./DefaultText";
 
-const Vocation = (props: any) => {
+const Proficiency = (props: any) => {
   const [stat, setStat] = useState(props.itemData.stat);
   const [name, setName] = useState(props.itemData.name);
   const [bonus, setBonus] = useState(props.itemData.bonus);
@@ -16,7 +16,7 @@ const Vocation = (props: any) => {
   const [isDarkMode] = useState(mode === "dark" ? true : false);
 
   return (
-    <View style={styles.vocation}>
+    <View style={styles.proficiency}>
       <View style={styles.header}>
         <DefaultText
           style={
@@ -29,7 +29,7 @@ const Vocation = (props: any) => {
               : styles.textLightMode
           }
         >
-          Vocation:
+          Proficiency:
         </DefaultText>
         <View
           style={
@@ -52,7 +52,7 @@ const Vocation = (props: any) => {
                 ? styles.inputTextDarkMode
                 : styles.inputTextLightMode
             }
-            placeholder="Enter Vocation Name..."
+            placeholder="Enter Proficiency Name..."
             placeholderTextColor={
               isDarkMode
                 ? Colors.accentColorDarkMode
@@ -66,6 +66,37 @@ const Vocation = (props: any) => {
         </View>
       </View>
       <View style={styles.checkboxes}>
+        <View style={styles.checkbox}>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.textLargeDarkMode
+                  : styles.textLargeLightMode
+                : isDarkMode
+                ? styles.textDarkMode
+                : styles.textLightMode
+            }
+          >
+            Cbt:
+          </DefaultText>
+          <RadioButton
+            value="cbt"
+            status={stat === "cbt" ? "checked" : "unchecked"}
+            onPress={() => setStat("cbt")}
+            color={
+              isDarkMode
+                ? Colors.accentColorDarkMode
+                : Colors.accentColorLightMode
+            }
+            uncheckedColor={
+              isDarkMode
+                ? Colors.accentColorDarkMode
+                : Colors.accentColorLightMode
+            }
+          />
+        </View>
+
         <View style={styles.checkbox}>
           <DefaultText
             style={
@@ -210,7 +241,7 @@ const Vocation = (props: any) => {
 };
 
 const styles = StyleSheet.create({
-  vocation: {
+  proficiency: {
     justifyContent: "center",
     alignItems: "center",
   },
@@ -378,4 +409,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Vocation;
+export default Proficiency;

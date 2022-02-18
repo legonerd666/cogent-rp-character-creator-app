@@ -20,6 +20,7 @@ import Colors from "../constants/Colors";
 import DataManipulation from "../functions/DataManipulation";
 import CustomHeaderButton from "../components/HeaderButton";
 import Vocation from "../components/NewVocation";
+import Proficiency from "../components/NewProficiency";
 
 const AddCharacterScreen = (props: any) => {
   const [dataManipulation] = useState(new DataManipulation());
@@ -56,7 +57,14 @@ const AddCharacterScreen = (props: any) => {
       return <Vocation key={item.id} itemData={item} />;
     })
   );
-  const [proficiencies, setProficiencies] = useState([]);
+  const [proficiencies, setProficiencies] = useState([
+    { id: uuid(), name: "", stat: "", bonus: 0 },
+  ]);
+  const [proficiencyComponents, setProficiencyComponents] = useState(
+    proficiencies.map((item: any) => {
+      return <Proficiency key={item.id} itemData={item} />;
+    })
+  );
   const [injuries, setInjuries] = useState(0);
   const [lingeringInjuries, setLingeringInjuries] = useState([]);
   const [destinyPoints, setDestinyPoints] = useState(0);
@@ -65,9 +73,15 @@ const AddCharacterScreen = (props: any) => {
   const [notes, setNotes] = useState("No Notes");
   const [bgColor, setBgColor] = useState("gray");
 
+  const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
+
+  const [isDarkMode] = useState(mode === "dark" ? true : false);
+
+  const [dataIsLoaded, setDataIsLoaded] = useState(false);
+
   const Vocations = (props: any) => {
     return (
-      <View style={styles.vocations}>
+      <View style={styles.customSkill}>
         {vocationComponents}
         <View
           style={
@@ -110,14 +124,50 @@ const AddCharacterScreen = (props: any) => {
     );
   };
 
-  // { id: uuid(), name: "Death", stat: "str", bonus: 1 },
-  // { id: uuid(), name: "Life", stat: "ref", bonus: 2 },
-
-  const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
-
-  const [isDarkMode] = useState(mode === "dark" ? true : false);
-
-  const [dataIsLoaded, setDataIsLoaded] = useState(false);
+  const Proficiencies = (props: any) => {
+    return (
+      <View style={styles.customSkill}>
+        {proficiencyComponents}
+        <View
+          style={
+            Dimensions.get("window").width > 600
+              ? styles.addButtonContainerLarge
+              : styles.addButtonContainer
+          }
+        >
+          <TouchableNativeFeedback
+            onPress={() => {
+              let tempProficiencies = proficiencies;
+              tempProficiencies.push({
+                id: uuid(),
+                name: "",
+                stat: "",
+                bonus: 0,
+              });
+              setProficiencies(tempProficiencies);
+              setProficiencyComponents(
+                proficiencies.map((item: any) => {
+                  return <Proficiency key={item.id} itemData={item} />;
+                })
+              );
+            }}
+          >
+            <View>
+              <DefaultText
+                style={
+                  Dimensions.get("window").width > 600
+                    ? styles.addButtonTextLarge
+                    : styles.addButtonText
+                }
+              >
+                Add New
+              </DefaultText>
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+      </View>
+    );
+  };
 
   const fetchData = () => {
     return dataManipulation.storeLoadedData();
@@ -1485,6 +1535,39 @@ const AddCharacterScreen = (props: any) => {
             </DefaultText>
             <Vocations />
           </View>
+
+          <View
+            style={
+              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
+            }
+          ></View>
+
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.sectionContainerLargeDarkMode
+                  : styles.sectionContainerLargeLightMode
+                : isDarkMode
+                ? styles.sectionContainerDarkMode
+                : styles.sectionContainerLightMode
+            }
+          >
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.sectionTextLargeDarkMode
+                    : styles.sectionTextLargeLightMode
+                  : isDarkMode
+                  ? styles.sectionTextDarkMode
+                  : styles.sectionTextLightMode
+              }
+            >
+              Proficiencies:
+            </DefaultText>
+            <Proficiencies />
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -1750,23 +1833,7 @@ const styles = StyleSheet.create({
     marginTop: 23,
   },
 
-  vocationTextDarkMode: {
-    fontSize: 22,
-    color: Colors.accentColorDarkMode,
-  },
-  vocationTextLightMode: {
-    fontSize: 22,
-    color: Colors.accentColorLightMode,
-  },
-  vocationTextLargeDarkMode: {
-    fontSize: 40,
-    color: Colors.accentColorDarkMode,
-  },
-  vocationTextLargeLightMode: {
-    fontSize: 40,
-    color: Colors.accentColorLightMode,
-  },
-  vocations: {
+  customSkill: {
     justifyContent: "center",
     alignItems: "center",
   },
