@@ -6,9 +6,11 @@ import { Provider } from "react-redux";
 
 import modeReducer from "./store/reducers/mode";
 import CharacterNavigator from "./navigation/CharacterNavigator";
+import currentCharacterReducer from "./store/reducers/currentCharacter";
 
 const rootReducer = combineReducers({
   mode: modeReducer,
+  character: currentCharacterReducer,
 });
 
 const store = createStore(rootReducer);

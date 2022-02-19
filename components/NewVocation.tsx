@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, TextInput, StyleSheet, Dimensions } from "react-native";
 import { RadioButton } from "react-native-paper";
-import { RootStateOrAny, useSelector } from "react-redux";
-import Colors from "../constants/Colors";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 import DefaultText from "./DefaultText";
+import Colors from "../constants/Colors";
+import {
+  resetCharacter,
+  setMultiFieldStat,
+} from "../store/actions/currentCharacter";
 
 const Vocation = (props: any) => {
   const [stat, setStat] = useState(props.itemData.stat);
@@ -14,6 +18,23 @@ const Vocation = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
+
+  const setStatHandler = () => {
+    dispatch(
+      setMultiFieldStat("vocation", props.itemData.id, {
+        id: props.itemData.id,
+        name: name,
+        stat: stat,
+        bonus: bonus,
+      })
+    );
+  };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setStatHandler();
+  }, [stat, name, bonus]);
 
   return (
     <View style={styles.vocation}>

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, TextInput, StyleSheet, Dimensions } from "react-native";
-import { RadioButton } from "react-native-paper";
-import { RootStateOrAny, useSelector } from "react-redux";
-import Colors from "../constants/Colors";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 import DefaultText from "./DefaultText";
+import Colors from "../constants/Colors";
+import { setMultiFieldStat } from "../store/actions/currentCharacter";
 
 const Injury = (props: any) => {
   const [name, setName] = useState(props.itemData.name);
@@ -13,6 +13,22 @@ const Injury = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
+
+  const setStatHandler = () => {
+    dispatch(
+      setMultiFieldStat("injury", props.itemData.id, {
+        id: props.itemData.id,
+        name: name,
+        penalty: penalty,
+      })
+    );
+  };
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setStatHandler();
+  }, [name, penalty]);
 
   return (
     <View style={styles.injury}>

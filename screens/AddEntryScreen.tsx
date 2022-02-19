@@ -12,7 +12,7 @@ import AppLoading from "expo-app-loading";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import ColorPicker from "react-native-wheel-color-picker";
 import { v4 as uuid } from "uuid";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 import DefaultText from "../components/DefaultText";
 import BoldText from "../components/BoldText";
@@ -22,9 +22,24 @@ import CustomHeaderButton from "../components/HeaderButton";
 import Vocation from "../components/NewVocation";
 import Proficiency from "../components/NewProficiency";
 import Injury from "../components/NewInjury";
+import { resetCharacter } from "../store/actions/currentCharacter";
 
 const AddCharacterScreen = (props: any) => {
   const [dataManipulation] = useState(new DataManipulation());
+
+  const dispatch = useDispatch();
+
+  dispatch(resetCharacter());
+
+  let loadedVocations = useSelector(
+    (state: RootStateOrAny) => state.character.vocations
+  );
+  let loadedProficiencies = useSelector(
+    (state: RootStateOrAny) => state.character.proficiencies
+  );
+  let loadedInjuries = useSelector(
+    (state: RootStateOrAny) => state.character.lingeringInjuries
+  );
 
   const [name, setName] = useState("Unknown");
   const [age, setAge] = useState("Unknown");
@@ -50,24 +65,21 @@ const AddCharacterScreen = (props: any) => {
   const [infiltration, setInfiltration] = useState(0);
   const [persuasion, setPersuasion] = useState(0);
   const [survival, setSurvival] = useState(0);
-  const [vocations, setVocations] = useState([
-    { id: uuid(), name: "", stat: "", bonus: 0 },
-  ]);
+  const [vocations, setVocations] = useState(loadedVocations);
   const [vocationComponents, setVocationComponents] = useState(
     vocations.map((item: any) => {
       return <Vocation key={item.id} itemData={item} />;
     })
   );
-  const [proficiencies, setProficiencies] = useState([
-    { id: uuid(), name: "", stat: "", bonus: 0 },
-  ]);
+  const [proficiencies, setProficiencies] = useState(loadedProficiencies);
   const [proficiencyComponents, setProficiencyComponents] = useState(
     proficiencies.map((item: any) => {
       return <Proficiency key={item.id} itemData={item} />;
     })
   );
   const [injuries, setInjuries] = useState(0);
-  const [lingeringInjuries, setLingeringInjuries]: any = useState([]);
+  const [lingeringInjuries, setLingeringInjuries]: any =
+    useState(loadedInjuries);
   const [injuryComponents, setInjuryComponents] = useState(
     lingeringInjuries.map((item: any) => {
       return <Injury key={item.id} itemData={item} />;
@@ -77,7 +89,7 @@ const AddCharacterScreen = (props: any) => {
   const [commercePoints, setCommercePoints] = useState(0);
   const [equipment, setEquipment] = useState("None");
   const [notes, setNotes] = useState("No Notes");
-  const [bgColor, setBgColor] = useState("gray");
+  const [bgColor, setBgColor] = useState("black");
 
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
@@ -238,6 +250,34 @@ const AddCharacterScreen = (props: any) => {
           onPress: async () => {
             const newCharacters = dataManipulation.getData();
 
+            if (
+              loadedVocations[0].stat === "" &&
+              loadedVocations[0].name === "" &&
+              loadedVocations[0].bonus === 0 &&
+              loadedVocations.length === 1
+            ) {
+              loadedVocations = [];
+            }
+            if (
+              loadedProficiencies[0].stat === "" &&
+              loadedProficiencies[0].name === "" &&
+              loadedProficiencies[0].bonus === 0 &&
+              loadedProficiencies.length === 1
+            ) {
+              loadedProficiencies = [];
+            }
+            if (
+              loadedInjuries[0].name === "" &&
+              loadedInjuries[0].penalty === 0 &&
+              loadedInjuries.length === 1
+            ) {
+              loadedInjuries = [];
+            }
+
+            console.log(loadedVocations);
+            console.log(loadedProficiencies);
+            console.log(loadedInjuries);
+
             const newCharacter = {
               id: uuid(),
               name: name,
@@ -263,10 +303,10 @@ const AddCharacterScreen = (props: any) => {
               infiltration: infiltration,
               persuasion: persuasion,
               survival: survival,
-              vocations: vocations,
-              proficiencies: proficiencies,
+              vocations: loadedVocations,
+              proficiencies: loadedProficiencies,
               injuries: injuries,
-              lingeringInjuries: lingeringInjuries,
+              lingeringInjuries: loadedInjuries,
               destinyPoints: destinyPoints,
               commercePoints: commercePoints,
               equipment: equipment,

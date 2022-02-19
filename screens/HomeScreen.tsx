@@ -15,6 +15,7 @@ import DefaultText from "../components/DefaultText";
 import CustomHeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
 import { toggleMode } from "../store/actions/mode";
+import { resetCharacter } from "../store/actions/currentCharacter";
 
 const HomeScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
