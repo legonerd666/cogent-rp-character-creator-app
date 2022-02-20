@@ -272,10 +272,6 @@ const AddCharacterScreen = (props: any) => {
               loadedInjuries = [];
             }
 
-            console.log(loadedVocations);
-            console.log(loadedProficiencies);
-            console.log(loadedInjuries);
-
             const newCharacter = {
               id: uuid(),
               name: name,
@@ -1715,7 +1711,7 @@ const AddCharacterScreen = (props: any) => {
                   : styles.titleLightMode
               }
             >
-              Injuries:
+              Injury Level:
             </DefaultText>
             <View
               style={
@@ -1979,6 +1975,43 @@ const AddCharacterScreen = (props: any) => {
               }}
               defaultValue={notes}
               multiline={true}
+            />
+          </View>
+
+          <View
+            style={
+              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
+            }
+          ></View>
+
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.sectionTextLargeDarkMode
+                  : styles.sectionTextLargeLightMode
+                : isDarkMode
+                ? styles.sectionTextDarkMode
+                : styles.sectionTextLightMode
+            }
+          >
+            Background Color:
+          </DefaultText>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? styles.colorPickerLarge
+                : styles.colorPicker
+            }
+          >
+            <ColorPicker
+              onColorChangeComplete={(color) => {
+                setBgColor(color);
+              }}
+              thumbSize={30}
+              sliderSize={40}
+              noSnap={true}
+              row={false}
             />
           </View>
         </View>

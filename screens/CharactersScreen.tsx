@@ -40,7 +40,7 @@ const CharactersScreen = (props: any) => {
     return (
       <CharacterGridTile
         name={itemData.item.name}
-        bgcolor={itemData.item.bgcolor}
+        bgcolor={itemData.item.bgColor}
         onSelect={() => {
           props.navigation.navigate({
             routeName: "CharacterDetails",
