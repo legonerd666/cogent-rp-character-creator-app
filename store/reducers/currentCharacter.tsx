@@ -40,6 +40,41 @@ const initialState = {
   bgColor: "gray",
 };
 
+const blankCharacter = {
+  name: "Unknown",
+  age: "Unknown",
+  race: "Unknown",
+  bodyType: "Unknown",
+  disablingCharacteristics: "None",
+  strength: 0,
+  reflex: 0,
+  intelligence: 0,
+  endurance: 0,
+  athletics: 0,
+  grip: 0,
+  swim: 0,
+  skillThrow: 0,
+  perception: 0,
+  acrobatics: 0,
+  ridePilot: 0,
+  sleightOfHand: 0,
+  stealth: 0,
+  generalKnowledge: 0,
+  deception: 0,
+  infiltration: 0,
+  persuasion: 0,
+  survival: 0,
+  vocations: [{ id: uuid(), name: "", stat: "", bonus: 0 }],
+  proficiencies: [{ id: uuid(), name: "", stat: "", bonus: 0 }],
+  injuries: 0,
+  lingeringInjuries: [{ id: uuid(), name: "", penalty: 0 }],
+  destinyPoints: 0,
+  commercePoints: 0,
+  equipment: "None",
+  notes: "No Notes",
+  bgColor: "gray",
+};
+
 const currentCharacterReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_STAT:
@@ -135,9 +170,6 @@ const currentCharacterReducer = (state = initialState, action: any) => {
         default:
           return state;
       }
-
-    case RESET_CHARACTER:
-      return initialState;
 
     default:
       return initialState;

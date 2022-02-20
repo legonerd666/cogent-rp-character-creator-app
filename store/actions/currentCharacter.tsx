@@ -22,7 +22,3 @@ export const setMultiFieldStat = (
     newStat: newStat,
   };
 };
-
-export const resetCharacter = () => {
-  return { type: RESET_CHARACTER };
-};

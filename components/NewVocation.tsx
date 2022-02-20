@@ -5,10 +5,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 import DefaultText from "./DefaultText";
 import Colors from "../constants/Colors";
-import {
-  resetCharacter,
-  setMultiFieldStat,
-} from "../store/actions/currentCharacter";
+import { setMultiFieldStat } from "../store/actions/currentCharacter";
 
 const Vocation = (props: any) => {
   const [stat, setStat] = useState(props.itemData.stat);

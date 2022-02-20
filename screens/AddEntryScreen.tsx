@@ -22,14 +22,12 @@ import CustomHeaderButton from "../components/HeaderButton";
 import Vocation from "../components/NewVocation";
 import Proficiency from "../components/NewProficiency";
 import Injury from "../components/NewInjury";
-import { resetCharacter } from "../store/actions/currentCharacter";
+import { setStat } from "../store/actions/currentCharacter";
 
 const AddCharacterScreen = (props: any) => {
   const [dataManipulation] = useState(new DataManipulation());
 
   const dispatch = useDispatch();
-
-  dispatch(resetCharacter());
 
   let loadedVocations = useSelector(
     (state: RootStateOrAny) => state.character.vocations
@@ -318,6 +316,21 @@ const AddCharacterScreen = (props: any) => {
 
             dataManipulation.setData(newCharacters);
             dataManipulation.saveData();
+            dispatch(
+              setStat("vocations", [
+                { id: uuid(), name: "", stat: "", bonus: 0 },
+              ])
+            );
+            dispatch(
+              setStat("proficiencies", [
+                { id: uuid(), name: "", stat: "", bonus: 0 },
+              ])
+            );
+            dispatch(
+              setStat("lingeringInjuries", [
+                { id: uuid(), name: "", penalty: 0 },
+              ])
+            );
             props.navigation.popToTop();
           },
         },
