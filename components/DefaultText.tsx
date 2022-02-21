@@ -16,7 +16,7 @@ const DefaultText = (props: any) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: "caveat",
+    fontFamily: "lora",
     fontSize: 20,
     color: Colors.accentColorDarkMode,
   },

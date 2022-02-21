@@ -46,7 +46,7 @@ const CharacterNavigator = createStackNavigator(
       },
       headerTintColor: Colors.accentColorDarkMode,
       headerTitleStyle: {
-        fontFamily: "caveat-bold",
+        fontFamily: "lora-bold",
         fontSize: 30,
         marginRight: 30,
         textAlign: "center",

@@ -4,6 +4,7 @@ import { RootStateOrAny, useSelector } from "react-redux";
 
 import DefaultText from "./DefaultText";
 import Colors from "../constants/Colors";
+import BoldText from "./BoldText";
 
 const Injury = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -23,19 +24,20 @@ const Injury = (props: any) => {
               : styles.inputContainerLightMode
           }
         >
-          <DefaultText
+          <BoldText
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
-                  ? styles.largeInfoDarkMode
-                  : styles.largeInfoLightMode
+                  ? styles.largeHeaderDarkMode
+                  : styles.largeHeaderLightMode
                 : isDarkMode
-                ? styles.infoDarkMode
-                : styles.infoLightMode
+                ? styles.headerDarkMode
+                : styles.headerLightMode
             }
+            numberOfLines={1}
           >
             {props.itemData.name}
-          </DefaultText>
+          </BoldText>
         </View>
       </View>
 
@@ -75,7 +77,9 @@ const Injury = (props: any) => {
                 : styles.infoLightMode
             }
           >
-            {props.itemData.penalty}
+            {props.itemData.penalty < 0
+              ? props.itemData.penalty
+              : "-" + props.itemData.penalty}
           </DefaultText>
         </View>
       </View>
@@ -94,7 +98,7 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: "center",
     alignItems: "center",
-    width: "80%",
+    width: "100%",
   },
   checkboxes: {
     flexDirection: "row",
@@ -241,27 +245,46 @@ const styles = StyleSheet.create({
 
   largeInfoDarkMode: {
     fontSize: 35,
-    paddingRight: 2,
     textAlign: "center",
     marginVertical: 10,
     color: Colors.accentColorDarkMode,
   },
   largeInfoLightMode: {
     fontSize: 35,
-    paddingRight: 2,
     textAlign: "center",
     marginVertical: 10,
     color: Colors.accentColorLightMode,
   },
   infoDarkMode: {
-    fontSize: 22,
-    paddingRight: 2,
+    fontSize: 25,
     textAlign: "center",
     color: Colors.accentColorDarkMode,
   },
   infoLightMode: {
+    fontSize: 25,
+    textAlign: "center",
+    color: Colors.accentColorLightMode,
+  },
+
+  largeHeaderDarkMode: {
+    fontSize: 35,
+    textAlign: "center",
+    marginVertical: 10,
+    color: Colors.accentColorDarkMode,
+  },
+  largeHeaderLightMode: {
+    fontSize: 35,
+    textAlign: "center",
+    marginVertical: 10,
+    color: Colors.accentColorLightMode,
+  },
+  headerDarkMode: {
     fontSize: 22,
-    paddingRight: 2,
+    textAlign: "center",
+    color: Colors.accentColorDarkMode,
+  },
+  headerLightMode: {
+    fontSize: 22,
     textAlign: "center",
     color: Colors.accentColorLightMode,
   },

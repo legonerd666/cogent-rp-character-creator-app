@@ -19,9 +19,9 @@ import BoldText from "../components/BoldText";
 import Colors from "../constants/Colors";
 import DataManipulation from "../functions/DataManipulation";
 import CustomHeaderButton from "../components/HeaderButton";
-import Vocation from "../components/NewVocation";
-import Proficiency from "../components/NewProficiency";
-import Injury from "../components/NewInjury";
+import Vocation from "../components/EditVocation";
+import Proficiency from "../components/EditProficiency";
+import Injury from "../components/EditInjury";
 import { setStat } from "../store/actions/currentCharacter";
 
 const AddCharacterScreen = (props: any) => {
@@ -248,30 +248,6 @@ const AddCharacterScreen = (props: any) => {
           onPress: async () => {
             const newCharacters = dataManipulation.getData();
 
-            if (
-              loadedVocations[0].stat === "" &&
-              loadedVocations[0].name === "" &&
-              loadedVocations[0].bonus === 0 &&
-              loadedVocations.length === 1
-            ) {
-              loadedVocations = [];
-            }
-            if (
-              loadedProficiencies[0].stat === "" &&
-              loadedProficiencies[0].name === "" &&
-              loadedProficiencies[0].bonus === 0 &&
-              loadedProficiencies.length === 1
-            ) {
-              loadedProficiencies = [];
-            }
-            if (
-              loadedInjuries[0].name === "" &&
-              loadedInjuries[0].penalty === 0 &&
-              loadedInjuries.length === 1
-            ) {
-              loadedInjuries = [];
-            }
-
             const newCharacter = {
               id: uuid(),
               name: name,
@@ -376,6 +352,17 @@ const AddCharacterScreen = (props: any) => {
       <AppLoading
         startAsync={fetchData}
         onFinish={() => {
+          dispatch(
+            setStat("vocations", [{ id: uuid(), name: "", stat: "", bonus: 0 }])
+          );
+          dispatch(
+            setStat("proficiencies", [
+              { id: uuid(), name: "", stat: "", bonus: 0 },
+            ])
+          );
+          dispatch(
+            setStat("lingeringInjuries", [{ id: uuid(), name: "", penalty: 0 }])
+          );
           setDataIsLoaded(true);
         }}
         onError={(err) => console.log(err)}
@@ -2335,22 +2322,16 @@ const styles = StyleSheet.create({
     elevation: 3,
     padding: 5,
     marginTop: 10,
-    width: 80,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 10,
-    alignSelf: "center",
   },
   addButtonContainer: {
     backgroundColor: "#107aeb",
     borderRadius: 10,
     elevation: 3,
     padding: 5,
-    width: 80,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 10,
-    alignSelf: "center",
   },
   addButtonTextLarge: {
     fontSize: 40,

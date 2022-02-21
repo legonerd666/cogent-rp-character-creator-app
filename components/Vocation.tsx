@@ -5,6 +5,7 @@ import { RootStateOrAny, useSelector } from "react-redux";
 
 import DefaultText from "./DefaultText";
 import Colors from "../constants/Colors";
+import BoldText from "./BoldText";
 
 const Vocation = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -24,7 +25,7 @@ const Vocation = (props: any) => {
               : styles.inputContainerLightMode
           }
         >
-          <DefaultText
+          <BoldText
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
@@ -34,9 +35,10 @@ const Vocation = (props: any) => {
                 ? styles.infoDarkMode
                 : styles.infoLightMode
             }
+            numberOfLines={1}
           >
             {props.itemData.name}
-          </DefaultText>
+          </BoldText>
         </View>
       </View>
       <View style={styles.checkboxes}>

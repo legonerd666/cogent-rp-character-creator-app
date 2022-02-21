@@ -5,7 +5,10 @@ import Colors from "../constants/Colors";
 
 const BoldText = (props: any) => {
   return (
-    <Text style={{ ...styles.text, ...props.style }}>
+    <Text
+      numberOfLines={props.numberOfLines}
+      style={{ ...styles.text, ...props.style }}
+    >
       {props.children + " "}
     </Text>
   );
@@ -13,7 +16,7 @@ const BoldText = (props: any) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: "caveat-bold",
+    fontFamily: "lora-bold",
     fontSize: 20,
     color: Colors.accentColorDarkMode,
   },

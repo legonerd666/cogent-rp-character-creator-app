@@ -17,10 +17,8 @@ const store = createStore(rootReducer);
 
 const fetchFonts = () => {
   return Font.loadAsync({
-    "caveat": require("./assets/fonts/Caveat-Regular.ttf"),
-    "caveat-bold": require("./assets/fonts/Caveat-Bold.ttf"),
-    "caveat-medium": require("./assets/fonts/Caveat-Medium.ttf"),
-    "caveat-semi-bold": require("./assets/fonts/Caveat-SemiBold.ttf"),
+    "lora": require("./assets/fonts/Lora-Regular.ttf"),
+    "lora-bold": require("./assets/fonts/Lora-Bold.ttf"),
   });
 };
 
