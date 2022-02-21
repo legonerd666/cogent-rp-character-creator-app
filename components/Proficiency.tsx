@@ -59,7 +59,6 @@ const Proficiency = (props: any) => {
           <RadioButton
             value="cbt"
             status={props.itemData.stat === "cbt" ? "checked" : "unchecked"}
-            disabled={true}
             color={
               isDarkMode
                 ? Colors.accentColorDarkMode
@@ -90,7 +89,6 @@ const Proficiency = (props: any) => {
           <RadioButton
             value="str"
             status={props.itemData.stat === "str" ? "checked" : "unchecked"}
-            disabled={true}
             color={
               isDarkMode
                 ? Colors.accentColorDarkMode
@@ -121,7 +119,6 @@ const Proficiency = (props: any) => {
           <RadioButton
             value="ref"
             status={props.itemData.stat === "ref" ? "checked" : "unchecked"}
-            disabled={true}
             color={
               isDarkMode
                 ? Colors.accentColorDarkMode
@@ -152,7 +149,6 @@ const Proficiency = (props: any) => {
           <RadioButton
             value="int"
             status={props.itemDatastat === "int" ? "checked" : "unchecked"}
-            disabled={true}
             color={
               isDarkMode
                 ? Colors.accentColorDarkMode

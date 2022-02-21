@@ -15,6 +15,7 @@ import DefaultText from "../components/DefaultText";
 import CustomHeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
 import { toggleMode } from "../store/actions/mode";
+import BoldText from "../components/BoldText";
 
 const HomeScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -89,7 +90,7 @@ const HomeScreen = (props: any) => {
       }}
     >
       <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
-        <DefaultText
+        <BoldText
           style={
             Dimensions.get("window").width > 600
               ? isDarkMode
@@ -101,7 +102,7 @@ const HomeScreen = (props: any) => {
           }
         >
           Cogent Roleplay Character Creator
-        </DefaultText>
+        </BoldText>
         <DefaultText
           style={
             Dimensions.get("window").width > 600
