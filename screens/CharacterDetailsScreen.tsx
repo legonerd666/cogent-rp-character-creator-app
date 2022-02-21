@@ -1340,18 +1340,22 @@ const styles = StyleSheet.create({
   },
   largeTitleDarkMode: {
     color: Colors.accentColorDarkMode,
+    textAlign: "center",
     fontSize: 50,
   },
   largeTitleLightMode: {
     color: Colors.accentColorLightMode,
+    textAlign: "center",
     fontSize: 50,
   },
   titleDarkMode: {
     color: Colors.accentColorDarkMode,
+    textAlign: "center",
     fontSize: 30,
   },
   titleLightMode: {
     color: Colors.accentColorLightMode,
+    textAlign: "center",
     fontSize: 30,
   },
   infoBlockContainer: {

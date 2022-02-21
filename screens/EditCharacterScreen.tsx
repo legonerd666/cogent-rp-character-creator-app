@@ -2354,18 +2354,20 @@ const styles = StyleSheet.create({
   },
 
   titleDarkMode: {
+    fontSize: 18,
     color: Colors.accentColorDarkMode,
   },
   titleLightMode: {
+    fontSize: 18,
     color: Colors.accentColorLightMode,
   },
   titleLargeDarkMode: {
     color: Colors.accentColorDarkMode,
-    fontSize: 50,
+    fontSize: 40,
   },
   titleLargeLightMode: {
     color: Colors.accentColorLightMode,
-    fontSize: 50,
+    fontSize: 40,
   },
 
   inputTextDarkMode: {

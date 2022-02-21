@@ -51,19 +51,6 @@ const Vocation = (props: any) => {
     return (
       <View style={styles.vocation}>
         <View style={styles.header}>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.textLargeDarkMode
-                  : styles.textLargeLightMode
-                : isDarkMode
-                ? styles.textDarkMode
-                : styles.textLightMode
-            }
-          >
-            Vocation:
-          </DefaultText>
           <View
             style={
               Dimensions.get("window").width > 600
@@ -286,7 +273,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    width: "80%",
   },
   checkboxes: {
     flexDirection: "row",
@@ -294,6 +280,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   checkbox: {
+    justifyContent: "center",
+    alignItems: "center",
     flexDirection: "row",
     marginHorizontal: 10,
   },
@@ -449,7 +437,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     padding: 5,
     marginTop: 10,
-    width: 80,
+    width: 160,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 10,

@@ -13,7 +13,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -23,7 +25,8 @@
         "backgroundColor": "#FFFFFF"
       },
       "versionCode": 1,
-      "permissions": []
+      "permissions": [],
+      "package": "com.legonerd666.cogentrpcharactercreator"
     },
     "web": {
       "favicon": "./assets/favicon.png"

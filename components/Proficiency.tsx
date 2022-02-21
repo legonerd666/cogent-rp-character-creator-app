@@ -101,7 +101,9 @@ const Proficiency = (props: any) => {
             }
           />
         </View>
+      </View>
 
+      <View style={styles.checkboxes}>
         <View style={styles.checkbox}>
           <DefaultText
             style={
@@ -226,6 +228,8 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     marginHorizontal: 10,
   },
   bonus: {

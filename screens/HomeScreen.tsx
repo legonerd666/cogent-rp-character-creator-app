@@ -172,16 +172,20 @@ const styles = StyleSheet.create({
   largeIntroDarkMode: {
     color: Colors.accentColorDarkMode,
     fontSize: 50,
+    textAlign: "center",
   },
   largeIntroLightMode: {
     color: Colors.accentColorLightMode,
     fontSize: 50,
+    textAlign: "center",
   },
   introDarkMode: {
     color: Colors.accentColorDarkMode,
+    textAlign: "center",
   },
   introLightMode: {
     color: Colors.accentColorLightMode,
+    textAlign: "center",
   },
 });
 

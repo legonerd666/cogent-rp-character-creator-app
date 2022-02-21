@@ -400,25 +400,30 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 40,
     color: Colors.accentColorDarkMode,
+    marginVertical: 10,
   },
   noticeLargeLightMode: {
     textAlign: "center",
     fontSize: 40,
     color: Colors.accentColorLightMode,
+    marginVertical: 10,
   },
   noticeDarkMode: {
     textAlign: "center",
     color: Colors.accentColorDarkMode,
+    marginVertical: 10,
   },
   noticeLightMode: {
     textAlign: "center",
     color: Colors.accentColorLightMode,
+    marginVertical: 10,
   },
   noticeContainerLarge: {
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
     marginHorizontal: 200,
+    width: "80%",
   },
   noticeContainer: {
     justifyContent: "center",

@@ -196,6 +196,8 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     marginHorizontal: 10,
   },
   bonus: {

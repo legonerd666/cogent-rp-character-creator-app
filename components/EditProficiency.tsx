@@ -51,19 +51,6 @@ const Proficiency = (props: any) => {
     return (
       <View style={styles.proficiency}>
         <View style={styles.header}>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.textLargeDarkMode
-                  : styles.textLargeLightMode
-                : isDarkMode
-                ? styles.textDarkMode
-                : styles.textLightMode
-            }
-          >
-            Proficiency:
-          </DefaultText>
           <View
             style={
               Dimensions.get("window").width > 600
@@ -98,6 +85,7 @@ const Proficiency = (props: any) => {
             />
           </View>
         </View>
+
         <View style={styles.checkboxes}>
           <View style={styles.checkbox}>
             <DefaultText
@@ -160,7 +148,8 @@ const Proficiency = (props: any) => {
               }
             />
           </View>
-
+        </View>
+        <View style={styles.checkboxes}>
           <View style={styles.checkbox}>
             <DefaultText
               style={
@@ -316,7 +305,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    width: "80%",
+    marginTop: 10,
   },
   checkboxes: {
     flexDirection: "row",
@@ -325,6 +314,8 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     marginHorizontal: 10,
   },
   bonus: {
@@ -479,7 +470,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     padding: 5,
     marginTop: 10,
-    width: 80,
+    width: 160,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 10,
