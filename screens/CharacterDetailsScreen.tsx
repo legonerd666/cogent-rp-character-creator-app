@@ -1291,6 +1291,10 @@ const CharacterDetailsScreen = (props: any) => {
         >
           {character.notes}
         </DefaultText>
+
+        <View
+          style={isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode}
+        ></View>
       </View>
     </ScrollView>
   );
@@ -1326,11 +1330,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     backgroundColor: Colors.primaryColorDarkMode,
+    paddingTop: 30,
   },
   screenLightMode: {
     alignItems: "center",
     flex: 1,
     backgroundColor: Colors.primaryColorLightMode,
+    paddingTop: 30,
   },
   largeTitleDarkMode: {
     color: Colors.accentColorDarkMode,

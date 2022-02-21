@@ -2028,11 +2028,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
     backgroundColor: Colors.primaryColorDarkMode,
+    paddingTop: 30,
   },
   screenLightMode: {
     alignItems: "center",
     flex: 1,
     backgroundColor: Colors.primaryColorLightMode,
+    paddingTop: 30,
   },
 
   introDarkMode: {
