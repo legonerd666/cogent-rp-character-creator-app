@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import modeReducer from "./store/reducers/mode";
 import CharacterNavigator from "./navigation/CharacterNavigator";
 import currentCharacterReducer from "./store/reducers/currentCharacter";
+import { NavigationContainer } from "@react-navigation/native";
 
 const rootReducer = combineReducers({
   mode: modeReducer,
@@ -37,7 +38,9 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <CharacterNavigator />
+      <NavigationContainer>
+        <CharacterNavigator />
+      </NavigationContainer>
     </Provider>
   );
 }

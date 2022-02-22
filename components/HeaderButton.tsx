@@ -10,7 +10,7 @@ const CustomHeaderButton = (props: any) => {
       {...props}
       IconComponent={Ionicons}
       iconSize={30}
-      color={Colors.accentColorDarkMode}
+      color={Colors.primaryColorDarkMode}
     />
   );
 };

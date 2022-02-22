@@ -22,9 +22,28 @@ import CustomHeaderButton from "../components/HeaderButton";
 import Vocation from "../components/EditVocation";
 import Proficiency from "../components/EditProficiency";
 import Injury from "../components/EditInjury";
-import { setStat } from "../store/actions/currentCharacter";
+import {
+  setStat,
+  newCurrentCharacter,
+} from "../store/actions/currentCharacter";
 
 const AddCharacterScreen = (props: any) => {
+  React.useLayoutEffect(() => {
+    props.navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+          <Item
+            title="Save"
+            iconName="save-sharp"
+            onPress={() => {
+              saveHandler();
+            }}
+          />
+        </HeaderButtons>
+      ),
+    });
+  });
+
   const [dataManipulation] = useState(new DataManipulation());
 
   const dispatch = useDispatch();
@@ -39,30 +58,77 @@ const AddCharacterScreen = (props: any) => {
     (state: RootStateOrAny) => state.character.lingeringInjuries
   );
 
-  const [name, setName] = useState("Unknown");
-  const [age, setAge] = useState("Unknown");
-  const [race, setRace] = useState("Unknown");
-  const [bodyType, setBodyType] = useState("Unknown");
-  const [disablingCharacteristics, setDisablingCharacteristics] =
-    useState("None");
-  const [strength, setStrength] = useState(0);
-  const [reflex, setReflex] = useState(0);
-  const [intelligence, setIntelligence] = useState(0);
-  const [endurance, setEndurance] = useState(0);
-  const [athletics, setAthletics] = useState(0);
-  const [grip, setGrip] = useState(0);
-  const [swim, setSwim] = useState(0);
-  const [skillThrow, setSkillThrow] = useState(0);
-  const [perception, setPerception] = useState(0);
-  const [acrobatics, setAcrobatics] = useState(0);
-  const [ridePilot, setRidePilot] = useState(0);
-  const [sleightOfHand, setSleightOfHand] = useState(0);
-  const [stealth, setStealth] = useState(0);
-  const [generalKnowledge, setGeneralKnowledge] = useState(0);
-  const [deception, setDeception] = useState(0);
-  const [infiltration, setInfiltration] = useState(0);
-  const [persuasion, setPersuasion] = useState(0);
-  const [survival, setSurvival] = useState(0);
+  const [name, setName] = useState(
+    useSelector((state: RootStateOrAny) => state.character.name)
+  );
+  const [age, setAge] = useState(
+    useSelector((state: RootStateOrAny) => state.character.age)
+  );
+  const [race, setRace] = useState(
+    useSelector((state: RootStateOrAny) => state.character.race)
+  );
+  const [bodyType, setBodyType] = useState(
+    useSelector((state: RootStateOrAny) => state.character.bodyType)
+  );
+  const [disablingCharacteristics, setDisablingCharacteristics] = useState(
+    useSelector(
+      (state: RootStateOrAny) => state.character.disablingCharacteristics
+    )
+  );
+  const [strength, setStrength] = useState(
+    useSelector((state: RootStateOrAny) => state.character.strength)
+  );
+  const [reflex, setReflex] = useState(
+    useSelector((state: RootStateOrAny) => state.character.reflex)
+  );
+  const [intelligence, setIntelligence] = useState(
+    useSelector((state: RootStateOrAny) => state.character.intelligence)
+  );
+  const [endurance, setEndurance] = useState(
+    useSelector((state: RootStateOrAny) => state.character.endurance)
+  );
+  const [athletics, setAthletics] = useState(
+    useSelector((state: RootStateOrAny) => state.character.athletics)
+  );
+  const [grip, setGrip] = useState(
+    useSelector((state: RootStateOrAny) => state.character.grip)
+  );
+  const [swim, setSwim] = useState(
+    useSelector((state: RootStateOrAny) => state.character.swim)
+  );
+  const [skillThrow, setSkillThrow] = useState(
+    useSelector((state: RootStateOrAny) => state.character.skillThrow)
+  );
+  const [perception, setPerception] = useState(
+    useSelector((state: RootStateOrAny) => state.character.perception)
+  );
+  const [acrobatics, setAcrobatics] = useState(
+    useSelector((state: RootStateOrAny) => state.character.acrobatics)
+  );
+  const [ridePilot, setRidePilot] = useState(
+    useSelector((state: RootStateOrAny) => state.character.ridePilot)
+  );
+  const [sleightOfHand, setSleightOfHand] = useState(
+    useSelector((state: RootStateOrAny) => state.character.sleightOfHand)
+  );
+  const [stealth, setStealth] = useState(
+    useSelector((state: RootStateOrAny) => state.character.stealth)
+  );
+  const [generalKnowledge, setGeneralKnowledge] = useState(
+    useSelector((state: RootStateOrAny) => state.character.generalKnowledge)
+  );
+  const [deception, setDeception] = useState(
+    useSelector((state: RootStateOrAny) => state.character.deception)
+  );
+  const [infiltration, setInfiltration] = useState(
+    useSelector((state: RootStateOrAny) => state.character.infiltration)
+  );
+  const [persuasion, setPersuasion] = useState(
+    useSelector((state: RootStateOrAny) => state.character.persuasion)
+  );
+  const [survival, setSurvival] = useState(
+    useSelector((state: RootStateOrAny) => state.character.survival)
+  );
   const [vocations, setVocations] = useState(loadedVocations);
   const [vocationComponents, setVocationComponents] = useState(
     vocations.map((item: any) => {
@@ -75,7 +141,9 @@ const AddCharacterScreen = (props: any) => {
       return <Proficiency key={item.id} itemData={item} />;
     })
   );
-  const [injuries, setInjuries] = useState(0);
+  const [injuries, setInjuries] = useState(
+    useSelector((state: RootStateOrAny) => state.character.injuries)
+  );
   const [lingeringInjuries, setLingeringInjuries]: any =
     useState(loadedInjuries);
   const [injuryComponents, setInjuryComponents] = useState(
@@ -83,11 +151,21 @@ const AddCharacterScreen = (props: any) => {
       return <Injury key={item.id} itemData={item} />;
     })
   );
-  const [destinyPoints, setDestinyPoints] = useState(0);
-  const [commercePoints, setCommercePoints] = useState(0);
-  const [equipment, setEquipment] = useState("None");
-  const [notes, setNotes] = useState("No Notes");
-  const [bgColor, setBgColor] = useState("black");
+  const [destinyPoints, setDestinyPoints] = useState(
+    useSelector((state: RootStateOrAny) => state.character.destinyPoints)
+  );
+  const [commercePoints, setCommercePoints] = useState(
+    useSelector((state: RootStateOrAny) => state.character.commercePoints)
+  );
+  const [equipment, setEquipment] = useState(
+    useSelector((state: RootStateOrAny) => state.character.equipment)
+  );
+  const [notes, setNotes] = useState(
+    useSelector((state: RootStateOrAny) => state.character.notes)
+  );
+  const [bgColor, setBgColor] = useState(
+    useSelector((state: RootStateOrAny) => state.character.bgColor)
+  );
 
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
@@ -116,6 +194,7 @@ const AddCharacterScreen = (props: any) => {
                 bonus: 0,
               });
               setVocations(tempVocations);
+              dispatch(setStat("vocations", tempVocations));
               setVocationComponents(
                 vocations.map((item: any) => {
                   return <Vocation key={item.id} itemData={item} />;
@@ -161,6 +240,7 @@ const AddCharacterScreen = (props: any) => {
                 bonus: 0,
               });
               setProficiencies(tempProficiencies);
+              dispatch(setStat("proficiencies", tempProficiencies));
               setProficiencyComponents(
                 proficiencies.map((item: any) => {
                   return <Proficiency key={item.id} itemData={item} />;
@@ -205,6 +285,7 @@ const AddCharacterScreen = (props: any) => {
                 penalty: 0,
               });
               setLingeringInjuries(tempInjuries);
+              dispatch(setStat("lingeringInjuries", tempInjuries));
               setInjuryComponents(
                 lingeringInjuries.map((item: any) => {
                   return <Injury key={item.id} itemData={item} />;
@@ -289,19 +370,41 @@ const AddCharacterScreen = (props: any) => {
             dataManipulation.setData(newCharacters);
             dataManipulation.saveData();
             dispatch(
-              setStat("vocations", [
-                { id: uuid(), name: "", stat: "", bonus: 0 },
-              ])
-            );
-            dispatch(
-              setStat("proficiencies", [
-                { id: uuid(), name: "", stat: "", bonus: 0 },
-              ])
-            );
-            dispatch(
-              setStat("lingeringInjuries", [
-                { id: uuid(), name: "", penalty: 0 },
-              ])
+              newCurrentCharacter({
+                id: uuid(),
+                name: "Unknown",
+                age: "Unknown",
+                race: "Unknown",
+                bodyType: "Unknown",
+                disablingCharacteristics: "None",
+                strength: 0,
+                reflex: 0,
+                intelligence: 0,
+                endurance: 0,
+                athletics: 0,
+                grip: 0,
+                swim: 0,
+                skillThrow: 0,
+                perception: 0,
+                acrobatics: 0,
+                ridePilot: 0,
+                sleightOfHand: 0,
+                stealth: 0,
+                generalKnowledge: 0,
+                deception: 0,
+                infiltration: 0,
+                persuasion: 0,
+                survival: 0,
+                vocations: [{ id: uuid(), name: "", stat: "", bonus: 0 }],
+                proficiencies: [{ id: uuid(), name: "", stat: "", bonus: 0 }],
+                injuries: 0,
+                lingeringInjuries: [{ id: uuid(), name: "", penalty: 0 }],
+                destinyPoints: 0,
+                commercePoints: 0,
+                equipment: "None",
+                notes: "No Notes",
+                bgColor: "#ffffff",
+              })
             );
             props.navigation.popToTop();
           },
@@ -309,60 +412,11 @@ const AddCharacterScreen = (props: any) => {
       ]
     );
   };
-
-  useEffect(() => {
-    props.navigation.setParams({ save: () => saveHandler() });
-  }, [
-    name,
-    age,
-    race,
-    bodyType,
-    disablingCharacteristics,
-    strength,
-    reflex,
-    intelligence,
-    endurance,
-    athletics,
-    grip,
-    swim,
-    skillThrow,
-    perception,
-    acrobatics,
-    ridePilot,
-    sleightOfHand,
-    stealth,
-    generalKnowledge,
-    deception,
-    infiltration,
-    persuasion,
-    survival,
-    vocations,
-    proficiencies,
-    injuries,
-    lingeringInjuries,
-    destinyPoints,
-    commercePoints,
-    equipment,
-    notes,
-    bgColor,
-  ]);
-
   if (!dataIsLoaded) {
     return (
       <AppLoading
         startAsync={fetchData}
         onFinish={() => {
-          dispatch(
-            setStat("vocations", [{ id: uuid(), name: "", stat: "", bonus: 0 }])
-          );
-          dispatch(
-            setStat("proficiencies", [
-              { id: uuid(), name: "", stat: "", bonus: 0 },
-            ])
-          );
-          dispatch(
-            setStat("lingeringInjuries", [{ id: uuid(), name: "", penalty: 0 }])
-          );
           setDataIsLoaded(true);
         }}
         onError={(err) => console.log(err)}
@@ -2007,21 +2061,21 @@ const AddCharacterScreen = (props: any) => {
   );
 };
 
-AddCharacterScreen.navigationOptions = (navigationData: any) => {
-  return {
-    headerRight: () => (
-      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item
-          title="Save"
-          iconName="save-sharp"
-          onPress={() => {
-            navigationData.navigation.getParam("save")();
-          }}
-        />
-      </HeaderButtons>
-    ),
-  };
-};
+// AddCharacterScreen.navigationOptions = (navigationData: any) => {
+//   return {
+//     headerRight: () => (
+//       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+//         <Item
+//           title="Save"
+//           iconName="save-sharp"
+//           onPress={() => {
+//             navigationData.navigation.getParam("save")();
+//           }}
+//         />
+//       </HeaderButtons>
+//     ),
+//   };
+// };
 
 const styles = StyleSheet.create({
   screenDarkMode: {

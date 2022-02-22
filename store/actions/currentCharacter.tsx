@@ -1,6 +1,6 @@
 export const SET_STAT = "SET_STAT";
 export const SET_MULTIFIELDSTAT = "SET_MULTIFIELDSTAT";
-export const RESET_CHARACTER = "RESET_CHARACTER";
+export const NEW_CURRENT_CHARACTER = "NEW_CURRENT_CHARACTER";
 
 export const setStat = (stat: string, newStat: any) => {
   return {
@@ -20,5 +20,12 @@ export const setMultiFieldStat = (
     statType: statType,
     statId: statId,
     newStat: newStat,
+  };
+};
+
+export const newCurrentCharacter = (newCharacter: any) => {
+  return {
+    type: NEW_CURRENT_CHARACTER,
+    newCharacter: newCharacter,
   };
 };

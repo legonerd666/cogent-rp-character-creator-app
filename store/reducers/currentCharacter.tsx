@@ -1,11 +1,12 @@
 import { v4 as uuid } from "uuid";
 import {
-  RESET_CHARACTER,
+  NEW_CURRENT_CHARACTER,
   SET_MULTIFIELDSTAT,
   SET_STAT,
 } from "../actions/currentCharacter";
 
 const initialState = {
+  id: uuid(),
   name: "Unknown",
   age: "Unknown",
   race: "Unknown",
@@ -37,48 +38,15 @@ const initialState = {
   commercePoints: 0,
   equipment: "None",
   notes: "No Notes",
-  bgColor: "gray",
-};
-
-const blankCharacter = {
-  name: "Unknown",
-  age: "Unknown",
-  race: "Unknown",
-  bodyType: "Unknown",
-  disablingCharacteristics: "None",
-  strength: 0,
-  reflex: 0,
-  intelligence: 0,
-  endurance: 0,
-  athletics: 0,
-  grip: 0,
-  swim: 0,
-  skillThrow: 0,
-  perception: 0,
-  acrobatics: 0,
-  ridePilot: 0,
-  sleightOfHand: 0,
-  stealth: 0,
-  generalKnowledge: 0,
-  deception: 0,
-  infiltration: 0,
-  persuasion: 0,
-  survival: 0,
-  vocations: [{ id: uuid(), name: "", stat: "", bonus: 0 }],
-  proficiencies: [{ id: uuid(), name: "", stat: "", bonus: 0 }],
-  injuries: 0,
-  lingeringInjuries: [{ id: uuid(), name: "", penalty: 0 }],
-  destinyPoints: 0,
-  commercePoints: 0,
-  equipment: "None",
-  notes: "No Notes",
-  bgColor: "gray",
+  bgColor: "#ffffff",
 };
 
 const currentCharacterReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case SET_STAT:
       switch (action.stat) {
+        case "id":
+          return { ...state, id: action.newStat };
         case "name":
           return { ...state, name: action.newStat };
         case "age":
@@ -170,7 +138,8 @@ const currentCharacterReducer = (state = initialState, action: any) => {
         default:
           return state;
       }
-
+    case NEW_CURRENT_CHARACTER:
+      return action.newCharacter;
     default:
       return initialState;
   }

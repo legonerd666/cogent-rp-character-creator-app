@@ -9,20 +9,79 @@ import {
 } from "react-native";
 import AppLoading from "expo-app-loading";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { v4 as uuid } from "uuid";
 
 import CharacterGridTile from "../components/CharacterGridTile";
 import CustomHeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
 import Colors from "../constants/Colors";
 import DataManipulation from "../functions/DataManipulation";
+import {
+  setStat,
+  newCurrentCharacter,
+} from "../store/actions/currentCharacter";
 
 const CharactersScreen = (props: any) => {
+  React.useLayoutEffect(() => {
+    props.navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+          <Item
+            title="Add New"
+            iconName="add"
+            onPress={() => {
+              dispatch(
+                newCurrentCharacter({
+                  id: uuid(),
+                  name: "Unknown",
+                  age: "Unknown",
+                  race: "Unknown",
+                  bodyType: "Unknown",
+                  disablingCharacteristics: "None",
+                  strength: 0,
+                  reflex: 0,
+                  intelligence: 0,
+                  endurance: 0,
+                  athletics: 0,
+                  grip: 0,
+                  swim: 0,
+                  skillThrow: 0,
+                  perception: 0,
+                  acrobatics: 0,
+                  ridePilot: 0,
+                  sleightOfHand: 0,
+                  stealth: 0,
+                  generalKnowledge: 0,
+                  deception: 0,
+                  infiltration: 0,
+                  persuasion: 0,
+                  survival: 0,
+                  vocations: [{ id: uuid(), name: "", stat: "", bonus: 0 }],
+                  proficiencies: [{ id: uuid(), name: "", stat: "", bonus: 0 }],
+                  injuries: 0,
+                  lingeringInjuries: [{ id: uuid(), name: "", penalty: 0 }],
+                  destinyPoints: 0,
+                  commercePoints: 0,
+                  equipment: "None",
+                  notes: "No Notes",
+                  bgColor: "#ffffff",
+                })
+              );
+              props.navigation.navigate("Add");
+            }}
+          />
+        </HeaderButtons>
+      ),
+    });
+  }, [props.navigation]);
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
 
   const [dataManipulation] = useState(new DataManipulation());
+
+  const dispatch = useDispatch();
 
   const [filteredCharacters, setFilteredCharacters] = useState(
     dataManipulation.getData
@@ -42,8 +101,10 @@ const CharactersScreen = (props: any) => {
         name={itemData.item.name}
         bgcolor={itemData.item.bgColor}
         onSelect={() => {
-          props.navigation.navigate({
-            routeName: "CharacterDetails",
+          dispatch(setStat("id", itemData.item.id));
+          dispatch(setStat("name", itemData.item.name));
+          props.navigation.navigate("CharacterDetails", {
+            screen: "Characteristics",
             params: {
               characterId: itemData.item.id,
               characterName: itemData.item.name,
@@ -122,9 +183,7 @@ const CharactersScreen = (props: any) => {
           </DefaultText>
           <TouchableNativeFeedback
             onPress={() => {
-              props.navigation.navigate({
-                routeName: "Add",
-              });
+              props.navigation.navigate("Add");
             }}
           >
             <View
@@ -210,9 +269,7 @@ const CharactersScreen = (props: any) => {
           </DefaultText>
           <TouchableNativeFeedback
             onPress={() => {
-              props.navigation.navigate({
-                routeName: "Add",
-              });
+              props.navigation.navigate("Add");
             }}
           >
             <View
@@ -287,23 +344,21 @@ const CharactersScreen = (props: any) => {
   );
 };
 
-CharactersScreen.navigationOptions = (navigationData: any) => {
-  return {
-    headerRight: () => (
-      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item
-          title="Add New"
-          iconName="add"
-          onPress={() => {
-            navigationData.navigation.navigate({
-              routeName: "Add",
-            });
-          }}
-        />
-      </HeaderButtons>
-    ),
-  };
-};
+// CharactersScreen.navigationOptions = (navigationData: any) => {
+//   return {
+//     headerRight: () => (
+//       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+//         <Item
+//           title="Add New"
+//           iconName="add"
+//           onPress={() => {
+//             navigationData.navigation.navigate("Add");
+//           }}
+//         />
+//       </HeaderButtons>
+//     ),
+//   };
+// };
 
 const styles = StyleSheet.create({
   screenDarkMode: {

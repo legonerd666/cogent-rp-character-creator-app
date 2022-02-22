@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   TextInput,
@@ -22,9 +22,32 @@ import CustomHeaderButton from "../components/HeaderButton";
 import Vocation from "../components/EditVocation";
 import Proficiency from "../components/EditProficiency";
 import Injury from "../components/EditInjury";
-import { setStat } from "../store/actions/currentCharacter";
 
 const EditCharacterScreen = (props: any) => {
+  React.useLayoutEffect(() => {
+    props.navigation.setOptions({
+      headerTitle: characterName,
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+          <Item
+            title="Save"
+            iconName="save-sharp"
+            onPress={() => {
+              saveHandler();
+            }}
+          />
+          <Item
+            title="Delete"
+            iconName="trash"
+            onPress={() => {
+              deleteHandler();
+            }}
+          />
+        </HeaderButtons>
+      ),
+    });
+  });
+
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
@@ -43,30 +66,77 @@ const EditCharacterScreen = (props: any) => {
     (state: RootStateOrAny) => state.character.lingeringInjuries
   );
 
-  const [name, setName] = useState("Unknown");
-  const [age, setAge] = useState("Unknown");
-  const [race, setRace] = useState("Unknown");
-  const [bodyType, setBodyType] = useState("Unknown");
-  const [disablingCharacteristics, setDisablingCharacteristics] =
-    useState("None");
-  const [strength, setStrength] = useState(0);
-  const [reflex, setReflex] = useState(0);
-  const [intelligence, setIntelligence] = useState(0);
-  const [endurance, setEndurance] = useState(0);
-  const [athletics, setAthletics] = useState(0);
-  const [grip, setGrip] = useState(0);
-  const [swim, setSwim] = useState(0);
-  const [skillThrow, setSkillThrow] = useState(0);
-  const [perception, setPerception] = useState(0);
-  const [acrobatics, setAcrobatics] = useState(0);
-  const [ridePilot, setRidePilot] = useState(0);
-  const [sleightOfHand, setSleightOfHand] = useState(0);
-  const [stealth, setStealth] = useState(0);
-  const [generalKnowledge, setGeneralKnowledge] = useState(0);
-  const [deception, setDeception] = useState(0);
-  const [infiltration, setInfiltration] = useState(0);
-  const [persuasion, setPersuasion] = useState(0);
-  const [survival, setSurvival] = useState(0);
+  const [name, setName] = useState(
+    useSelector((state: RootStateOrAny) => state.character.name)
+  );
+  const [age, setAge] = useState(
+    useSelector((state: RootStateOrAny) => state.character.age)
+  );
+  const [race, setRace] = useState(
+    useSelector((state: RootStateOrAny) => state.character.race)
+  );
+  const [bodyType, setBodyType] = useState(
+    useSelector((state: RootStateOrAny) => state.character.bodyType)
+  );
+  const [disablingCharacteristics, setDisablingCharacteristics] = useState(
+    useSelector(
+      (state: RootStateOrAny) => state.character.disablingCharacteristics
+    )
+  );
+  const [strength, setStrength] = useState(
+    useSelector((state: RootStateOrAny) => state.character.strength)
+  );
+  const [reflex, setReflex] = useState(
+    useSelector((state: RootStateOrAny) => state.character.reflex)
+  );
+  const [intelligence, setIntelligence] = useState(
+    useSelector((state: RootStateOrAny) => state.character.intelligence)
+  );
+  const [endurance, setEndurance] = useState(
+    useSelector((state: RootStateOrAny) => state.character.endurance)
+  );
+  const [athletics, setAthletics] = useState(
+    useSelector((state: RootStateOrAny) => state.character.athletics)
+  );
+  const [grip, setGrip] = useState(
+    useSelector((state: RootStateOrAny) => state.character.grip)
+  );
+  const [swim, setSwim] = useState(
+    useSelector((state: RootStateOrAny) => state.character.swim)
+  );
+  const [skillThrow, setSkillThrow] = useState(
+    useSelector((state: RootStateOrAny) => state.character.skillThrow)
+  );
+  const [perception, setPerception] = useState(
+    useSelector((state: RootStateOrAny) => state.character.perception)
+  );
+  const [acrobatics, setAcrobatics] = useState(
+    useSelector((state: RootStateOrAny) => state.character.acrobatics)
+  );
+  const [ridePilot, setRidePilot] = useState(
+    useSelector((state: RootStateOrAny) => state.character.ridePilot)
+  );
+  const [sleightOfHand, setSleightOfHand] = useState(
+    useSelector((state: RootStateOrAny) => state.character.sleightOfHand)
+  );
+  const [stealth, setStealth] = useState(
+    useSelector((state: RootStateOrAny) => state.character.stealth)
+  );
+  const [generalKnowledge, setGeneralKnowledge] = useState(
+    useSelector((state: RootStateOrAny) => state.character.generalKnowledge)
+  );
+  const [deception, setDeception] = useState(
+    useSelector((state: RootStateOrAny) => state.character.deception)
+  );
+  const [infiltration, setInfiltration] = useState(
+    useSelector((state: RootStateOrAny) => state.character.infiltration)
+  );
+  const [persuasion, setPersuasion] = useState(
+    useSelector((state: RootStateOrAny) => state.character.persuasion)
+  );
+  const [survival, setSurvival] = useState(
+    useSelector((state: RootStateOrAny) => state.character.survival)
+  );
   const [vocations, setVocations] = useState(loadedVocations);
   const [vocationComponents, setVocationComponents] = useState(
     vocations.map((item: any) => {
@@ -79,7 +149,9 @@ const EditCharacterScreen = (props: any) => {
       return <Proficiency key={item.id} itemData={item} />;
     })
   );
-  const [injuries, setInjuries] = useState(0);
+  const [injuries, setInjuries] = useState(
+    useSelector((state: RootStateOrAny) => state.character.injuries)
+  );
   const [lingeringInjuries, setLingeringInjuries]: any =
     useState(loadedInjuries);
   const [injuryComponents, setInjuryComponents] = useState(
@@ -87,49 +159,28 @@ const EditCharacterScreen = (props: any) => {
       return <Injury key={item.id} itemData={item} />;
     })
   );
-  const [destinyPoints, setDestinyPoints] = useState(0);
-  const [commercePoints, setCommercePoints] = useState(0);
-  const [equipment, setEquipment] = useState("None");
-  const [notes, setNotes] = useState("No Notes");
-  const [bgColor, setBgColor] = useState("black");
+  const [destinyPoints, setDestinyPoints] = useState(
+    useSelector((state: RootStateOrAny) => state.character.destinyPoints)
+  );
+  const [commercePoints, setCommercePoints] = useState(
+    useSelector((state: RootStateOrAny) => state.character.commercePoints)
+  );
+  const [equipment, setEquipment] = useState(
+    useSelector((state: RootStateOrAny) => state.character.equipment)
+  );
+  const [notes, setNotes] = useState(
+    useSelector((state: RootStateOrAny) => state.character.notes)
+  );
+  const [bgColor, setBgColor] = useState(
+    useSelector((state: RootStateOrAny) => state.character.bgColor)
+  );
 
-  const [character, setCharacter] = useState({
-    id: "-1",
-    name: "Failed to read",
-    age: "Failed to read",
-    race: "Failed to read",
-    bodyType: "Failed to read",
-    disablingCharacteristics: "Failed to read",
-    strength: NaN,
-    reflex: NaN,
-    intelligence: NaN,
-    endurance: NaN,
-    athletics: NaN,
-    grip: NaN,
-    swim: NaN,
-    skillThrow: NaN,
-    perception: NaN,
-    acrobatics: NaN,
-    ridePilot: NaN,
-    sleightOfHand: NaN,
-    stealth: NaN,
-    generalKnowledge: NaN,
-    deception: NaN,
-    infiltration: NaN,
-    persuasion: NaN,
-    survival: NaN,
-    vocations: [],
-    proficiencies: [],
-    injuries: NaN,
-    lingeringInjuries: [],
-    destinyPoints: NaN,
-    commercePoints: NaN,
-    equipment: "Failed to read",
-    notes: "Failed to read",
-    bgColor: "#ffffff",
-  });
-
-  const characterId = props.navigation.getParam("characterId");
+  const characterId = useSelector(
+    (state: RootStateOrAny) => state.character.id
+  );
+  const characterName = useSelector(
+    (state: RootStateOrAny) => state.character.name
+  );
 
   const [dataIsLoaded, setDataIsLoaded] = useState(false);
 
@@ -138,11 +189,6 @@ const EditCharacterScreen = (props: any) => {
   };
 
   const finishHandler = () => {
-    setCharacter(
-      dataManipulation
-        .getData()
-        .find((characterById) => characterById.id === characterId)
-    );
     setDataIsLoaded(true);
   };
 
@@ -162,7 +208,7 @@ const EditCharacterScreen = (props: any) => {
             const newCharacters = dataManipulation.getData();
 
             const editedCharacter = {
-              id: character.id,
+              id: characterId,
               name: name,
               age: age,
               race: race,
@@ -203,21 +249,6 @@ const EditCharacterScreen = (props: any) => {
             newCharacters[characterToReplaceIndex] = editedCharacter;
             dataManipulation.setData(newCharacters);
             dataManipulation.saveData();
-            dispatch(
-              setStat("vocations", [
-                { id: uuid(), name: "", stat: "", bonus: 0 },
-              ])
-            );
-            dispatch(
-              setStat("proficiencies", [
-                { id: uuid(), name: "", stat: "", bonus: 0 },
-              ])
-            );
-            dispatch(
-              setStat("lingeringInjuries", [
-                { id: uuid(), name: "", penalty: 0 },
-              ])
-            );
             props.navigation.popToTop();
           },
         },
@@ -245,21 +276,6 @@ const EditCharacterScreen = (props: any) => {
             newCharacters.splice(characterToDeleteIndex, 1);
             dataManipulation.setData(newCharacters);
             dataManipulation.saveData();
-            dispatch(
-              setStat("vocations", [
-                { id: uuid(), name: "", stat: "", bonus: 0 },
-              ])
-            );
-            dispatch(
-              setStat("proficiencies", [
-                { id: uuid(), name: "", stat: "", bonus: 0 },
-              ])
-            );
-            dispatch(
-              setStat("lingeringInjuries", [
-                { id: uuid(), name: "", penalty: 0 },
-              ])
-            );
             props.navigation.popToTop();
           },
         },
@@ -401,97 +417,6 @@ const EditCharacterScreen = (props: any) => {
     );
   };
 
-  useEffect(() => {
-    props.navigation.setParams({ save: () => saveHandler() });
-  }, [
-    name,
-    age,
-    race,
-    bodyType,
-    disablingCharacteristics,
-    strength,
-    reflex,
-    intelligence,
-    endurance,
-    athletics,
-    grip,
-    swim,
-    skillThrow,
-    perception,
-    acrobatics,
-    ridePilot,
-    sleightOfHand,
-    stealth,
-    generalKnowledge,
-    deception,
-    infiltration,
-    persuasion,
-    survival,
-    vocations,
-    proficiencies,
-    injuries,
-    lingeringInjuries,
-    destinyPoints,
-    commercePoints,
-    equipment,
-    notes,
-    bgColor,
-  ]);
-
-  useEffect(() => {
-    props.navigation.setParams({ delete: () => deleteHandler() });
-    setName(character.name);
-    setAge(character.age);
-    setRace(character.race);
-    setBodyType(character.bodyType);
-    setDisablingCharacteristics(character.disablingCharacteristics);
-    setStrength(character.strength);
-    setReflex(character.reflex);
-    setIntelligence(character.intelligence);
-    setAthletics(character.athletics);
-    setEndurance(character.endurance);
-    setGrip(character.grip);
-    setSwim(character.swim);
-    setSkillThrow(character.skillThrow);
-    setAcrobatics(character.acrobatics);
-    setPerception(character.perception);
-    setRidePilot(character.ridePilot);
-    setSleightOfHand(character.sleightOfHand);
-    setStealth(character.stealth);
-    setDeception(character.deception);
-    setGeneralKnowledge(character.generalKnowledge);
-    setInfiltration(character.infiltration);
-    setPersuasion(character.persuasion);
-    setSurvival(character.survival);
-    setVocations(character.vocations);
-    setProficiencies(character.proficiencies);
-    setInjuries(character.injuries);
-    setLingeringInjuries(character.lingeringInjuries);
-    setDestinyPoints(character.destinyPoints);
-    setCommercePoints(character.commercePoints);
-    setEquipment(character.equipment);
-    setNotes(character.notes);
-    setBgColor(character.bgColor);
-    setVocationComponents(
-      character.vocations.map((item: any) => {
-        return <Vocation key={item.id} itemData={item} />;
-      })
-    );
-    setProficiencyComponents(
-      character.proficiencies.map((item: any) => {
-        return <Proficiency key={item.id} itemData={item} />;
-      })
-    );
-    setInjuryComponents(
-      character.lingeringInjuries.map((item: any) => {
-        return <Injury key={item.id} itemData={item} />;
-      })
-    );
-    dispatch(setStat("vocations", character.vocations));
-    dispatch(setStat("proficiencies", character.proficiencies));
-    dispatch(setStat("lingeringInjuries", character.lingeringInjuries));
-  }, [dataIsLoaded]);
-
   if (!dataIsLoaded) {
     return (
       <AppLoading
@@ -593,7 +518,7 @@ const EditCharacterScreen = (props: any) => {
               onChangeText={(text) => {
                 setName(text);
               }}
-              defaultValue={character.name}
+              defaultValue={name}
             />
           </View>
 
@@ -640,7 +565,7 @@ const EditCharacterScreen = (props: any) => {
               onChangeText={(text) => {
                 setAge(text);
               }}
-              defaultValue={character.age}
+              defaultValue={age}
             />
           </View>
 
@@ -687,7 +612,7 @@ const EditCharacterScreen = (props: any) => {
               onChangeText={(text) => {
                 setRace(text);
               }}
-              defaultValue={character.race}
+              defaultValue={race}
             />
           </View>
 
@@ -734,7 +659,7 @@ const EditCharacterScreen = (props: any) => {
               onChangeText={(text) => {
                 setBodyType(text);
               }}
-              defaultValue={character.bodyType}
+              defaultValue={bodyType}
             />
           </View>
 
@@ -781,7 +706,7 @@ const EditCharacterScreen = (props: any) => {
               onChangeText={(text) => {
                 setDisablingCharacteristics(text);
               }}
-              defaultValue={character.disablingCharacteristics}
+              defaultValue={disablingCharacteristics}
             />
           </View>
 
@@ -856,7 +781,7 @@ const EditCharacterScreen = (props: any) => {
                   setStrength(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.strength.toString()}
+                defaultValue={strength.toString()}
               />
             </View>
           </View>
@@ -900,7 +825,7 @@ const EditCharacterScreen = (props: any) => {
                   setReflex(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.reflex.toString()}
+                defaultValue={reflex.toString()}
               />
             </View>
           </View>
@@ -944,7 +869,7 @@ const EditCharacterScreen = (props: any) => {
                   setIntelligence(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.intelligence.toString()}
+                defaultValue={intelligence.toString()}
               />
             </View>
           </View>
@@ -1046,7 +971,7 @@ const EditCharacterScreen = (props: any) => {
                   setAthletics(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.athletics.toString()}
+                defaultValue={athletics.toString()}
               />
             </View>
           </View>
@@ -1089,7 +1014,7 @@ const EditCharacterScreen = (props: any) => {
                   setEndurance(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.endurance.toString()}
+                defaultValue={endurance.toString()}
               />
             </View>
           </View>
@@ -1132,7 +1057,7 @@ const EditCharacterScreen = (props: any) => {
                   setGrip(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.grip.toString()}
+                defaultValue={grip.toString()}
               />
             </View>
           </View>
@@ -1175,7 +1100,7 @@ const EditCharacterScreen = (props: any) => {
                   setSwim(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.swim.toString()}
+                defaultValue={swim.toString()}
               />
             </View>
           </View>
@@ -1218,7 +1143,7 @@ const EditCharacterScreen = (props: any) => {
                   setSkillThrow(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.skillThrow.toString()}
+                defaultValue={skillThrow.toString()}
               />
             </View>
           </View>
@@ -1294,7 +1219,7 @@ const EditCharacterScreen = (props: any) => {
                   setAcrobatics(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.acrobatics.toString()}
+                defaultValue={acrobatics.toString()}
               />
             </View>
           </View>
@@ -1337,7 +1262,7 @@ const EditCharacterScreen = (props: any) => {
                   setPerception(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.perception.toString()}
+                defaultValue={perception.toString()}
               />
             </View>
           </View>
@@ -1380,7 +1305,7 @@ const EditCharacterScreen = (props: any) => {
                   setRidePilot(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.ridePilot.toString()}
+                defaultValue={ridePilot.toString()}
               />
             </View>
           </View>
@@ -1423,7 +1348,7 @@ const EditCharacterScreen = (props: any) => {
                   setSleightOfHand(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.sleightOfHand.toString()}
+                defaultValue={sleightOfHand.toString()}
               />
             </View>
           </View>
@@ -1466,7 +1391,7 @@ const EditCharacterScreen = (props: any) => {
                   setStealth(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.stealth.toString()}
+                defaultValue={stealth.toString()}
               />
             </View>
           </View>
@@ -1542,7 +1467,7 @@ const EditCharacterScreen = (props: any) => {
                   setDeception(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.deception.toString()}
+                defaultValue={deception.toString()}
               />
             </View>
           </View>
@@ -1587,7 +1512,7 @@ const EditCharacterScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.generalKnowledge.toString()}
+                defaultValue={generalKnowledge.toString()}
               />
             </View>
           </View>
@@ -1630,7 +1555,7 @@ const EditCharacterScreen = (props: any) => {
                   setInfiltration(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.infiltration.toString()}
+                defaultValue={infiltration.toString()}
               />
             </View>
           </View>
@@ -1673,7 +1598,7 @@ const EditCharacterScreen = (props: any) => {
                   setPersuasion(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.persuasion.toString()}
+                defaultValue={persuasion.toString()}
               />
             </View>
           </View>
@@ -1716,7 +1641,7 @@ const EditCharacterScreen = (props: any) => {
                   setSurvival(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.survival.toString()}
+                defaultValue={survival.toString()}
               />
             </View>
           </View>
@@ -1857,7 +1782,7 @@ const EditCharacterScreen = (props: any) => {
                   setInjuries(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.injuries.toString()}
+                defaultValue={injuries.toString()}
               />
             </View>
           </View>
@@ -1928,7 +1853,7 @@ const EditCharacterScreen = (props: any) => {
                   setDestinyPoints(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.destinyPoints.toString()}
+                defaultValue={destinyPoints.toString()}
               />
             </View>
           </View>
@@ -1972,7 +1897,7 @@ const EditCharacterScreen = (props: any) => {
                   setCommercePoints(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={character.commercePoints.toString()}
+                defaultValue={commercePoints.toString()}
               />
             </View>
           </View>
@@ -2026,7 +1951,7 @@ const EditCharacterScreen = (props: any) => {
               onChangeText={(text) => {
                 setEquipment(text);
               }}
-              defaultValue={character.equipment}
+              defaultValue={equipment}
               multiline={true}
             />
           </View>
@@ -2092,7 +2017,7 @@ const EditCharacterScreen = (props: any) => {
               onChangeText={(text) => {
                 setNotes(text);
               }}
-              defaultValue={character.notes}
+              defaultValue={notes}
               multiline={true}
             />
           </View>
@@ -2124,7 +2049,7 @@ const EditCharacterScreen = (props: any) => {
             }
           >
             <ColorPicker
-              color={character.bgColor}
+              color={bgColor}
               onColorChangeComplete={(color) => {
                 setBgColor(color);
               }}
@@ -2140,30 +2065,30 @@ const EditCharacterScreen = (props: any) => {
   );
 };
 
-EditCharacterScreen.navigationOptions = (navigationData: any) => {
-  const name = navigationData.navigation.getParam("characterName");
-  return {
-    headerTitle: name,
-    headerRight: () => (
-      <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item
-          title="Save"
-          iconName="save-sharp"
-          onPress={() => {
-            navigationData.navigation.getParam("save")();
-          }}
-        />
-        <Item
-          title="Delete"
-          iconName="trash"
-          onPress={() => {
-            navigationData.navigation.getParam("delete")();
-          }}
-        />
-      </HeaderButtons>
-    ),
-  };
-};
+// EditCharacterScreen.navigationOptions = (navigationData: any) => {
+//   const name = navigationData.navigation.getParam("characterName");
+//   return {
+//     headerTitle: name,
+//     headerRight: () => (
+//       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+//         <Item
+//           title="Save"
+//           iconName="save-sharp"
+//           onPress={() => {
+//             navigationData.navigation.getParam("save")();
+//           }}
+//         />
+//         <Item
+//           title="Delete"
+//           iconName="trash"
+//           onPress={() => {
+//             navigationData.navigation.getParam("delete")();
+//           }}
+//         />
+//       </HeaderButtons>
+//     ),
+//   };
+// };
 
 const styles = StyleSheet.create({
   screenDarkMode: {
