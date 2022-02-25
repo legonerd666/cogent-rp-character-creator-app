@@ -17,10 +17,7 @@ import CustomHeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
 import Colors from "../constants/Colors";
 import DataManipulation from "../functions/DataManipulation";
-import {
-  setStat,
-  newCurrentCharacter,
-} from "../store/actions/currentCharacter";
+import { newCurrentCharacter } from "../store/actions/currentCharacter";
 
 const CharactersScreen = (props: any) => {
   React.useLayoutEffect(() => {
@@ -100,9 +97,8 @@ const CharactersScreen = (props: any) => {
       <CharacterGridTile
         name={itemData.item.name}
         bgcolor={itemData.item.bgColor}
-        onSelect={() => {
-          dispatch(setStat("id", itemData.item.id));
-          dispatch(setStat("name", itemData.item.name));
+        onSelect={async () => {
+          await dispatch(newCurrentCharacter(itemData.item));
           props.navigation.navigate("CharacterDetails", {
             screen: "Characteristics",
             params: {

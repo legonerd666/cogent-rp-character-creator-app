@@ -1,22 +1,85 @@
 import HomeScreen from "../screens/HomeScreen";
 import CharactersScreen from "../screens/CharactersScreen";
 import AddCharacterScreen from "../screens/AddEntryScreen";
-import EditCharacterScreen from "../screens/EditCharacterScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import CharacterDetailsNavigator from "./CharacterDetailsNavigator";
 import { createStackNavigator } from "@react-navigation/stack";
 import Colors from "../constants/Colors";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/HeaderButton";
+import CharacterEditorNavigator from "./CharacterEditorNavigator";
+import { Alert } from "react-native";
+import DataManipulation from "../functions/DataManipulation";
 
 const Stack = createStackNavigator();
 
 export default function CharacterNavigator() {
-  const characterName = useSelector(
-    (state: RootStateOrAny) => state.character.name
+  const currentCharacter = useSelector(
+    (state: RootStateOrAny) => state.character
   );
+
+  const dataManipulation = new DataManipulation();
+
+  const dispatch = useDispatch();
+
+  const saveHandler = (navigation: any) => {
+    Alert.alert(
+      "Save Edits?",
+      "Are you sure you want to save your edited character?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: async () => {
+            await dataManipulation.storeLoadedData();
+            const newCharacters = dataManipulation.getData();
+
+            const characterToReplaceIndex = newCharacters.findIndex(
+              (characterById: any) => characterById.id === currentCharacter.id
+            );
+            newCharacters[characterToReplaceIndex] = currentCharacter;
+            dataManipulation.setData(newCharacters);
+            dataManipulation.saveData();
+            navigation.popToTop();
+          },
+        },
+      ]
+    );
+  };
+
+  const deleteHandler = (navigation: any) => {
+    Alert.alert(
+      "Delete Character?",
+      "Are you sure you want to delete this character?\nIt will be permanently deleted from your characters.",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          onPress: async () => {
+            await dataManipulation.storeLoadedData();
+            const newCharacters = dataManipulation.getData();
+            const characterToDeleteIndex = newCharacters.findIndex(
+              (characterById) => characterById.id === currentCharacter.id
+            );
+            newCharacters.splice(characterToDeleteIndex, 1);
+            dataManipulation.setData(newCharacters);
+            dataManipulation.saveData();
+            navigation.popToTop();
+          },
+        },
+      ]
+    );
+  };
 
   return (
     <Stack.Navigator
@@ -44,13 +107,13 @@ export default function CharacterNavigator() {
         name="CharacterDetails"
         component={CharacterDetailsNavigator}
         options={({ navigation }) => ({
-          headerTitle: characterName,
+          headerTitle: currentCharacter.name,
           headerRight: () => (
             <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
               <Item
                 title="Edit"
                 iconName="create"
-                onPress={() => {
+                onPress={async () => {
                   navigation.navigate("Edit");
                 }}
               />
@@ -63,7 +126,31 @@ export default function CharacterNavigator() {
         component={AddCharacterScreen}
         options={{ headerTitle: "Add New" }}
       />
-      <Stack.Screen name="Edit" component={EditCharacterScreen} />
+      <Stack.Screen
+        name="Edit"
+        component={CharacterEditorNavigator}
+        options={({ navigation }) => ({
+          headerTitle: currentCharacter.name,
+          headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+              <Item
+                title="Save"
+                iconName="save-sharp"
+                onPress={() => {
+                  saveHandler(navigation);
+                }}
+              />
+              <Item
+                title="Delete"
+                iconName="trash"
+                onPress={() => {
+                  deleteHandler(navigation);
+                }}
+              />
+            </HeaderButtons>
+          ),
+        })}
+      />
       <Stack.Screen name="Settings" component={SettingsScreen} />
     </Stack.Navigator>
   );

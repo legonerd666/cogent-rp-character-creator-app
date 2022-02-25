@@ -78,8 +78,16 @@ const Proficiency = (props: any) => {
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
-              onChangeText={(text) => {
-                setName(text);
+              onChangeText={async (text) => {
+                await setName(text);
+                dispatch(
+                  setMultiFieldStat("proficiency", props.itemData.id, {
+                    id: props.itemData.id,
+                    name: name,
+                    stat: stat,
+                    bonus: bonus,
+                  })
+                );
               }}
               defaultValue={name}
             />
@@ -104,7 +112,17 @@ const Proficiency = (props: any) => {
             <RadioButton
               value="cbt"
               status={stat === "cbt" ? "checked" : "unchecked"}
-              onPress={() => setStat("cbt")}
+              onPress={async () => {
+                setStat("cbt");
+                dispatch(
+                  setMultiFieldStat("proficiency", props.itemData.id, {
+                    id: props.itemData.id,
+                    name: name,
+                    stat: stat,
+                    bonus: bonus,
+                  })
+                );
+              }}
               color={
                 isDarkMode
                   ? Colors.accentColorDarkMode
@@ -135,7 +153,17 @@ const Proficiency = (props: any) => {
             <RadioButton
               value="str"
               status={stat === "str" ? "checked" : "unchecked"}
-              onPress={() => setStat("str")}
+              onPress={async () => {
+                await setStat("str");
+                dispatch(
+                  setMultiFieldStat("proficiency", props.itemData.id, {
+                    id: props.itemData.id,
+                    name: name,
+                    stat: stat,
+                    bonus: bonus,
+                  })
+                );
+              }}
               color={
                 isDarkMode
                   ? Colors.accentColorDarkMode
@@ -167,7 +195,17 @@ const Proficiency = (props: any) => {
             <RadioButton
               value="ref"
               status={stat === "ref" ? "checked" : "unchecked"}
-              onPress={() => setStat("ref")}
+              onPress={async () => {
+                await setStat("ref");
+                dispatch(
+                  setMultiFieldStat("proficiency", props.itemData.id, {
+                    id: props.itemData.id,
+                    name: name,
+                    stat: stat,
+                    bonus: bonus,
+                  })
+                );
+              }}
               color={
                 isDarkMode
                   ? Colors.accentColorDarkMode
@@ -198,7 +236,17 @@ const Proficiency = (props: any) => {
             <RadioButton
               value="int"
               status={stat === "int" ? "checked" : "unchecked"}
-              onPress={() => setStat("int")}
+              onPress={async () => {
+                await setStat("int");
+                dispatch(
+                  setMultiFieldStat("proficiency", props.itemData.id, {
+                    id: props.itemData.id,
+                    name: name,
+                    stat: stat,
+                    bonus: bonus,
+                  })
+                );
+              }}
               color={
                 isDarkMode
                   ? Colors.accentColorDarkMode
@@ -247,8 +295,16 @@ const Proficiency = (props: any) => {
                   ? styles.bonusInputTextDarkMode
                   : styles.bonusInputTextLightMode
               }
-              onChangeText={(text) => {
-                setBonus(isNaN(parseInt(text)) ? 0 : parseInt(text));
+              onChangeText={async (text) => {
+                await setBonus(isNaN(parseInt(text)) ? 0 : parseInt(text));
+                dispatch(
+                  setMultiFieldStat("proficiency", props.itemData.id, {
+                    id: props.itemData.id,
+                    name: name,
+                    stat: stat,
+                    bonus: bonus,
+                  })
+                );
               }}
               keyboardType={"number-pad"}
               defaultValue={bonus.toString()}

@@ -88,8 +88,15 @@ const Injury = (props: any) => {
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
-              onChangeText={(text) => {
-                setName(text);
+              onChangeText={async (text) => {
+                await setName(text);
+                dispatch(
+                  setMultiFieldStat("injury", props.itemData.id, {
+                    id: props.itemData.id,
+                    name: name,
+                    penalty: penalty,
+                  })
+                );
               }}
               defaultValue={name}
             />
@@ -130,8 +137,15 @@ const Injury = (props: any) => {
                   ? styles.penaltyInputTextDarkMode
                   : styles.penaltyInputTextLightMode
               }
-              onChangeText={(text) => {
-                setPenalty(isNaN(parseInt(text)) ? 0 : parseInt(text));
+              onChangeText={async (text) => {
+                await setPenalty(isNaN(parseInt(text)) ? 0 : parseInt(text));
+                dispatch(
+                  setMultiFieldStat("injury", props.itemData.id, {
+                    id: props.itemData.id,
+                    name: name,
+                    penalty: penalty,
+                  })
+                );
               }}
               keyboardType={"number-pad"}
               defaultValue={penalty.toString()}

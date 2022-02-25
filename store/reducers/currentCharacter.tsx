@@ -109,6 +109,8 @@ const currentCharacterReducer = (state = initialState, action: any) => {
           return { ...state, equipment: action.newStat };
         case "notes":
           return { ...state, notes: action.newStat };
+        case "bgColor":
+          return { ...state, bgColor: action.newStat };
         default:
           return state;
       }
