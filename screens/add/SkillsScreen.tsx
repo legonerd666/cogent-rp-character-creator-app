@@ -11,13 +11,13 @@ import {
 import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
 
-import DefaultText from "../components/DefaultText";
-import Colors from "../constants/Colors";
-import Vocation from "../components/EditVocation";
-import Proficiency from "../components/EditProficiency";
-import { setStat } from "../store/actions/currentCharacter";
+import DefaultText from "../../components/DefaultText";
+import Colors from "../../constants/Colors";
+import Vocation from "../../components/EditVocation";
+import Proficiency from "../../components/EditProficiency";
+import { setStat } from "../../store/actions/currentCharacter";
 
-const EditSkillsScreen = (props: any) => {
+const AddSkillsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
@@ -1312,4 +1312,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditSkillsScreen;
+export default AddSkillsScreen;

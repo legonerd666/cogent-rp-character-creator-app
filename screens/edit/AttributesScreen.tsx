@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { View, TextInput, StyleSheet, Dimensions } from "react-native";
 import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 
-import DefaultText from "../components/DefaultText";
-import Colors from "../constants/Colors";
-import { setStat } from "../store/actions/currentCharacter";
+import DefaultText from "../../components/DefaultText";
+import Colors from "../../constants/Colors";
+import { setStat } from "../../store/actions/currentCharacter";
 
 const EditAttributesScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);

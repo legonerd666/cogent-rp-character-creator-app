@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import CharacteristicsDetailsScreen from "../screens/CharacterDetailsCharacteristicsScreen";
-import AttributesDetailsScreen from "../screens/CharacterDetailsAttributesScreen";
-import SkillsDetailsScreen from "../screens/CharacterDetailsSkillsScreen";
-import StateDetailsScreen from "../screens/CharacterDetailsCurrentStateScreen";
-import NotesDetailsScreen from "../screens/CharacterDetailsNotesScreen";
+import CharacteristicsDetailsScreen from "../screens/details/CharacteristicsScreen";
+import AttributesDetailsScreen from "../screens/details/AttributesScreen";
+import SkillsDetailsScreen from "../screens/details/SkillsScreen";
+import StateDetailsScreen from "../screens/details/StateScreen";
+import NotesDetailsScreen from "../screens/details/NotesScreen";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 

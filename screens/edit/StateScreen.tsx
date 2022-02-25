@@ -10,10 +10,10 @@ import {
 import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
 
-import DefaultText from "../components/DefaultText";
-import Colors from "../constants/Colors";
-import Injury from "../components/EditInjury";
-import { setStat } from "../store/actions/currentCharacter";
+import DefaultText from "../../components/DefaultText";
+import Colors from "../../constants/Colors";
+import Injury from "../../components/EditInjury";
+import { setStat } from "../../store/actions/currentCharacter";
 
 const EditStateScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);

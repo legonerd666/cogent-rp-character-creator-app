@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { useSelector, RootStateOrAny } from "react-redux";
 
-import DefaultText from "../components/DefaultText";
-import Colors from "../constants/Colors";
+import DefaultText from "../../components/DefaultText";
+import Colors from "../../constants/Colors";
 
 const AttributesDetailsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);

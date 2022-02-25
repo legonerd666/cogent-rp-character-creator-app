@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { View, ScrollView, StyleSheet, Dimensions } from "react-native";
 import { useSelector, RootStateOrAny } from "react-redux";
 
-import DefaultText from "../components/DefaultText";
-import Colors from "../constants/Colors";
-import Vocation from "../components/Vocation";
-import Proficiency from "../components/Proficiency";
+import DefaultText from "../../components/DefaultText";
+import Colors from "../../constants/Colors";
+import Vocation from "../../components/Vocation";
+import Proficiency from "../../components/Proficiency";
 
 const SkillsDetailsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);

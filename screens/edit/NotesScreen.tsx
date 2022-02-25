@@ -9,11 +9,11 @@ import {
 import ColorPicker from "react-native-wheel-color-picker";
 import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 
-import DefaultText from "../components/DefaultText";
-import Colors from "../constants/Colors";
-import { setStat } from "../store/actions/currentCharacter";
+import DefaultText from "../../components/DefaultText";
+import Colors from "../../constants/Colors";
+import { setStat } from "../../store/actions/currentCharacter";
 
-const AddNotesScreen = (props: any) => {
+const EditNotesScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
@@ -75,6 +75,7 @@ const AddNotesScreen = (props: any) => {
                 setNotes(text);
                 dispatch(setStat("notes", text));
               }}
+              defaultValue={notes}
               multiline={true}
             />
           </View>
@@ -106,6 +107,7 @@ const AddNotesScreen = (props: any) => {
             }
           >
             <ColorPicker
+              color={bgColor}
               onColorChangeComplete={(color) => {
                 setBgColor(color);
                 dispatch(setStat("bgColor", color));
@@ -285,4 +287,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddNotesScreen;
+export default EditNotesScreen;

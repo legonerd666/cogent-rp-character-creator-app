@@ -9,11 +9,11 @@ import {
 } from "react-native";
 import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 
-import DefaultText from "../components/DefaultText";
-import Colors from "../constants/Colors";
-import { setStat } from "../store/actions/currentCharacter";
+import DefaultText from "../../components/DefaultText";
+import Colors from "../../constants/Colors";
+import { setStat } from "../../store/actions/currentCharacter";
 
-const AddCharacteristicsScreen = (props: any) => {
+const EditCharacteristicsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
@@ -100,6 +100,7 @@ const AddCharacteristicsScreen = (props: any) => {
                 setName(text);
                 dispatch(setStat("name", text));
               }}
+              defaultValue={name}
             />
           </View>
 
@@ -147,6 +148,7 @@ const AddCharacteristicsScreen = (props: any) => {
                 setAge(text);
                 dispatch(setStat("age", text));
               }}
+              defaultValue={age}
             />
           </View>
 
@@ -194,6 +196,7 @@ const AddCharacteristicsScreen = (props: any) => {
                 setRace(text);
                 dispatch(setStat("race", text));
               }}
+              defaultValue={race}
             />
           </View>
 
@@ -241,6 +244,7 @@ const AddCharacteristicsScreen = (props: any) => {
                 setBodyType(text);
                 dispatch(setStat("bodyType", text));
               }}
+              defaultValue={bodyType}
             />
           </View>
 
@@ -288,6 +292,7 @@ const AddCharacteristicsScreen = (props: any) => {
                 setDisablingCharacteristics(text);
                 dispatch(setStat("disablingCharacteristics", text));
               }}
+              defaultValue={disablingCharacteristics}
             />
           </View>
         </View>
@@ -473,4 +478,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddCharacteristicsScreen;
+export default EditCharacteristicsScreen;

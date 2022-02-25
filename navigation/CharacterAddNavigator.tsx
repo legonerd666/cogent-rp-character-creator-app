@@ -5,11 +5,11 @@ import Colors from "../constants/Colors";
 import { RootStateOrAny, useSelector } from "react-redux";
 import { Alert } from "react-native";
 import DataManipulation from "../functions/DataManipulation";
-import AddCharacteristicsScreen from "../screens/AddCharacteristicsScreen";
-import AddAttributesScreen from "../screens/AddAttributesScreen";
-import AddSkillsScreen from "../screens/AddSkillsScreen";
-import AddStateScreen from "../screens/AddStateScreen";
-import AddNotesScreen from "../screens/AddNotesScreen";
+import AddCharacteristicsScreen from "../screens/add/CharacteristicsScreen";
+import AddAttributesScreen from "../screens/add/AttributesScreen";
+import AddSkillsScreen from "../screens/add/SkillsScreen";
+import AddStateScreen from "../screens/add/StateScreen";
+import AddNotesScreen from "../screens/add/NotesScreen";
 
 const Tab = createBottomTabNavigator();
 

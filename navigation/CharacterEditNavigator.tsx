@@ -2,14 +2,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
-import EditCharacteristicsScreen from "../screens/EditCharacteristicsScreen";
+import EditCharacteristicsScreen from "../screens/edit/CharacteristicsScreen";
 import { RootStateOrAny, useSelector } from "react-redux";
 import { Alert } from "react-native";
 import DataManipulation from "../functions/DataManipulation";
-import EditAttributesScreen from "../screens/EditAttributesScreen";
-import EditSkillsScreen from "../screens/EditSkillsScreen";
-import EditStateScreen from "../screens/EditStateScreen";
-import EditNotesScreen from "../screens/EditNotesScreen";
+import EditAttributesScreen from "../screens/edit/AttributesScreen";
+import EditSkillsScreen from "../screens/edit/SkillsScreen";
+import EditStateScreen from "../screens/edit/StateScreen";
+import EditNotesScreen from "../screens/edit/NotesScreen";
 
 const Tab = createBottomTabNavigator();
 

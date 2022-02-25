@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { View, ScrollView, StyleSheet, Dimensions } from "react-native";
 import { useSelector, RootStateOrAny } from "react-redux";
 
-import DefaultText from "../components/DefaultText";
-import Colors from "../constants/Colors";
-import Injury from "../components/Injury";
+import DefaultText from "../../components/DefaultText";
+import Colors from "../../constants/Colors";
+import Injury from "../../components/Injury";
 
 const StateDetailsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
