@@ -7,7 +7,7 @@ import Colors from "../../constants/Colors";
 import Vocation from "../../components/Vocation";
 import Proficiency from "../../components/Proficiency";
 
-const SkillsDetailsScreen = (props: any) => {
+const SkillsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
@@ -860,4 +860,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SkillsDetailsScreen;
+export default SkillsScreen;

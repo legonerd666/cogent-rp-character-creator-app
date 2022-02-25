@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: "center",
     alignItems: "center",
-    width: "80%",
+    width: "100%",
   },
   checkboxes: {
     flexDirection: "row",
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
   },
 
   inputContainerDarkMode: {
-    width: "70%",
+    width: "100%",
     height: 50,
     justifyContent: "center",
     alignItems: "center",
@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   inputContainerLightMode: {
-    width: "70%",
+    width: "100%",
     height: 50,
     justifyContent: "center",
     alignItems: "center",
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   inputContainerLargeDarkMode: {
-    width: "70%",
+    width: "100%",
     height: 70,
     justifyContent: "center",
     alignItems: "center",
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   inputContainerLargeLightMode: {
-    width: "70%",
+    width: "100%",
     height: 70,
     justifyContent: "center",
     alignItems: "center",

@@ -17,7 +17,7 @@ import Vocation from "../../components/EditVocation";
 import Proficiency from "../../components/EditProficiency";
 import { setStat } from "../../store/actions/currentCharacter";
 
-const EditSkillsScreen = (props: any) => {
+const SkillsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
@@ -1312,4 +1312,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default EditSkillsScreen;
+export default SkillsScreen;

@@ -1,10 +1,10 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import CharacteristicsDetailsScreen from "../screens/details/CharacteristicsScreen";
-import AttributesDetailsScreen from "../screens/details/AttributesScreen";
-import SkillsDetailsScreen from "../screens/details/SkillsScreen";
-import StateDetailsScreen from "../screens/details/StateScreen";
-import NotesDetailsScreen from "../screens/details/NotesScreen";
+import CharacteristicsScreen from "../screens/details/CharacteristicsScreen";
+import AttributesScreen from "../screens/details/AttributesScreen";
+import SkillsScreen from "../screens/details/SkillsScreen";
+import StateScreen from "../screens/details/StateScreen";
+import NotesScreen from "../screens/details/NotesScreen";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 
@@ -19,7 +19,7 @@ const CharacterDetailsNavigator = () => {
     >
       <Tab.Screen
         name="Characteristics"
-        component={CharacteristicsDetailsScreen}
+        component={CharacteristicsScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="person-circle-outline" size={32} color="black" />
@@ -31,7 +31,7 @@ const CharacterDetailsNavigator = () => {
       />
       <Tab.Screen
         name="Attributes"
-        component={AttributesDetailsScreen}
+        component={AttributesScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="body-outline" size={32} color="black" />
@@ -43,7 +43,7 @@ const CharacterDetailsNavigator = () => {
       />
       <Tab.Screen
         name="Skills"
-        component={SkillsDetailsScreen}
+        component={SkillsScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="stats-chart" size={32} color="black" />
@@ -55,7 +55,7 @@ const CharacterDetailsNavigator = () => {
       />
       <Tab.Screen
         name="State"
-        component={StateDetailsScreen}
+        component={StateScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="fitness-outline" size={32} color="black" />
@@ -67,7 +67,7 @@ const CharacterDetailsNavigator = () => {
       />
       <Tab.Screen
         name="Notes"
-        component={NotesDetailsScreen}
+        component={NotesScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="pencil-outline" size={32} color="black" />

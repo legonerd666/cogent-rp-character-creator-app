@@ -5,11 +5,11 @@ import Colors from "../constants/Colors";
 import { RootStateOrAny, useSelector } from "react-redux";
 import { Alert } from "react-native";
 import DataManipulation from "../functions/DataManipulation";
-import AddCharacteristicsScreen from "../screens/add/CharacteristicsScreen";
-import AddAttributesScreen from "../screens/add/AttributesScreen";
-import AddSkillsScreen from "../screens/add/SkillsScreen";
-import AddStateScreen from "../screens/add/StateScreen";
-import AddNotesScreen from "../screens/add/NotesScreen";
+import CharacteristicsScreen from "../screens/add/CharacteristicsScreen";
+import AttributesScreen from "../screens/add/AttributesScreen";
+import SkillsScreen from "../screens/add/SkillsScreen";
+import StateScreen from "../screens/add/StateScreen";
+import NotesScreen from "../screens/add/NotesScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -87,7 +87,7 @@ const CharacterAddNavigator = () => {
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name="Characteristics"
-        component={AddCharacteristicsScreen}
+        component={CharacteristicsScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="person-circle-outline" size={32} color="black" />
@@ -99,7 +99,7 @@ const CharacterAddNavigator = () => {
       />
       <Tab.Screen
         name="Attributes"
-        component={AddAttributesScreen}
+        component={AttributesScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="body-outline" size={32} color="black" />
@@ -111,7 +111,7 @@ const CharacterAddNavigator = () => {
       />
       <Tab.Screen
         name="Skills"
-        component={AddSkillsScreen}
+        component={SkillsScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="stats-chart" size={32} color="black" />
@@ -123,7 +123,7 @@ const CharacterAddNavigator = () => {
       />
       <Tab.Screen
         name="State"
-        component={AddStateScreen}
+        component={StateScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="fitness-outline" size={32} color="black" />
@@ -135,7 +135,7 @@ const CharacterAddNavigator = () => {
       />
       <Tab.Screen
         name="Notes"
-        component={AddNotesScreen}
+        component={NotesScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="pencil-outline" size={32} color="black" />

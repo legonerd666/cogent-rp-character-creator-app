@@ -6,7 +6,7 @@ import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Injury from "../../components/Injury";
 
-const StateDetailsScreen = (props: any) => {
+const StateScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
@@ -281,4 +281,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StateDetailsScreen;
+export default StateScreen;

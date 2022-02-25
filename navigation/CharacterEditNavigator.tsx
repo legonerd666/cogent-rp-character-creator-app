@@ -2,18 +2,18 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
-import EditCharacteristicsScreen from "../screens/edit/CharacteristicsScreen";
+import CharacteristicsScreen from "../screens/edit/CharacteristicsScreen";
 import { RootStateOrAny, useSelector } from "react-redux";
 import { Alert } from "react-native";
 import DataManipulation from "../functions/DataManipulation";
-import EditAttributesScreen from "../screens/edit/AttributesScreen";
-import EditSkillsScreen from "../screens/edit/SkillsScreen";
-import EditStateScreen from "../screens/edit/StateScreen";
-import EditNotesScreen from "../screens/edit/NotesScreen";
+import AttributesScreen from "../screens/edit/AttributesScreen";
+import SkillsScreen from "../screens/edit/SkillsScreen";
+import StateScreen from "../screens/edit/StateScreen";
+import NotesScreen from "../screens/edit/NotesScreen";
 
 const Tab = createBottomTabNavigator();
 
-const CharacterEditorNavigator = () => {
+const CharacterEditNavigator = () => {
   const currentCharacter = useSelector(
     (state: RootStateOrAny) => state.character
   );
@@ -87,7 +87,7 @@ const CharacterEditorNavigator = () => {
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name="Characteristics"
-        component={EditCharacteristicsScreen}
+        component={CharacteristicsScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="person-circle-outline" size={32} color="black" />
@@ -99,7 +99,7 @@ const CharacterEditorNavigator = () => {
       />
       <Tab.Screen
         name="Attributes"
-        component={EditAttributesScreen}
+        component={AttributesScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="body-outline" size={32} color="black" />
@@ -111,7 +111,7 @@ const CharacterEditorNavigator = () => {
       />
       <Tab.Screen
         name="Skills"
-        component={EditSkillsScreen}
+        component={SkillsScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="stats-chart" size={32} color="black" />
@@ -123,7 +123,7 @@ const CharacterEditorNavigator = () => {
       />
       <Tab.Screen
         name="State"
-        component={EditStateScreen}
+        component={StateScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="fitness-outline" size={32} color="black" />
@@ -135,7 +135,7 @@ const CharacterEditorNavigator = () => {
       />
       <Tab.Screen
         name="Notes"
-        component={EditNotesScreen}
+        component={NotesScreen}
         options={{
           tabBarIcon: () => (
             <Ionicons name="pencil-outline" size={32} color="black" />
@@ -149,4 +149,4 @@ const CharacterEditorNavigator = () => {
   );
 };
 
-export default CharacterEditorNavigator;
+export default CharacterEditNavigator;

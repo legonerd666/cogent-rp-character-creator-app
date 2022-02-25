@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
 
   inputContainerDarkMode: {
-    width: "70%",
+    width: "100%",
     height: 50,
     justifyContent: "center",
     alignItems: "center",
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   inputContainerLightMode: {
-    width: "70%",
+    width: "100%",
     height: 50,
     justifyContent: "center",
     alignItems: "center",
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   inputContainerLargeDarkMode: {
-    width: "70%",
+    width: "100%",
     height: 70,
     justifyContent: "center",
     alignItems: "center",
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     marginVertical: 15,
   },
   inputContainerLargeLightMode: {
-    width: "70%",
+    width: "100%",
     height: 70,
     justifyContent: "center",
     alignItems: "center",

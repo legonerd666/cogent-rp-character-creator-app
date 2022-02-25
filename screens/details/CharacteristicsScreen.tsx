@@ -5,7 +5,7 @@ import { useSelector, RootStateOrAny } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 
-const CharacteristicsDetailsScreen = (props: any) => {
+const CharacteristicsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
@@ -291,4 +291,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CharacteristicsDetailsScreen;
+export default CharacteristicsScreen;

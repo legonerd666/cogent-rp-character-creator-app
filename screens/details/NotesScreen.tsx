@@ -5,7 +5,7 @@ import { useSelector, RootStateOrAny } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 
-const NotesDetailsScreen = (props: any) => {
+const NotesScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
@@ -142,4 +142,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NotesDetailsScreen;
+export default NotesScreen;

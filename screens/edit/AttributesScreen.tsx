@@ -6,7 +6,7 @@ import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import { setStat } from "../../store/actions/currentCharacter";
 
-const EditAttributesScreen = (props: any) => {
+const AttributesScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
@@ -714,4 +714,4 @@ const styles = StyleSheet.create({
   //   },
 });
 
-export default EditAttributesScreen;
+export default AttributesScreen;
