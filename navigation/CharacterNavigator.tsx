@@ -1,6 +1,5 @@
 import HomeScreen from "../screens/HomeScreen";
 import CharactersScreen from "../screens/CharactersScreen";
-import AddCharacterScreen from "../screens/AddEntryScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import CharacterDetailsNavigator from "./CharacterDetailsNavigator";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -12,6 +11,9 @@ import CustomHeaderButton from "../components/HeaderButton";
 import CharacterEditorNavigator from "./CharacterEditorNavigator";
 import { Alert } from "react-native";
 import DataManipulation from "../functions/DataManipulation";
+import CharacterAddNavigator from "./CharacterAddNavigator";
+import { newCurrentCharacter } from "../store/actions/currentCharacter";
+import { v4 as uuid } from "uuid";
 
 const Stack = createStackNavigator();
 
@@ -23,6 +25,70 @@ export default function CharacterNavigator() {
   const dataManipulation = new DataManipulation();
 
   const dispatch = useDispatch();
+
+  const newSaveHandler = (navigation: any) => {
+    Alert.alert(
+      "Save New Character?",
+      "Are you sure you want to save your new character?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {},
+          style: "cancel",
+        },
+        {
+          text: "OK",
+          onPress: async () => {
+            await dataManipulation.storeLoadedData();
+            const newCharacters = dataManipulation.getData();
+
+            newCharacters.push(currentCharacter);
+
+            dataManipulation.setData(newCharacters);
+            dataManipulation.saveData();
+            dispatch(
+              newCurrentCharacter({
+                id: uuid(),
+                name: "Unknown",
+                age: "Unknown",
+                race: "Unknown",
+                bodyType: "Unknown",
+                disablingCharacteristics: "None",
+                strength: 0,
+                reflex: 0,
+                intelligence: 0,
+                endurance: 0,
+                athletics: 0,
+                grip: 0,
+                swim: 0,
+                skillThrow: 0,
+                perception: 0,
+                acrobatics: 0,
+                ridePilot: 0,
+                sleightOfHand: 0,
+                stealth: 0,
+                generalKnowledge: 0,
+                deception: 0,
+                infiltration: 0,
+                persuasion: 0,
+                survival: 0,
+                vocations: [{ id: uuid(), name: "", stat: "", bonus: 0 }],
+                proficiencies: [{ id: uuid(), name: "", stat: "", bonus: 0 }],
+                injuries: 0,
+                lingeringInjuries: [{ id: uuid(), name: "", penalty: 0 }],
+                destinyPoints: 0,
+                commercePoints: 0,
+                equipment: "None",
+                notes: "No Notes",
+                bgColor: "#ffffff",
+              })
+            );
+            navigation.popToTop();
+          },
+        },
+      ]
+    );
+  };
 
   const saveHandler = (navigation: any) => {
     Alert.alert(
@@ -123,8 +189,21 @@ export default function CharacterNavigator() {
       />
       <Stack.Screen
         name="Add"
-        component={AddCharacterScreen}
-        options={{ headerTitle: "Add New" }}
+        component={CharacterAddNavigator}
+        options={({ navigation }) => ({
+          headerTitle: "Add New",
+          headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+              <Item
+                title="Save"
+                iconName="save-sharp"
+                onPress={() => {
+                  newSaveHandler(navigation);
+                }}
+              />
+            </HeaderButtons>
+          ),
+        })}
       />
       <Stack.Screen
         name="Edit"
