@@ -13,29 +13,24 @@ import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import { setStat } from "../../store/actions/currentCharacter";
 
-const CharacteristicsScreen = (props: any) => {
+const IdentityScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
 
   const dispatch = useDispatch();
 
-  const [name, setName] = useState(
-    useSelector((state: RootStateOrAny) => state.character.name)
+  const [disposition, setDisposition] = useState(
+    useSelector((state: RootStateOrAny) => state.character.disposition)
   );
-  const [age, setAge] = useState(
-    useSelector((state: RootStateOrAny) => state.character.age)
+  const [history, setHistory] = useState(
+    useSelector((state: RootStateOrAny) => state.character.history)
   );
-  const [race, setRace] = useState(
-    useSelector((state: RootStateOrAny) => state.character.race)
+  const [beliefsMorality, setBeliefsMorality] = useState(
+    useSelector((state: RootStateOrAny) => state.character.beliefsMorality)
   );
-  const [bodyType, setBodyType] = useState(
-    useSelector((state: RootStateOrAny) => state.character.bodyType)
-  );
-  const [disablingCharacteristics, setDisablingCharacteristics] = useState(
-    useSelector(
-      (state: RootStateOrAny) => state.character.disablingCharacteristics
-    )
+  const [goalsAspirations, setGoalsAspirations] = useState(
+    useSelector((state: RootStateOrAny) => state.character.goalsAspirations)
   );
 
   return (
@@ -53,7 +48,7 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.sectionTextLightMode
             }
           >
-            Characteristics:
+            Identity:
           </DefaultText>
 
           <DefaultText
@@ -67,17 +62,17 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Name:
+            Disposition:
           </DefaultText>
           <View
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
-                  ? styles.inputContainerLargeDarkMode
-                  : styles.inputContainerLargeLightMode
+                  ? styles.inputContainerLongMultilineLargeDarkMode
+                  : styles.inputContainerLongMultilineLargeLightMode
                 : isDarkMode
-                ? styles.inputContainerDarkMode
-                : styles.inputContainerLightMode
+                ? styles.inputContainerLongMultilineDarkMode
+                : styles.inputContainerLongMultilineLightMode
             }
           >
             <TextInput
@@ -90,16 +85,18 @@ const CharacteristicsScreen = (props: any) => {
                   ? styles.inputTextDarkMode
                   : styles.inputTextLightMode
               }
-              placeholder="Enter Name..."
+              placeholder="Enter Disposition..."
               placeholderTextColor={
                 isDarkMode
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setName(text);
-                dispatch(setStat("name", text));
+                setDisposition(text);
+                dispatch(setStat("disposition", text));
               }}
+              defaultValue={disposition}
+              multiline={true}
             />
           </View>
 
@@ -114,17 +111,17 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Age:
+            History:
           </DefaultText>
           <View
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
-                  ? styles.inputContainerLargeDarkMode
-                  : styles.inputContainerLargeLightMode
+                  ? styles.inputContainerLongMultilineLargeDarkMode
+                  : styles.inputContainerLongMultilineLargeLightMode
                 : isDarkMode
-                ? styles.inputContainerDarkMode
-                : styles.inputContainerLightMode
+                ? styles.inputContainerLongMultilineDarkMode
+                : styles.inputContainerLongMultilineLightMode
             }
           >
             <TextInput
@@ -137,16 +134,18 @@ const CharacteristicsScreen = (props: any) => {
                   ? styles.inputTextDarkMode
                   : styles.inputTextLightMode
               }
-              placeholder="Enter Age..."
+              placeholder="Enter History..."
               placeholderTextColor={
                 isDarkMode
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setAge(text);
-                dispatch(setStat("age", text));
+                setHistory(text);
+                dispatch(setStat("history", text));
               }}
+              defaultValue={history}
+              multiline={true}
             />
           </View>
 
@@ -161,17 +160,17 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Race:
+            Beliefs/Morality:
           </DefaultText>
           <View
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
-                  ? styles.inputContainerLargeDarkMode
-                  : styles.inputContainerLargeLightMode
+                  ? styles.inputContainerLongMultilineLargeDarkMode
+                  : styles.inputContainerLongMultilineLargeLightMode
                 : isDarkMode
-                ? styles.inputContainerDarkMode
-                : styles.inputContainerLightMode
+                ? styles.inputContainerLongMultilineDarkMode
+                : styles.inputContainerLongMultilineLightMode
             }
           >
             <TextInput
@@ -184,16 +183,18 @@ const CharacteristicsScreen = (props: any) => {
                   ? styles.inputTextDarkMode
                   : styles.inputTextLightMode
               }
-              placeholder="Enter Race..."
+              placeholder="Enter Beliefs/Morality..."
               placeholderTextColor={
                 isDarkMode
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setRace(text);
-                dispatch(setStat("race", text));
+                setBeliefsMorality(text);
+                dispatch(setStat("beliefsMorality", text));
               }}
+              defaultValue={beliefsMorality}
+              multiline={true}
             />
           </View>
 
@@ -208,17 +209,17 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Body Type:
+            Goals/Aspirations:
           </DefaultText>
           <View
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
-                  ? styles.inputContainerLargeDarkMode
-                  : styles.inputContainerLargeLightMode
+                  ? styles.inputContainerLongMultilineLargeDarkMode
+                  : styles.inputContainerLongMultilineLargeLightMode
                 : isDarkMode
-                ? styles.inputContainerDarkMode
-                : styles.inputContainerLightMode
+                ? styles.inputContainerLongMultilineDarkMode
+                : styles.inputContainerLongMultilineLightMode
             }
           >
             <TextInput
@@ -231,63 +232,18 @@ const CharacteristicsScreen = (props: any) => {
                   ? styles.inputTextDarkMode
                   : styles.inputTextLightMode
               }
-              placeholder="Enter Body Type..."
+              placeholder="Enter Goals/Aspirations..."
               placeholderTextColor={
                 isDarkMode
                   ? Colors.accentColorDarkMode
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setBodyType(text);
-                dispatch(setStat("bodyType", text));
+                setGoalsAspirations(text);
+                dispatch(setStat("goalsAspirations", text));
               }}
-            />
-          </View>
-
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.titleLargeDarkMode
-                  : styles.titleLargeLightMode
-                : isDarkMode
-                ? styles.titleDarkMode
-                : styles.titleLightMode
-            }
-          >
-            Disabling Characteristics:
-          </DefaultText>
-          <View
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.inputContainerLargeDarkMode
-                  : styles.inputContainerLargeLightMode
-                : isDarkMode
-                ? styles.inputContainerDarkMode
-                : styles.inputContainerLightMode
-            }
-          >
-            <TextInput
-              style={
-                Dimensions.get("window").width > 600
-                  ? isDarkMode
-                    ? styles.inputTextLargeDarkMode
-                    : styles.inputTextLargeLightMode
-                  : isDarkMode
-                  ? styles.inputTextDarkMode
-                  : styles.inputTextLightMode
-              }
-              placeholder="Enter Disabling Characteristics..."
-              placeholderTextColor={
-                isDarkMode
-                  ? Colors.accentColorDarkMode
-                  : Colors.accentColorLightMode
-              }
-              onChangeText={(text) => {
-                setDisablingCharacteristics(text);
-                dispatch(setStat("disablingCharacteristics", text));
-              }}
+              defaultValue={goalsAspirations}
+              multiline={true}
             />
           </View>
         </View>
@@ -399,45 +355,49 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  inputContainerDarkMode: {
+  inputContainerLongMultilineDarkMode: {
     backgroundColor: Colors.textBoxColorDarkMode,
     width: "70%",
-    height: 50,
-    justifyContent: "center",
+    height: 300,
+    justifyContent: "flex-start",
     paddingLeft: 10,
     marginVertical: 15,
+    padding: 8,
+    paddingHorizontal: 12,
     borderRadius: 20,
-    alignSelf: "center",
   },
-  inputContainerLightMode: {
+  inputContainerLongMultilineLightMode: {
     backgroundColor: Colors.textBoxColorLightMode,
     width: "70%",
-    height: 50,
-    justifyContent: "center",
+    height: 300,
+    justifyContent: "flex-start",
     paddingLeft: 10,
     marginVertical: 15,
+    padding: 8,
+    paddingHorizontal: 12,
     borderRadius: 20,
-    alignSelf: "center",
   },
-  inputContainerLargeDarkMode: {
+  inputContainerLongMultilineLargeDarkMode: {
     backgroundColor: Colors.textBoxColorDarkMode,
     width: "70%",
-    height: 70,
-    justifyContent: "center",
+    height: 500,
+    justifyContent: "flex-start",
     paddingLeft: 10,
     marginVertical: 15,
+    padding: 8,
+    paddingHorizontal: 12,
     borderRadius: 20,
-    alignSelf: "center",
   },
-  inputContainerLargeLightMode: {
+  inputContainerLongMultilineLargeLightMode: {
     backgroundColor: Colors.textBoxColorLightMode,
     width: "70%",
-    height: 70,
-    justifyContent: "center",
+    height: 500,
+    justifyContent: "flex-start",
     paddingLeft: 10,
     marginVertical: 15,
+    padding: 8,
+    paddingHorizontal: 12,
     borderRadius: 20,
-    alignSelf: "center",
   },
   titleLargeDarkMode: {
     color: Colors.accentColorDarkMode,
@@ -473,4 +433,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CharacteristicsScreen;
+export default IdentityScreen;

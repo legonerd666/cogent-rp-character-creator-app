@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
 import { useSelector, RootStateOrAny } from "react-redux";
+import BoldText from "../../components/BoldText";
 
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
@@ -16,7 +17,7 @@ const AttributesScreen = (props: any) => {
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
-      <DefaultText
+      <BoldText
         style={
           Dimensions.get("window").width > 600
             ? isDarkMode
@@ -28,7 +29,7 @@ const AttributesScreen = (props: any) => {
         }
       >
         Attributes:
-      </DefaultText>
+      </BoldText>
 
       <View style={styles.stat}>
         <DefaultText

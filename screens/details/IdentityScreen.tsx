@@ -6,7 +6,7 @@ import BoldText from "../../components/BoldText";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 
-const CharacteristicsScreen = (props: any) => {
+const IdentityScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
@@ -40,7 +40,7 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.sectionTextLightMode
             }
           >
-            Characteristics:
+            Identity:
           </BoldText>
         </View>
         <View style={styles.infoBlockContainer}>
@@ -55,7 +55,7 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Name:
+            Disposition:
           </DefaultText>
           <DefaultText
             style={
@@ -68,7 +68,7 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.infoLightMode
             }
           >
-            {character.name}
+            {character.disposition}
           </DefaultText>
         </View>
 
@@ -84,7 +84,7 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Age:
+            History:
           </DefaultText>
           <DefaultText
             style={
@@ -97,7 +97,7 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.infoLightMode
             }
           >
-            {character.age}
+            {character.history}
           </DefaultText>
         </View>
 
@@ -113,7 +113,7 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Race:
+            Beliefs/Morality:
           </DefaultText>
           <DefaultText
             style={
@@ -126,7 +126,7 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.infoLightMode
             }
           >
-            {character.race}
+            {character.beliefsMorality}
           </DefaultText>
         </View>
 
@@ -142,7 +142,7 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.titleLightMode
             }
           >
-            Body Type:
+            Goals/Aspirations:
           </DefaultText>
           <DefaultText
             style={
@@ -155,36 +155,7 @@ const CharacteristicsScreen = (props: any) => {
                 : styles.infoLightMode
             }
           >
-            {character.bodyType}
-          </DefaultText>
-        </View>
-
-        <View style={styles.infoBlockContainer}>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.largeTitleDarkMode
-                  : styles.largeTitleLightMode
-                : isDarkMode
-                ? styles.titleDarkMode
-                : styles.titleLightMode
-            }
-          >
-            Disabling Characteristics:
-          </DefaultText>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.largeInfoDarkMode
-                  : styles.largeInfoLightMode
-                : isDarkMode
-                ? styles.infoDarkMode
-                : styles.infoLightMode
-            }
-          >
-            {character.disablingCharacteristics}
+            {character.goalsAspirations}
           </DefaultText>
         </View>
       </ScrollView>
@@ -292,4 +263,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CharacteristicsScreen;
+export default IdentityScreen;

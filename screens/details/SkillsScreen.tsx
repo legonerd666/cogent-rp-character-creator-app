@@ -6,6 +6,7 @@ import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Vocation from "../../components/Vocation";
 import Proficiency from "../../components/Proficiency";
+import BoldText from "../../components/BoldText";
 
 const SkillsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -73,7 +74,7 @@ const SkillsScreen = (props: any) => {
       <ScrollView>
         <View style={styles.container}>
           <View>
-            <DefaultText
+            <BoldText
               style={
                 Dimensions.get("window").width > 600
                   ? isDarkMode
@@ -85,7 +86,7 @@ const SkillsScreen = (props: any) => {
               }
             >
               Skills:
-            </DefaultText>
+            </BoldText>
           </View>
 
           <View

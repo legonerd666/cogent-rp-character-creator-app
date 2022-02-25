@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, ScrollView, StyleSheet, Dimensions } from "react-native";
 import { useSelector, RootStateOrAny } from "react-redux";
+import BoldText from "../../components/BoldText";
 
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
@@ -26,7 +27,7 @@ const NotesScreen = (props: any) => {
               : styles.sectionContainerLightMode
           }
         >
-          <DefaultText
+          <BoldText
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
@@ -38,7 +39,7 @@ const NotesScreen = (props: any) => {
             }
           >
             Notes:
-          </DefaultText>
+          </BoldText>
         </View>
         <DefaultText
           style={

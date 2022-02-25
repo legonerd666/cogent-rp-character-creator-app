@@ -12,6 +12,10 @@ const initialState = {
   race: "Unknown",
   bodyType: "Unknown",
   disablingCharacteristics: "None",
+  disposition: "Unknown",
+  history: "Lost to the ages",
+  beliefsMorality: "A mystery",
+  goalsAspirations: "Unknown",
   strength: 0,
   reflex: 0,
   intelligence: 0,
@@ -57,6 +61,14 @@ const currentCharacterReducer = (state = initialState, action: any) => {
           return { ...state, bodyType: action.newStat };
         case "disablingCharacteristics":
           return { ...state, disablingCharacteristics: action.newStat };
+        case "disposition":
+          return { ...state, disposition: action.newStat };
+        case "history":
+          return { ...state, history: action.newStat };
+        case "beliefsMorality":
+          return { ...state, beliefsMorality: action.newStat };
+        case "goalsAspirations":
+          return { ...state, goalsAspirations: action.newStat };
         case "strength":
           return { ...state, strength: action.newStat };
         case "reflex":

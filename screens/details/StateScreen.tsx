@@ -5,6 +5,7 @@ import { useSelector, RootStateOrAny } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Injury from "../../components/Injury";
+import BoldText from "../../components/BoldText";
 
 const StateScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -44,7 +45,7 @@ const StateScreen = (props: any) => {
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
       <ScrollView>
         <View>
-          <DefaultText
+          <BoldText
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
@@ -56,7 +57,7 @@ const StateScreen = (props: any) => {
             }
           >
             Current State:
-          </DefaultText>
+          </BoldText>
 
           <View style={styles.stat}>
             <DefaultText

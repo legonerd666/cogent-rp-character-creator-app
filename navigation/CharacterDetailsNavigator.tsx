@@ -7,6 +7,7 @@ import StateScreen from "../screens/details/StateScreen";
 import NotesScreen from "../screens/details/NotesScreen";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
+import IdentityScreen from "../screens/details/IdentityScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,6 +24,18 @@ const CharacterDetailsNavigator = () => {
         options={{
           tabBarIcon: () => (
             <Ionicons name="person-circle-outline" size={32} color="black" />
+          ),
+          tabBarActiveBackgroundColor: Colors.textBoxColorLightMode,
+          tabBarActiveTintColor: Colors.accentColorLightMode,
+          tabBarInactiveTintColor: Colors.accentColorLightMode,
+        }}
+      />
+      <Tab.Screen
+        name="Identity"
+        component={IdentityScreen}
+        options={{
+          tabBarIcon: () => (
+            <Ionicons name="finger-print-outline" size={32} color="black" />
           ),
           tabBarActiveBackgroundColor: Colors.textBoxColorLightMode,
           tabBarActiveTintColor: Colors.accentColorLightMode,

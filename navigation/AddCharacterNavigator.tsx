@@ -10,6 +10,7 @@ import AttributesScreen from "../screens/add/AttributesScreen";
 import SkillsScreen from "../screens/add/SkillsScreen";
 import StateScreen from "../screens/add/StateScreen";
 import NotesScreen from "../screens/add/NotesScreen";
+import IdentityScreen from "../screens/add/IdentityScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -91,6 +92,18 @@ const CharacterAddNavigator = () => {
         options={{
           tabBarIcon: () => (
             <Ionicons name="person-circle-outline" size={32} color="black" />
+          ),
+          tabBarActiveBackgroundColor: Colors.textBoxColorLightMode,
+          tabBarActiveTintColor: Colors.accentColorLightMode,
+          tabBarInactiveTintColor: Colors.accentColorLightMode,
+        }}
+      />
+      <Tab.Screen
+        name="Identity"
+        component={IdentityScreen}
+        options={{
+          tabBarIcon: () => (
+            <Ionicons name="finger-print-outline" size={32} color="black" />
           ),
           tabBarActiveBackgroundColor: Colors.textBoxColorLightMode,
           tabBarActiveTintColor: Colors.accentColorLightMode,
