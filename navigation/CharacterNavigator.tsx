@@ -14,6 +14,7 @@ import DataManipulation from "../functions/DataManipulation";
 import CharacterAddNavigator from "./AddCharacterNavigator";
 import { newCurrentCharacter } from "../store/actions/currentCharacter";
 import { v4 as uuid } from "uuid";
+import IdentityScreen from "../screens/creationGuide/IdentityScreen";
 
 const Stack = createStackNavigator();
 
@@ -54,6 +55,10 @@ export default function CharacterNavigator() {
                 race: "Unknown",
                 bodyType: "Unknown",
                 disablingCharacteristics: "None",
+                disposition: "Unknown",
+                history: "Lost to the ages",
+                beliefsMorality: "A mystery",
+                goalsAspirations: "Unknown",
                 strength: 0,
                 reflex: 0,
                 intelligence: 0,
@@ -195,6 +200,13 @@ export default function CharacterNavigator() {
           headerRight: () => (
             <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
               <Item
+                title="Helper"
+                iconName="help"
+                onPress={() => {
+                  navigation.navigate("Helper");
+                }}
+              />
+              <Item
                 title="Save"
                 iconName="save-sharp"
                 onPress={() => {
@@ -231,6 +243,7 @@ export default function CharacterNavigator() {
         })}
       />
       <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="Helper" component={IdentityScreen} />
     </Stack.Navigator>
   );
 }
