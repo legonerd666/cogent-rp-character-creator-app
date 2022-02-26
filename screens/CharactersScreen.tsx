@@ -67,6 +67,8 @@ const CharactersScreen = (props: any) => {
                   equipment: "None",
                   notes: "No Notes",
                   bgColor: "#ffffff",
+                  attributePoints: 2,
+                  skillPoints: 12,
                 })
               );
               props.navigation.navigate("Add");

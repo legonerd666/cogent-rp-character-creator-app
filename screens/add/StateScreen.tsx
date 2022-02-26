@@ -152,7 +152,7 @@ const StateScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={"0"}
+                defaultValue={injuries.toString()}
               />
             </View>
           </View>
@@ -229,7 +229,7 @@ const StateScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={"0"}
+                defaultValue={destinyPoints.toString()}
               />
             </View>
           </View>
@@ -279,7 +279,7 @@ const StateScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={"0"}
+                defaultValue={commercePoints.toString()}
               />
             </View>
           </View>
@@ -335,6 +335,7 @@ const StateScreen = (props: any) => {
                 dispatch(setStat("equipment", text));
               }}
               multiline={true}
+              defaultValue={equipment != "None" ? equipment : ""}
             />
           </View>
         </View>

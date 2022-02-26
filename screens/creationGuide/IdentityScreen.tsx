@@ -18,11 +18,9 @@ const IdentityScreen = (props: any) => {
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
 
-  const [character, setCharacter] = useState(
-    useSelector((state: RootStateOrAny) => state.character)
-  );
-
   const dispatch = useDispatch();
+
+  const character = useSelector((state: RootStateOrAny) => state.character);
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
       <ScrollView style={{ width: "100%" }}>
@@ -110,6 +108,9 @@ const IdentityScreen = (props: any) => {
                 dispatch(setStat("disposition", text));
               }}
               multiline={true}
+              defaultValue={
+                character.disposition != "Unknown" ? character.disposition : ""
+              }
             />
           </View>
           <DefaultText
@@ -174,6 +175,9 @@ const IdentityScreen = (props: any) => {
                 dispatch(setStat("history", text));
               }}
               multiline={true}
+              defaultValue={
+                character.history != "Lost to the ages" ? character.history : ""
+              }
             />
           </View>
           <DefaultText
@@ -240,6 +244,11 @@ const IdentityScreen = (props: any) => {
                 dispatch(setStat("beliefsMorality", text));
               }}
               multiline={true}
+              defaultValue={
+                character.beliefsMorality != "A mystery"
+                  ? character.beliefsMorality
+                  : ""
+              }
             />
           </View>
           <DefaultText
@@ -306,6 +315,11 @@ const IdentityScreen = (props: any) => {
                 dispatch(setStat("goalsAspirations", text));
               }}
               multiline={true}
+              defaultValue={
+                character.goalsAspirations != "Unknown"
+                  ? character.goalsAspirations
+                  : ""
+              }
             />
           </View>
           <DefaultText
@@ -317,20 +331,32 @@ const IdentityScreen = (props: any) => {
             character. The next step is to define them through their statistics.
             So click next and we can begin!
           </DefaultText>
-          <View>
-            <TouchableNativeFeedback>
-              <DefaultText>
-                Next
+          <View style={styles.nextButtonContainer}>
+            <TouchableNativeFeedback
+              onPress={() => {
+                props.navigation.navigate("Attributes");
+              }}
+            >
+              <View style={styles.nextButton}>
+                <DefaultText
+                  style={
+                    isDarkMode
+                      ? styles.textBlockDarkMode
+                      : styles.textBlockLightMode
+                  }
+                >
+                  Next
+                </DefaultText>
                 <Ionicons
                   name="arrow-forward-outline"
-                  size={15}
+                  size={20}
                   color={
                     isDarkMode
                       ? Colors.accentColorDarkMode
                       : Colors.accentColorLightMode
                   }
                 />
-              </DefaultText>
+              </View>
             </TouchableNativeFeedback>
           </View>
         </View>
@@ -353,8 +379,9 @@ const styles = StyleSheet.create({
 
   container: {
     alignItems: "center",
-    width: "92%",
+    width: "85%",
     alignSelf: "center",
+    paddingVertical: 30,
   },
 
   textBlockDarkMode: {
@@ -370,7 +397,7 @@ const styles = StyleSheet.create({
 
   inputContainerLongMultilineDarkMode: {
     backgroundColor: Colors.textBoxColorDarkMode,
-    width: "70%",
+    width: "80%",
     height: 300,
     justifyContent: "flex-start",
     paddingLeft: 10,
@@ -381,7 +408,7 @@ const styles = StyleSheet.create({
   },
   inputContainerLongMultilineLightMode: {
     backgroundColor: Colors.textBoxColorLightMode,
-    width: "70%",
+    width: "80%",
     height: 300,
     justifyContent: "flex-start",
     paddingLeft: 10,
@@ -392,7 +419,7 @@ const styles = StyleSheet.create({
   },
   inputContainerLongMultilineLargeDarkMode: {
     backgroundColor: Colors.textBoxColorDarkMode,
-    width: "70%",
+    width: "80%",
     height: 500,
     justifyContent: "flex-start",
     paddingLeft: 10,
@@ -403,7 +430,7 @@ const styles = StyleSheet.create({
   },
   inputContainerLongMultilineLargeLightMode: {
     backgroundColor: Colors.textBoxColorLightMode,
-    width: "70%",
+    width: "80%",
     height: 500,
     justifyContent: "flex-start",
     paddingLeft: 10,
@@ -449,6 +476,17 @@ const styles = StyleSheet.create({
     color: Colors.accentColorLightMode,
     textAlign: "center",
     fontSize: 30,
+  },
+  nextButtonContainer: {},
+  nextButton: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderRadius: 10,
+    height: 50,
+    width: 100,
+    backgroundColor: Colors.textBoxColorLightMode,
+    paddingHorizontal: 10,
   },
 });
 

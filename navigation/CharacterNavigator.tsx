@@ -15,6 +15,9 @@ import CharacterAddNavigator from "./AddCharacterNavigator";
 import { newCurrentCharacter } from "../store/actions/currentCharacter";
 import { v4 as uuid } from "uuid";
 import IdentityScreen from "../screens/creationGuide/IdentityScreen";
+import AttributesScreen from "../screens/creationGuide/AttributesScreen";
+import SkillsScreen from "../screens/creationGuide/SkillsScreen";
+import VocationsScreen from "../screens/creationGuide/VocationsScreen";
 
 const Stack = createStackNavigator();
 
@@ -86,6 +89,8 @@ export default function CharacterNavigator() {
                 equipment: "None",
                 notes: "No Notes",
                 bgColor: "#ffffff",
+                attributePoints: 2,
+                skillPoints: 12,
               })
             );
             navigation.popToTop();
@@ -203,7 +208,7 @@ export default function CharacterNavigator() {
                 title="Helper"
                 iconName="help"
                 onPress={() => {
-                  navigation.navigate("Helper");
+                  navigation.navigate("Identity");
                 }}
               />
               <Item
@@ -243,7 +248,10 @@ export default function CharacterNavigator() {
         })}
       />
       <Stack.Screen name="Settings" component={SettingsScreen} />
-      <Stack.Screen name="Helper" component={IdentityScreen} />
+      <Stack.Screen name="Identity" component={IdentityScreen} />
+      <Stack.Screen name="Attributes" component={AttributesScreen} />
+      <Stack.Screen name="Skills" component={SkillsScreen} />
+      <Stack.Screen name="Vocations" component={VocationsScreen} />
     </Stack.Navigator>
   );
 }

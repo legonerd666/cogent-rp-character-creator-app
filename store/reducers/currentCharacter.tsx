@@ -43,6 +43,8 @@ const initialState = {
   equipment: "None",
   notes: "No Notes",
   bgColor: "#ffffff",
+  attributePoints: 2,
+  skillPoints: 12,
 };
 
 const currentCharacterReducer = (state = initialState, action: any) => {
@@ -123,6 +125,10 @@ const currentCharacterReducer = (state = initialState, action: any) => {
           return { ...state, notes: action.newStat };
         case "bgColor":
           return { ...state, bgColor: action.newStat };
+        case "attributePoints":
+          return { ...state, attributePoints: action.newStat };
+        case "skillPoints":
+          return { ...state, skillPoints: action.newStat };
         default:
           return state;
       }

@@ -76,6 +76,7 @@ const NotesScreen = (props: any) => {
                 dispatch(setStat("notes", text));
               }}
               multiline={true}
+              defaultValue={notes != "No Notes" ? notes : ""}
             />
           </View>
 
@@ -106,6 +107,7 @@ const NotesScreen = (props: any) => {
             }
           >
             <ColorPicker
+              color={bgColor}
               onColorChangeComplete={(color) => {
                 setBgColor(color);
                 dispatch(setStat("bgColor", color));

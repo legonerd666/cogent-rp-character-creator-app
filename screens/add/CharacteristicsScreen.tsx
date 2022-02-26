@@ -100,6 +100,7 @@ const CharacteristicsScreen = (props: any) => {
                 setName(text);
                 dispatch(setStat("name", text));
               }}
+              defaultValue={name != "Unknown" ? name : ""}
             />
           </View>
 
@@ -147,6 +148,7 @@ const CharacteristicsScreen = (props: any) => {
                 setAge(text);
                 dispatch(setStat("age", text));
               }}
+              defaultValue={age != "Unknown" ? age : ""}
             />
           </View>
 
@@ -194,6 +196,7 @@ const CharacteristicsScreen = (props: any) => {
                 setRace(text);
                 dispatch(setStat("race", text));
               }}
+              defaultValue={race != "Unknown" ? race : ""}
             />
           </View>
 
@@ -241,6 +244,7 @@ const CharacteristicsScreen = (props: any) => {
                 setBodyType(text);
                 dispatch(setStat("bodyType", text));
               }}
+              defaultValue={bodyType != "Unknown" ? bodyType : ""}
             />
           </View>
 
@@ -288,6 +292,11 @@ const CharacteristicsScreen = (props: any) => {
                 setDisablingCharacteristics(text);
                 dispatch(setStat("disablingCharacteristics", text));
               }}
+              defaultValue={
+                disablingCharacteristics != "None"
+                  ? disablingCharacteristics
+                  : ""
+              }
             />
           </View>
         </View>

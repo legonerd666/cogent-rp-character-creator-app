@@ -96,6 +96,7 @@ const IdentityScreen = (props: any) => {
                 dispatch(setStat("disposition", text));
               }}
               multiline={true}
+              defaultValue={disposition != "Unknown" ? disposition : ""}
             />
           </View>
 
@@ -144,6 +145,7 @@ const IdentityScreen = (props: any) => {
                 dispatch(setStat("history", text));
               }}
               multiline={true}
+              defaultValue={history != "Lost to the ages" ? history : ""}
             />
           </View>
 
@@ -192,6 +194,9 @@ const IdentityScreen = (props: any) => {
                 dispatch(setStat("beliefsMorality", text));
               }}
               multiline={true}
+              defaultValue={
+                beliefsMorality != "A mystery" ? beliefsMorality : ""
+              }
             />
           </View>
 
@@ -240,6 +245,9 @@ const IdentityScreen = (props: any) => {
                 dispatch(setStat("goalsAspirations", text));
               }}
               multiline={true}
+              defaultValue={
+                goalsAspirations != "Unknown" ? goalsAspirations : ""
+              }
             />
           </View>
         </View>
