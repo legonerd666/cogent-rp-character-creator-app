@@ -14,7 +14,7 @@ import { v4 as uuid } from "uuid";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Vocation from "../../components/EditVocation";
-import Proficiency from "../../components/EditProficiency";
+import Specialization from "../../components/EditSpecialization";
 import { setStat } from "../../store/actions/currentCharacter";
 
 const SkillsScreen = (props: any) => {
@@ -27,8 +27,8 @@ const SkillsScreen = (props: any) => {
   let loadedVocations = useSelector(
     (state: RootStateOrAny) => state.character.vocations
   );
-  let loadedProficiencies = useSelector(
-    (state: RootStateOrAny) => state.character.proficiencies
+  let loadedSpecializations = useSelector(
+    (state: RootStateOrAny) => state.character.specializations
   );
 
   const [endurance, setndurance] = useState(
@@ -82,10 +82,10 @@ const SkillsScreen = (props: any) => {
       return <Vocation key={item.id} itemData={item} />;
     })
   );
-  const [proficiencies, setProficiencies] = useState(loadedProficiencies);
-  const [proficiencyComponents, setProficiencyComponents] = useState(
-    proficiencies.map((item: any) => {
-      return <Proficiency key={item.id} itemData={item} />;
+  const [specializations, setSpecializations] = useState(loadedSpecializations);
+  const [specializationComponents, setSpecializationComponents] = useState(
+    specializations.map((item: any) => {
+      return <Specialization key={item.id} itemData={item} />;
     })
   );
 
@@ -134,10 +134,10 @@ const SkillsScreen = (props: any) => {
     );
   };
 
-  const Proficiencies = (props: any) => {
+  const Specializations = (props: any) => {
     return (
       <View style={styles.customSkill}>
-        {proficiencyComponents}
+        {specializationComponents}
         <View
           style={
             Dimensions.get("window").width > 600
@@ -147,17 +147,21 @@ const SkillsScreen = (props: any) => {
         >
           <TouchableNativeFeedback
             onPress={() => {
-              let tempProficiencies = proficiencies;
-              tempProficiencies.push({
+              let tempSpecializations = specializations;
+              tempSpecializations.push({
+                parentId: uuid(),
                 id: uuid(),
+                type: "v",
                 name: "",
                 stat: "",
                 bonus: 0,
+                dmgBonus: 0,
+                armorPen: 0,
               });
-              setProficiencies(tempProficiencies);
-              setProficiencyComponents(
-                proficiencies.map((item: any) => {
-                  return <Proficiency key={item.id} itemData={item} />;
+              setSpecializations(tempSpecializations);
+              setSpecializationComponents(
+                specializations.map((item: any) => {
+                  return <Specialization key={item.id} itemData={item} />;
                 })
               );
             }}
@@ -1041,27 +1045,7 @@ const SkillsScreen = (props: any) => {
             Vocations:
           </DefaultText>
           <Vocations />
-
-          <View
-            style={
-              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
-            }
-          ></View>
-
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.skillSectionTextLargeDarkMode
-                  : styles.skillSectionTextLargeLightMode
-                : isDarkMode
-                ? styles.skillSectionTextDarkMode
-                : styles.skillSectionTextLightMode
-            }
-          >
-            Proficiencies:
-          </DefaultText>
-          <Proficiencies />
+          <Specializations />
 
           <View
             style={

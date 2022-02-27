@@ -14,7 +14,7 @@ import { v4 as uuid } from "uuid";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Vocation from "../../components/EditVocation";
-import Proficiency from "../../components/EditProficiency";
+// import Proficiency from "../../components/EditSpecialization";
 import { setStat } from "../../store/actions/currentCharacter";
 
 const SkillsScreen = (props: any) => {
@@ -82,12 +82,12 @@ const SkillsScreen = (props: any) => {
       return <Vocation key={item.id} itemData={item} />;
     })
   );
-  const [proficiencies, setProficiencies] = useState(loadedProficiencies);
-  const [proficiencyComponents, setProficiencyComponents] = useState(
-    proficiencies.map((item: any) => {
-      return <Proficiency key={item.id} itemData={item} />;
-    })
-  );
+  // const [proficiencies, setProficiencies] = useState(loadedProficiencies);
+  // const [proficiencyComponents, setProficiencyComponents] = useState(
+  //   proficiencies.map((item: any) => {
+  //     return <Proficiency key={item.id} itemData={item} />;
+  //   })
+  // );
 
   const Vocations = (props: any) => {
     return (
@@ -134,50 +134,50 @@ const SkillsScreen = (props: any) => {
     );
   };
 
-  const Proficiencies = (props: any) => {
-    return (
-      <View style={styles.customSkill}>
-        {proficiencyComponents}
-        <View
-          style={
-            Dimensions.get("window").width > 600
-              ? styles.addButtonContainerLarge
-              : styles.addButtonContainer
-          }
-        >
-          <TouchableNativeFeedback
-            onPress={() => {
-              let tempProficiencies = proficiencies;
-              tempProficiencies.push({
-                id: uuid(),
-                name: "",
-                stat: "",
-                bonus: 0,
-              });
-              setProficiencies(tempProficiencies);
-              setProficiencyComponents(
-                proficiencies.map((item: any) => {
-                  return <Proficiency key={item.id} itemData={item} />;
-                })
-              );
-            }}
-          >
-            <View>
-              <DefaultText
-                style={
-                  Dimensions.get("window").width > 600
-                    ? styles.addButtonTextLarge
-                    : styles.addButtonText
-                }
-              >
-                Add New
-              </DefaultText>
-            </View>
-          </TouchableNativeFeedback>
-        </View>
-      </View>
-    );
-  };
+  // const Proficiencies = (props: any) => {
+  //   return (
+  //     <View style={styles.customSkill}>
+  //       {proficiencyComponents}
+  //       <View
+  //         style={
+  //           Dimensions.get("window").width > 600
+  //             ? styles.addButtonContainerLarge
+  //             : styles.addButtonContainer
+  //         }
+  //       >
+  //         <TouchableNativeFeedback
+  //           onPress={() => {
+  //             let tempProficiencies = proficiencies;
+  //             tempProficiencies.push({
+  //               id: uuid(),
+  //               name: "",
+  //               stat: "",
+  //               bonus: 0,
+  //             });
+  //             setProficiencies(tempProficiencies);
+  //             setProficiencyComponents(
+  //               proficiencies.map((item: any) => {
+  //                 return <Proficiency key={item.id} itemData={item} />;
+  //               })
+  //             );
+  //           }}
+  //         >
+  //           <View>
+  //             <DefaultText
+  //               style={
+  //                 Dimensions.get("window").width > 600
+  //                   ? styles.addButtonTextLarge
+  //                   : styles.addButtonText
+  //               }
+  //             >
+  //               Add New
+  //             </DefaultText>
+  //           </View>
+  //         </TouchableNativeFeedback>
+  //       </View>
+  //     </View>
+  //   );
+  // };
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
@@ -1061,7 +1061,7 @@ const SkillsScreen = (props: any) => {
           >
             Proficiencies:
           </DefaultText>
-          <Proficiencies />
+          {/* <Proficiencies /> */}
 
           <View
             style={

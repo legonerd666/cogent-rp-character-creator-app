@@ -1,5 +1,4 @@
 import { v4 as uuid } from "uuid";
-import VocationsScreen from "../screens/creationGuide/VocationsScreen";
 export default {
   blankCharacter: {
     id: uuid(),
@@ -36,17 +35,18 @@ export default {
         name: "",
         stat: "",
         bonus: 1,
-        specializations: [
-          {
-            id: uuid(),
-            type: "v",
-            name: "",
-            stat: "",
-            bonus: 0,
-            dmgBonus: 0,
-            armorPen: 0,
-          },
-        ],
+      },
+    ],
+    specializations: [
+      {
+        parentId: uuid(),
+        id: uuid(),
+        type: "v",
+        name: "",
+        stat: "",
+        bonus: 0,
+        dmgBonus: 0,
+        armorPen: 0,
       },
     ],
     injuries: 0,

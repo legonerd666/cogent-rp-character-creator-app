@@ -5,7 +5,7 @@ import { useSelector, RootStateOrAny } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Vocation from "../../components/Vocation";
-import Proficiency from "../../components/Proficiency";
+// import Proficiency from "../../components/Proficiency";
 import BoldText from "../../components/BoldText";
 
 const SkillsScreen = (props: any) => {
@@ -19,9 +19,9 @@ const SkillsScreen = (props: any) => {
     return <Vocation key={item.id} itemData={item} />;
   });
 
-  const proficiencyComponents = character.proficiencies.map((item: any) => {
-    return <Proficiency key={item.id} itemData={item} />;
-  });
+  // const proficiencyComponents = character.proficiencies.map((item: any) => {
+  //   return <Proficiency key={item.id} itemData={item} />;
+  // });
 
   const Vocations = (props: any) => {
     if (vocationComponents.length === 0) {
@@ -46,28 +46,28 @@ const SkillsScreen = (props: any) => {
     return <View style={styles.customSkill}>{vocationComponents}</View>;
   };
 
-  const Proficiencies = (props: any) => {
-    if (proficiencyComponents.length === 0) {
-      return (
-        <View style={styles.customSkill}>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.largeTitleDarkMode
-                  : styles.largeTitleLightMode
-                : isDarkMode
-                ? styles.titleDarkMode
-                : styles.titleLightMode
-            }
-          >
-            You Have No Proficiencies
-          </DefaultText>
-        </View>
-      );
-    }
-    return <View style={styles.customSkill}>{proficiencyComponents}</View>;
-  };
+  // const Proficiencies = (props: any) => {
+  //   if (proficiencyComponents.length === 0) {
+  //     return (
+  //       <View style={styles.customSkill}>
+  //         <DefaultText
+  //           style={
+  //             Dimensions.get("window").width > 600
+  //               ? isDarkMode
+  //                 ? styles.largeTitleDarkMode
+  //                 : styles.largeTitleLightMode
+  //               : isDarkMode
+  //               ? styles.titleDarkMode
+  //               : styles.titleLightMode
+  //           }
+  //         >
+  //           You Have No Proficiencies
+  //         </DefaultText>
+  //       </View>
+  //     );
+  //   }
+  //   return <View style={styles.customSkill}>{proficiencyComponents}</View>;
+  // };
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
@@ -677,7 +677,7 @@ const SkillsScreen = (props: any) => {
             >
               Proficiencies:
             </DefaultText>
-            <Proficiencies />
+            {/* <Proficiencies /> */}
           </View>
         </View>
       </ScrollView>

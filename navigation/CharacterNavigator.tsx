@@ -8,9 +8,10 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/HeaderButton";
-import CharacterEditNavigator from "./CharacterEditNavigator";
 import { Alert } from "react-native";
+
 import DataManipulation from "../functions/DataManipulation";
+import CharacterEditNavigator from "./CharacterEditNavigator";
 import CharacterAddNavigator from "./AddCharacterNavigator";
 import {
   newCurrentCharacter,

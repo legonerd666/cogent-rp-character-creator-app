@@ -70,8 +70,8 @@ const currentCharacterReducer = (state = initialState, action: any) => {
           return { ...state, survival: action.newStat };
         case "vocations":
           return { ...state, vocations: action.newStat };
-        case "proficiencies":
-          return { ...state, proficiencies: action.newStat };
+        case "specializations":
+          return { ...state, specializations: action.newStat };
         case "injuries":
           return { ...state, injuries: action.newStat };
         case "lingeringInjuries":
@@ -102,6 +102,13 @@ const currentCharacterReducer = (state = initialState, action: any) => {
           const vocations = state.vocations;
           vocations[vocationIndex] = action.newStat;
           return { ...state, vocations: vocations };
+        case "specialization":
+          const specializationIndex = state.specializations.findIndex(
+            (specializationById) => specializationById.id === action.statId
+          );
+          const specializations = state.specializations;
+          specializations[specializationIndex] = action.newStat;
+          return { ...state, specializations: specializations };
         case "injury":
           const injuryIndex = state.lingeringInjuries.findIndex(
             (injuryById) => injuryById.id === action.statId
