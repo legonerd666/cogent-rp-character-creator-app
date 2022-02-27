@@ -32,7 +32,10 @@ const CharactersScreen = (props: any) => {
             title="Add New"
             iconName="add"
             onPress={() => {
-              dispatch(newCurrentCharacter(characterTemplate.blankCharacter));
+              dispatch(
+                newCurrentCharacter({ ...characterTemplate.blankCharacter })
+              );
+              console.log(characterTemplate.blankCharacter);
               dispatch(setStat("id", uuid()));
               props.navigation.navigate("Add");
             }}

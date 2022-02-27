@@ -55,7 +55,9 @@ export default function CharacterNavigator() {
 
             dataManipulation.setData(newCharacters);
             dataManipulation.saveData();
-            dispatch(newCurrentCharacter(characterTemplate.blankCharacter));
+            dispatch(
+              newCurrentCharacter({ ...characterTemplate.blankCharacter })
+            );
             dispatch(setStat("id", uuid()));
             navigation.popToTop();
           },

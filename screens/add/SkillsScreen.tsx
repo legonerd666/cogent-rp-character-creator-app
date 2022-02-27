@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   TextInput,
@@ -15,7 +15,10 @@ import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Vocation from "../../components/EditVocation";
 import Specialization from "../../components/EditSpecialization";
-import { setStat } from "../../store/actions/currentCharacter";
+import {
+  setMultiFieldStat,
+  setStat,
+} from "../../store/actions/currentCharacter";
 
 const SkillsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -26,9 +29,6 @@ const SkillsScreen = (props: any) => {
 
   let loadedVocations = useSelector(
     (state: RootStateOrAny) => state.character.vocations
-  );
-  let loadedSpecializations = useSelector(
-    (state: RootStateOrAny) => state.character.specializations
   );
 
   const [endurance, setndurance] = useState(
@@ -76,13 +76,17 @@ const SkillsScreen = (props: any) => {
   const [survival, setSurvival] = useState(
     useSelector((state: RootStateOrAny) => state.character.survival)
   );
-  const [vocations, setVocations] = useState(loadedVocations);
+  const [vocations, setVocations] = useState(
+    useSelector((state: RootStateOrAny) => state.character.vocations)
+  );
   const [vocationComponents, setVocationComponents] = useState(
     vocations.map((item: any) => {
       return <Vocation key={item.id} itemData={item} />;
     })
   );
-  const [specializations, setSpecializations] = useState(loadedSpecializations);
+  const [specializations, setSpecializations] = useState(
+    useSelector((state: RootStateOrAny) => state.character.specializations)
+  );
   const [specializationComponents, setSpecializationComponents] = useState(
     specializations.map((item: any) => {
       return <Specialization key={item.id} itemData={item} />;
@@ -114,6 +118,16 @@ const SkillsScreen = (props: any) => {
                 vocations.map((item: any) => {
                   return <Vocation key={item.id} itemData={item} />;
                 })
+              );
+
+              let newSpecialization = specializations[0];
+              newSpecialization.parentId = vocations[0].id;
+              dispatch(
+                setMultiFieldStat(
+                  "specialization",
+                  newSpecialization.id,
+                  newSpecialization
+                )
               );
             }}
           >
@@ -149,7 +163,7 @@ const SkillsScreen = (props: any) => {
             onPress={() => {
               let tempSpecializations = specializations;
               tempSpecializations.push({
-                parentId: uuid(),
+                parentId: vocations[0].id,
                 id: uuid(),
                 type: "v",
                 name: "",

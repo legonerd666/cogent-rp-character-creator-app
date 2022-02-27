@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   TextInput,
@@ -11,7 +11,10 @@ import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
-import { setStat } from "../../store/actions/currentCharacter";
+import {
+  setMultiFieldStat,
+  setStat,
+} from "../../store/actions/currentCharacter";
 
 const CharacteristicsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -37,6 +40,25 @@ const CharacteristicsScreen = (props: any) => {
       (state: RootStateOrAny) => state.character.disablingCharacteristics
     )
   );
+
+  let loadedVocations = useSelector(
+    (state: RootStateOrAny) => state.character.vocations
+  );
+  let loadedSpecializations = useSelector(
+    (state: RootStateOrAny) => state.character.specializations
+  );
+
+  useEffect(() => {
+    let newSpecialization = loadedSpecializations[0];
+    newSpecialization.parentId = loadedVocations[0].id;
+    dispatch(
+      setMultiFieldStat(
+        "specialization",
+        newSpecialization.id,
+        newSpecialization
+      )
+    );
+  });
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>

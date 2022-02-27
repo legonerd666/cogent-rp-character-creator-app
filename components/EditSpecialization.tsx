@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import DropDownPicker from "react-native-dropdown-picker";
 
 import DefaultText from "./DefaultText";
 import Colors from "../constants/Colors";
@@ -17,13 +18,19 @@ import {
 } from "../store/actions/currentCharacter";
 
 const Specialization = (props: any) => {
-  const [type, setType] = useState(props.itemData.parentId);
+  const [type, setType] = useState(props.itemData.type);
   const [stat, setStat] = useState(props.itemData.stat);
   const [name, setName] = useState(props.itemData.name);
   const [bonus, setBonus] = useState(props.itemData.bonus);
   const [dmgBonus, setDmgBonus] = useState(props.itemData.dmgBonus);
   const [armorPen, setArmorPen] = useState(props.itemData.armorPen);
   const [display, setDisplay] = useState(true);
+
+  const parent = useSelector((state: RootStateOrAny) =>
+    state.character.vocations.find(
+      (vocationById: any) => vocationById.id === props.itemData.parentId
+    )
+  );
 
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
@@ -58,6 +65,19 @@ const Specialization = (props: any) => {
     if (type === "v") {
       return (
         <View style={styles.specialization}>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.textLargeDarkMode
+                  : styles.textLargeLightMode
+                : isDarkMode
+                ? styles.textDarkMode
+                : styles.textLightMode
+            }
+          >
+            Governing Vocation: {parent === undefined ? "None" : parent.name}
+          </DefaultText>
           <View style={styles.checkboxes}>
             <View style={styles.checkbox}>
               <DefaultText
@@ -344,6 +364,20 @@ const Specialization = (props: any) => {
     } else {
       return (
         <View style={styles.specialization}>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.textLargeDarkMode
+                  : styles.textLargeLightMode
+                : isDarkMode
+                ? styles.textDarkMode
+                : styles.textLightMode
+            }
+          >
+            Governing Vocation:
+            {parent === undefined ? "None" : parent.name}
+          </DefaultText>
           <View style={styles.checkboxes}>
             <View style={styles.checkbox}>
               <DefaultText

@@ -107,7 +107,7 @@ const HomeScreen = (props: any) => {
   return (
     <TouchableNativeFeedback
       onPress={() => {
-        dispatch(newCurrentCharacter(characterTemplate.blankCharacter));
+        dispatch(newCurrentCharacter({ ...characterTemplate.blankCharacter }));
         dispatch(setStat("id", uuid()));
         props.navigation.navigate("Characters");
       }}

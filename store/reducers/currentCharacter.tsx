@@ -6,7 +6,7 @@ import {
   SET_STAT,
 } from "../actions/currentCharacter";
 
-const initialState = characterTemplate.blankCharacter;
+const initialState = { ...characterTemplate.blankCharacter };
 
 const currentCharacterReducer = (state = initialState, action: any) => {
   switch (action.type) {
