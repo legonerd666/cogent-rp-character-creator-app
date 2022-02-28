@@ -6,6 +6,7 @@ import {
   Dimensions,
   TextInput,
   TouchableNativeFeedback,
+  Alert,
 } from "react-native";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import DefaultText from "../../components/DefaultText";
@@ -215,14 +216,26 @@ const AttributeScreen = (props: any) => {
             <View style={styles.buttons}>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.intelligence >= 1) {
-                    dispatch(
-                      setStat("intelligence", character.intelligence - 1)
+                  if (character.skillPoints < 3) {
+                    Alert.alert(
+                      "Using too many Skill Points",
+                      "You are currently using Skill Points granted by high inteligence and are not allowed to reduce your intelligence until you refund some Skill Points."
                     );
-                    dispatch(
-                      setStat("attributePoints", character.attributePoints + 1)
-                    );
-                    dispatch(setStat("skillPoints", character.skillPoints - 3));
+                  } else {
+                    if (character.intelligence >= 1) {
+                      dispatch(
+                        setStat("intelligence", character.intelligence - 1)
+                      );
+                      dispatch(
+                        setStat(
+                          "attributePoints",
+                          character.attributePoints + 1
+                        )
+                      );
+                      dispatch(
+                        setStat("skillPoints", character.skillPoints - 3)
+                      );
+                    }
                   }
                 }}
               >

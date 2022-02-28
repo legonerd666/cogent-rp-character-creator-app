@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -25,6 +25,7 @@ const SkillsScreen = (props: any) => {
   const skillPoints = useSelector(
     (state: RootStateOrAny) => state.character.skillPoints
   );
+
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
       <ScrollView style={{ width: "100%" }}>
@@ -1118,7 +1119,7 @@ const SkillsScreen = (props: any) => {
           </DefaultText>
           <TouchableNativeFeedback
             onPress={() => {
-              props.navigation.navigate("Vocations");
+              props.navigation.navigate("Skills");
             }}
           >
             <View style={styles.nextButton}>
