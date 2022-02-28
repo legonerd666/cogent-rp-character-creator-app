@@ -10,19 +10,14 @@ import {
 import AppLoading from "expo-app-loading";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
-import { v4 as uuid } from "uuid";
 
 import CharacterGridTile from "../components/CharacterGridTile";
-import CustomHeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
 import Colors from "../constants/Colors";
 import DataManipulation from "../functions/DataManipulation";
-import {
-  newCurrentCharacter,
-  setStat,
-} from "../store/actions/currentCharacter";
-import characterTemplate from "../constants/characterTemplate";
+import { newCurrentCharacter } from "../store/actions/currentCharacter";
 import blankCharacter from "../constants/characterTemplate";
+import CustomHeaderButton from "../components/HeaderButton";
 
 const CharactersScreen = (props: any) => {
   React.useLayoutEffect(() => {
@@ -33,7 +28,7 @@ const CharactersScreen = (props: any) => {
             title="Add New"
             iconName="add"
             onPress={() => {
-              dispatch(newCurrentCharacter());
+              dispatch(newCurrentCharacter(blankCharacter()));
               props.navigation.navigate("Add");
             }}
           />
@@ -67,7 +62,7 @@ const CharactersScreen = (props: any) => {
         name={itemData.item.name}
         bgcolor={itemData.item.bgColor}
         onSelect={async () => {
-          await dispatch(newCurrentCharacter());
+          await dispatch(newCurrentCharacter(itemData.item));
           props.navigation.navigate("CharacterDetails", {
             screen: "Characteristics",
             params: {

@@ -119,7 +119,7 @@ const currentCharacterReducer = (state = initialState, action: any) => {
           return state;
       }
     case NEW_CURRENT_CHARACTER:
-      return blankCharacter();
+      return action.newCharacter;
     default:
       return initialState;
   }

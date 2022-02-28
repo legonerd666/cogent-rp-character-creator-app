@@ -21,7 +21,7 @@ import {
   newCurrentCharacter,
   setStat,
 } from "../store/actions/currentCharacter";
-import characterTemplate from "../constants/characterTemplate";
+import { ICharacter } from "../constants/characterTemplate";
 import blankCharacter from "../constants/characterTemplate";
 
 const HomeScreen = (props: any) => {
@@ -108,7 +108,8 @@ const HomeScreen = (props: any) => {
   return (
     <TouchableNativeFeedback
       onPress={() => {
-        dispatch(newCurrentCharacter());
+        const tempBlankCharacter: ICharacter = blankCharacter();
+        dispatch(newCurrentCharacter(tempBlankCharacter));
         props.navigation.navigate("Characters");
       }}
     >

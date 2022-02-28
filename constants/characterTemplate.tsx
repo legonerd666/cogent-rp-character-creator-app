@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-interface character {
+export interface ICharacter {
   id: string;
   name: string;
   age: string;
@@ -65,7 +65,7 @@ interface character {
   skillPoints: number;
 }
 
-function blankCharacter(): character {
+function blankCharacter(): ICharacter {
   return {
     id: uuid(),
     name: "Unknown",

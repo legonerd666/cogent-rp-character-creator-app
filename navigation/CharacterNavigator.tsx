@@ -17,12 +17,10 @@ import {
   newCurrentCharacter,
   setStat,
 } from "../store/actions/currentCharacter";
-import { v4 as uuid } from "uuid";
 import IdentityScreen from "../screens/creationGuide/IdentityScreen";
 import AttributesScreen from "../screens/creationGuide/AttributesScreen";
 import SkillsScreen from "../screens/creationGuide/SkillsScreen";
 import VocationsScreen from "../screens/creationGuide/VocationsScreen";
-import characterTemplate from "../constants/characterTemplate";
 import blankCharacter from "../constants/characterTemplate";
 
 const Stack = createStackNavigator();
@@ -56,7 +54,8 @@ export default function CharacterNavigator() {
 
             dataManipulation.setData(newCharacters);
             dataManipulation.saveData();
-            dispatch(newCurrentCharacter());
+
+            dispatch(newCurrentCharacter(blankCharacter()));
             navigation.popToTop();
           },
         },

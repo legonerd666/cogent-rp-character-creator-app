@@ -1,3 +1,5 @@
+import { ICharacter } from "../../constants/characterTemplate";
+
 export const SET_STAT = "SET_STAT";
 export const SET_MULTIFIELDSTAT = "SET_MULTIFIELDSTAT";
 export const NEW_CURRENT_CHARACTER = "NEW_CURRENT_CHARACTER";
@@ -23,8 +25,9 @@ export const setMultiFieldStat = (
   };
 };
 
-export const newCurrentCharacter = () => {
+export const newCurrentCharacter = (newCharacter: ICharacter) => {
   return {
     type: NEW_CURRENT_CHARACTER,
+    newCharacter: newCharacter,
   };
 };
