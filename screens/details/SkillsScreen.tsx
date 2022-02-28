@@ -5,8 +5,8 @@ import { useSelector, RootStateOrAny } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Vocation from "../../components/Vocation";
-// import Proficiency from "../../components/Proficiency";
 import BoldText from "../../components/BoldText";
+import Specialization from "../../components/Specialization";
 
 const SkillsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -19,9 +19,14 @@ const SkillsScreen = (props: any) => {
     return <Vocation key={item.id} itemData={item} />;
   });
 
-  // const proficiencyComponents = character.proficiencies.map((item: any) => {
-  //   return <Proficiency key={item.id} itemData={item} />;
-  // });
+  const [specializations, setSpecializations] = useState(
+    useSelector((state: RootStateOrAny) => state.character.specializations)
+  );
+  const [specializationComponents, setSpecializationComponents] = useState(
+    specializations.map((item: any) => {
+      return <Specialization key={item.id} itemData={item} />;
+    })
+  );
 
   const Vocations = (props: any) => {
     if (vocationComponents.length === 0) {
@@ -46,28 +51,28 @@ const SkillsScreen = (props: any) => {
     return <View style={styles.customSkill}>{vocationComponents}</View>;
   };
 
-  // const Proficiencies = (props: any) => {
-  //   if (proficiencyComponents.length === 0) {
-  //     return (
-  //       <View style={styles.customSkill}>
-  //         <DefaultText
-  //           style={
-  //             Dimensions.get("window").width > 600
-  //               ? isDarkMode
-  //                 ? styles.largeTitleDarkMode
-  //                 : styles.largeTitleLightMode
-  //               : isDarkMode
-  //               ? styles.titleDarkMode
-  //               : styles.titleLightMode
-  //           }
-  //         >
-  //           You Have No Proficiencies
-  //         </DefaultText>
-  //       </View>
-  //     );
-  //   }
-  //   return <View style={styles.customSkill}>{proficiencyComponents}</View>;
-  // };
+  const Specializations = (props: any) => {
+    if (specializationComponents.length === 0) {
+      return (
+        <View style={styles.customSkill}>
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.largeTitleDarkMode
+                  : styles.largeTitleLightMode
+                : isDarkMode
+                ? styles.titleDarkMode
+                : styles.titleLightMode
+            }
+          >
+            You Have No Specialization
+          </DefaultText>
+        </View>
+      );
+    }
+    return <View style={styles.customSkill}>{specializationComponents}</View>;
+  };
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
@@ -653,32 +658,21 @@ const SkillsScreen = (props: any) => {
             }
           ></View>
 
-          <View
+          <DefaultText
             style={
               Dimensions.get("window").width > 600
                 ? isDarkMode
-                  ? styles.skillSectionContainerLargeDarkMode
-                  : styles.skillSectionContainerLargeLightMode
+                  ? styles.skillSectionTextLargeDarkMode
+                  : styles.skillSectionTextLargeLightMode
                 : isDarkMode
-                ? styles.skillSectionContainerDarkMode
-                : styles.skillSectionContainerLightMode
+                ? styles.skillSectionTextDarkMode
+                : styles.skillSectionTextLightMode
             }
           >
-            <DefaultText
-              style={
-                Dimensions.get("window").width > 600
-                  ? isDarkMode
-                    ? styles.skillSectionTextLargeDarkMode
-                    : styles.skillSectionTextLargeLightMode
-                  : isDarkMode
-                  ? styles.skillSectionTextDarkMode
-                  : styles.skillSectionTextLightMode
-              }
-            >
-              Proficiencies:
-            </DefaultText>
-            {/* <Proficiencies /> */}
-          </View>
+            Vocational and Combat Skills:
+          </DefaultText>
+
+          <Specializations />
         </View>
       </ScrollView>
     </View>

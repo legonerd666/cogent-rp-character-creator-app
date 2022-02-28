@@ -119,16 +119,6 @@ const SkillsScreen = (props: any) => {
                   return <Vocation key={item.id} itemData={item} />;
                 })
               );
-
-              let newSpecialization = specializations[0];
-              newSpecialization.parentId = vocations[0].id;
-              dispatch(
-                setMultiFieldStat(
-                  "specialization",
-                  newSpecialization.id,
-                  newSpecialization
-                )
-              );
             }}
           >
             <View>
@@ -163,7 +153,7 @@ const SkillsScreen = (props: any) => {
             onPress={() => {
               let tempSpecializations = specializations;
               tempSpecializations.push({
-                parentId: vocations[0].id,
+                parentName: "",
                 id: uuid(),
                 type: "v",
                 name: "",
@@ -1059,6 +1049,27 @@ const SkillsScreen = (props: any) => {
             Vocations:
           </DefaultText>
           <Vocations />
+
+          <View
+            style={
+              isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode
+            }
+          ></View>
+
+          <DefaultText
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.skillSectionTextLargeDarkMode
+                  : styles.skillSectionTextLargeLightMode
+                : isDarkMode
+                ? styles.skillSectionTextDarkMode
+                : styles.skillSectionTextLightMode
+            }
+          >
+            Vocational and Combat Skills:
+          </DefaultText>
+
           <Specializations />
 
           <View

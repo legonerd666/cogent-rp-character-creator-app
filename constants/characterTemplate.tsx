@@ -39,7 +39,7 @@ export default {
     ],
     specializations: [
       {
-        parentId: uuid(),
+        parentName: "",
         id: uuid(),
         type: "v",
         name: "",

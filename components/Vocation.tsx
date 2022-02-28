@@ -118,7 +118,7 @@ const Vocation = (props: any) => {
           </DefaultText>
           <RadioButton
             value="int"
-            status={props.itemDatastat === "int" ? "checked" : "unchecked"}
+            status={props.itemData.stat === "int" ? "checked" : "unchecked"}
             color={
               isDarkMode
                 ? Colors.accentColorDarkMode

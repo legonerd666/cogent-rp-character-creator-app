@@ -48,18 +48,6 @@ const CharacteristicsScreen = (props: any) => {
     (state: RootStateOrAny) => state.character.specializations
   );
 
-  useEffect(() => {
-    let newSpecialization = loadedSpecializations[0];
-    newSpecialization.parentId = loadedVocations[0].id;
-    dispatch(
-      setMultiFieldStat(
-        "specialization",
-        newSpecialization.id,
-        newSpecialization
-      )
-    );
-  });
-
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
       <ScrollView style={{ width: "100%" }}>
