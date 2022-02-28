@@ -109,6 +109,30 @@ const HomeScreen = (props: any) => {
       onPress={() => {
         dispatch(newCurrentCharacter({ ...characterTemplate.blankCharacter }));
         dispatch(setStat("id", uuid()));
+        dispatch(
+          setStat("vocations", [
+            {
+              id: uuid(),
+              name: "",
+              stat: "",
+              bonus: 1,
+            },
+          ])
+        );
+        dispatch(
+          setStat("specializations", [
+            {
+              parentName: "",
+              id: uuid(),
+              type: "v",
+              name: "",
+              stat: "",
+              bonus: 0,
+              dmgBonus: 0,
+              armorPen: 0,
+            },
+          ])
+        );
         props.navigation.navigate("Characters");
       }}
     >
