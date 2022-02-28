@@ -22,6 +22,7 @@ import {
   setStat,
 } from "../store/actions/currentCharacter";
 import characterTemplate from "../constants/characterTemplate";
+import blankCharacter from "../constants/characterTemplate";
 
 const CharactersScreen = (props: any) => {
   React.useLayoutEffect(() => {
@@ -32,34 +33,7 @@ const CharactersScreen = (props: any) => {
             title="Add New"
             iconName="add"
             onPress={() => {
-              dispatch(
-                newCurrentCharacter({ ...characterTemplate.blankCharacter })
-              );
-              dispatch(setStat("id", uuid()));
-              dispatch(
-                setStat("vocations", [
-                  {
-                    id: uuid(),
-                    name: "",
-                    stat: "",
-                    bonus: 1,
-                  },
-                ])
-              );
-              dispatch(
-                setStat("specializations", [
-                  {
-                    parentName: "",
-                    id: uuid(),
-                    type: "v",
-                    name: "",
-                    stat: "",
-                    bonus: 0,
-                    dmgBonus: 0,
-                    armorPen: 0,
-                  },
-                ])
-              );
+              dispatch(newCurrentCharacter());
               props.navigation.navigate("Add");
             }}
           />
@@ -93,7 +67,7 @@ const CharactersScreen = (props: any) => {
         name={itemData.item.name}
         bgcolor={itemData.item.bgColor}
         onSelect={async () => {
-          await dispatch(newCurrentCharacter(itemData.item));
+          await dispatch(newCurrentCharacter());
           props.navigation.navigate("CharacterDetails", {
             screen: "Characteristics",
             params: {

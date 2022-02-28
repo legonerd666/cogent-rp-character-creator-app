@@ -55,9 +55,9 @@ const SkillsScreen = (props: any) => {
           >
             Pick which skills you'd like to increase! Remember that you can't
             increase a core skill past 4 and make sure to save some skill points
-            for vocations and proficiencies, but don't worry too much as you can
-            always come back and adjust them! (to learn more about skills visit
-            cogentroleplay.com/rules/)
+            for vocations and vocational and combat skills, but don't worry too
+            much as you can always come back and adjust them! (to learn more
+            about skills visit cogentroleplay.com/rules/)
           </DefaultText>
           <DefaultText
             style={
@@ -1114,7 +1114,7 @@ const SkillsScreen = (props: any) => {
             }
           >
             Once you're done choosing your skills click next and we will move on
-            to Vocations and Proficiencies!
+            to Vocations, Vocational Skills, and Combat Skills!
           </DefaultText>
           <TouchableNativeFeedback
             onPress={() => {

@@ -8,6 +8,7 @@ import modeReducer from "./store/reducers/mode";
 import CharacterNavigator from "./navigation/CharacterNavigator";
 import currentCharacterReducer from "./store/reducers/currentCharacter";
 import { NavigationContainer } from "@react-navigation/native";
+import blankCharacter from "./constants/characterTemplate";
 
 const rootReducer = combineReducers({
   mode: modeReducer,

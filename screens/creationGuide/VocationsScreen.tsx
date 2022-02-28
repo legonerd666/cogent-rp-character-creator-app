@@ -4,11 +4,15 @@ import {
   StyleSheet,
   ScrollView,
   TouchableNativeFeedback,
+  Dimensions,
 } from "react-native";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
+import Vocation from "../../components/GuidedVocation";
+import { setStat } from "../../store/actions/currentCharacter";
+import { v4 as uuid } from "uuid";
 
 const VocationsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -19,9 +23,61 @@ const VocationsScreen = (props: any) => {
 
   const character = useSelector((state: RootStateOrAny) => state.character);
 
+  const [vocationComponents, setVocationComponents] = useState(
+    character.vocations.map((item: any) => {
+      return <Vocation key={item.id} itemData={item} />;
+    })
+  );
+
+  const Vocations = (props: any) => {
+    return (
+      <View>
+        {vocationComponents}
+        <View
+          style={
+            Dimensions.get("window").width > 600
+              ? styles.addButtonContainerLarge
+              : styles.addButtonContainer
+          }
+        >
+          <TouchableNativeFeedback
+            onPress={() => {
+              let tempVocations = character.vocations;
+              tempVocations.push({
+                id: uuid(),
+                name: "",
+                stat: "",
+                bonus: 0,
+              });
+              dispatch(setStat("vocations", tempVocations));
+              setVocationComponents(
+                character.vocations.map((item: any) => {
+                  return <Vocation key={item.id} itemData={item} />;
+                })
+              );
+            }}
+          >
+            <View>
+              <DefaultText
+                style={
+                  Dimensions.get("window").width > 600
+                    ? styles.addButtonTextLarge
+                    : {}
+                }
+              >
+                Add New
+              </DefaultText>
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+      </View>
+    );
+  };
+
   const skillPoints = useSelector(
     (state: RootStateOrAny) => state.character.skillPoints
   );
+
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
       <ScrollView style={{ width: "100%" }}>
@@ -38,11 +94,13 @@ const VocationsScreen = (props: any) => {
               isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
             }
           >
-            Pick which skills you'd like to increase! Remember that you can't
-            increase a core skill past 4 and make sure to save some skill points
-            for vocations and proficiencies, but don't worry too much as you can
-            always come back and adjust them! (to learn more about skills visit
-            cogentroleplay.com/rules/)
+            Think of vocations as focusses of interest for your character, be it
+            a hobby or a career, and make sure your vocations are named
+            something relatively general, such as Chef, Blacksmith, or Warrior,
+            not something specific like Cooking, Armor Smithing, or Two-Handed
+            Sword Wielding. These will be your characters main focuses of
+            interest, and you are required to have at least 1, so you get 1 free
+            skill point to spend on vocations!
           </DefaultText>
           <DefaultText
             style={
@@ -51,6 +109,9 @@ const VocationsScreen = (props: any) => {
           >
             Skill Points: {skillPoints}
           </DefaultText>
+          <View>
+            <Vocations />
+          </View>
           <TouchableNativeFeedback
             onPress={() => {
               props.navigation.navigate("Vocations");
@@ -144,6 +205,26 @@ const styles = StyleSheet.create({
     width: 100,
     backgroundColor: Colors.textBoxColorLightMode,
     paddingHorizontal: 10,
+  },
+  addButtonContainerLarge: {
+    backgroundColor: "#107aeb",
+    borderRadius: 10,
+    elevation: 3,
+    padding: 5,
+    marginTop: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  addButtonContainer: {
+    backgroundColor: "#107aeb",
+    borderRadius: 10,
+    elevation: 3,
+    padding: 5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  addButtonTextLarge: {
+    fontSize: 40,
   },
 });
 

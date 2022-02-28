@@ -23,9 +23,8 @@ export const setMultiFieldStat = (
   };
 };
 
-export const newCurrentCharacter = (newCharacter: any) => {
+export const newCurrentCharacter = () => {
   return {
     type: NEW_CURRENT_CHARACTER,
-    newCharacter: newCharacter,
   };
 };

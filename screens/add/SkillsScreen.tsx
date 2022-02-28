@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   TextInput,
   ScrollView,
-  Alert,
   StyleSheet,
   Dimensions,
   TouchableNativeFeedback,
@@ -15,10 +14,7 @@ import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Vocation from "../../components/EditVocation";
 import Specialization from "../../components/EditSpecialization";
-import {
-  setMultiFieldStat,
-  setStat,
-} from "../../store/actions/currentCharacter";
+import { setStat } from "../../store/actions/currentCharacter";
 
 const SkillsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);

@@ -1,12 +1,11 @@
-import { v4 as uuid } from "uuid";
-import characterTemplate from "../../constants/characterTemplate";
+import blankCharacter from "../../constants/characterTemplate";
 import {
   NEW_CURRENT_CHARACTER,
   SET_MULTIFIELDSTAT,
   SET_STAT,
 } from "../actions/currentCharacter";
 
-const initialState = { ...characterTemplate.blankCharacter };
+const initialState = blankCharacter();
 
 const currentCharacterReducer = (state = initialState, action: any) => {
   switch (action.type) {
@@ -120,7 +119,7 @@ const currentCharacterReducer = (state = initialState, action: any) => {
           return state;
       }
     case NEW_CURRENT_CHARACTER:
-      return action.newCharacter;
+      return blankCharacter();
     default:
       return initialState;
   }

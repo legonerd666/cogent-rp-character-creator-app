@@ -1,6 +1,72 @@
 import { v4 as uuid } from "uuid";
-export default {
-  blankCharacter: {
+interface character {
+  id: string;
+  name: string;
+  age: string;
+  race: string;
+  bodyType: string;
+  disablingCharacteristics: string;
+  disposition: string;
+  history: string;
+  beliefsMorality: string;
+  goalsAspirations: string;
+  strength: number;
+  reflex: number;
+  intelligence: number;
+  endurance: number;
+  athletics: number;
+  grip: number;
+  swim: number;
+  skillThrow: number;
+  perception: number;
+  acrobatics: number;
+  ridePilot: number;
+  sleightOfHand: number;
+  stealth: number;
+  generalKnowledge: number;
+  deception: number;
+  infiltration: number;
+  persuasion: number;
+  survival: number;
+  vocations: [
+    {
+      id: string;
+      name: string;
+      stat: string;
+      bonus: number;
+    }
+  ];
+  specializations: [
+    {
+      parentName: string;
+      id: string;
+      type: string;
+      name: string;
+      stat: string;
+      bonus: number;
+      dmgBonus: number;
+      armorPen: number;
+    }
+  ];
+  injuries: number;
+  lingeringInjuries: [
+    {
+      id: string;
+      name: string;
+      penalty: number;
+    }
+  ];
+  destinyPoints: number;
+  commercePoints: number;
+  equipment: string;
+  notes: string;
+  bgColor: string;
+  attributePoints: number;
+  skillPoints: number;
+}
+
+function blankCharacter(): character {
+  return {
     id: uuid(),
     name: "Unknown",
     age: "Unknown",
@@ -58,5 +124,7 @@ export default {
     bgColor: "#ffffff",
     attributePoints: 2,
     skillPoints: 12,
-  },
-};
+  };
+}
+
+export default blankCharacter;
