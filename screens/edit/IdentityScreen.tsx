@@ -20,18 +20,7 @@ const IdentityScreen = (props: any) => {
 
   const dispatch = useDispatch();
 
-  const [disposition, setDisposition] = useState(
-    useSelector((state: RootStateOrAny) => state.character.disposition)
-  );
-  const [history, setHistory] = useState(
-    useSelector((state: RootStateOrAny) => state.character.history)
-  );
-  const [beliefsMorality, setBeliefsMorality] = useState(
-    useSelector((state: RootStateOrAny) => state.character.beliefsMorality)
-  );
-  const [goalsAspirations, setGoalsAspirations] = useState(
-    useSelector((state: RootStateOrAny) => state.character.goalsAspirations)
-  );
+  const character = useSelector((state: RootStateOrAny) => state.character);
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
@@ -92,10 +81,9 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setDisposition(text);
                 dispatch(setStringStat("disposition", text));
               }}
-              defaultValue={disposition}
+              defaultValue={character.disposition}
               multiline={true}
             />
           </View>
@@ -141,10 +129,9 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setHistory(text);
                 dispatch(setStringStat("history", text));
               }}
-              defaultValue={history}
+              defaultValue={character.history}
               multiline={true}
             />
           </View>
@@ -190,10 +177,9 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setBeliefsMorality(text);
                 dispatch(setStringStat("beliefsMorality", text));
               }}
-              defaultValue={beliefsMorality}
+              defaultValue={character.beliefsMorality}
               multiline={true}
             />
           </View>
@@ -239,10 +225,9 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setGoalsAspirations(text);
                 dispatch(setStringStat("goalsAspirations", text));
               }}
-              defaultValue={goalsAspirations}
+              defaultValue={character.goalsAspirations}
               multiline={true}
             />
           </View>

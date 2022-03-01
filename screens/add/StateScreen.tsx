@@ -12,12 +12,10 @@ import { v4 as uuid } from "uuid";
 
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
-import Injury from "../../components/EditInjury";
 import {
   setStringStat,
   setNumberStat,
 } from "../../store/actions/currentCharacter";
-import { IInjury } from "../../constants/characterTemplate";
 
 const StateScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -26,72 +24,57 @@ const StateScreen = (props: any) => {
 
   const dispatch = useDispatch();
 
-  let loadedInjuries = useSelector(
-    (state: RootStateOrAny) => state.character.lingeringInjuries
-  );
+  let character = useSelector((state: RootStateOrAny) => state.character);
 
-  const [injuries, setInjuries] = useState(
-    useSelector((state: RootStateOrAny) => state.character.injuries)
-  );
-  const [lingeringInjuries, setLingeringInjuries] = useState(loadedInjuries);
-  const [injuryComponents, setInjuryComponents] = useState(
-    lingeringInjuries.map((item: IInjury) => {
-      return <Injury key={item.id} itemData={item} />;
-    })
-  );
-  const [destinyPoints, setDestinyPoints] = useState(
-    useSelector((state: RootStateOrAny) => state.character.destinyPoints)
-  );
-  const [commercePoints, setCommercePoints] = useState(
-    useSelector((state: RootStateOrAny) => state.character.commercePoints)
-  );
-  const [equipment, setEquipment] = useState(
-    useSelector((state: RootStateOrAny) => state.character.equipment)
-  );
+  // const [injuryComponents, setInjuryComponents] = useState(
+  //   lingeringInjuries.map((item: IInjury) => {
+  //     return <Injury key={item.id} itemData={item} />;
+  //   })
+  // );
 
-  const LingeringInjuries = (props: any) => {
-    return (
-      <View style={styles.customSkill}>
-        {injuryComponents}
-        <View
-          style={
-            Dimensions.get("window").width > 600
-              ? styles.addButtonContainerLarge
-              : styles.addButtonContainer
-          }
-        >
-          <TouchableNativeFeedback
-            onPress={() => {
-              let tempInjuries = lingeringInjuries;
-              tempInjuries.push({
-                id: uuid(),
-                name: "",
-                penalty: 0,
-              });
-              setLingeringInjuries(tempInjuries);
-              setInjuryComponents(
-                lingeringInjuries.map((item: IInjury) => {
-                  return <Injury key={item.id} itemData={item} />;
-                })
-              );
-            }}
-          >
-            <View>
-              <DefaultText
-                style={
-                  Dimensions.get("window").width > 600
-                    ? styles.addButtonTextLarge
-                    : styles.addButtonText
-                }
-              >
-                Add New
-              </DefaultText>
-            </View>
-          </TouchableNativeFeedback>
-        </View>
-      </View>
-    );
-  };
+  // const LingeringInjuries = (props: any) => {
+  //   return (
+  //     <View style={styles.customSkill}>
+  //       {injuryComponents}
+  //       <View
+  //         style={
+  //           Dimensions.get("window").width > 600
+  //             ? styles.addButtonContainerLarge
+  //             : styles.addButtonContainer
+  //         }
+  //       >
+  //         <TouchableNativeFeedback
+  //           onPress={() => {
+  //             let tempInjuries = lingeringInjuries;
+  //             tempInjuries.push({
+  //               id: uuid(),
+  //               name: "",
+  //               penalty: 0,
+  //             });
+  //             setLingeringInjuries(tempInjuries);
+  //             setInjuryComponents(
+  //               lingeringInjuries.map((item: IInjury) => {
+  //                 return <Injury key={item.id} itemData={item} />;
+  //               })
+  //             );
+  //           }}
+  //         >
+  //           <View>
+  //             <DefaultText
+  //               style={
+  //                 Dimensions.get("window").width > 600
+  //                   ? styles.addButtonTextLarge
+  //                   : styles.addButtonText
+  //               }
+  //             >
+  //               Add New
+  //             </DefaultText>
+  //           </View>
+  //         </TouchableNativeFeedback>
+  //       </View>
+  //     </View>
+  //   );
+  // };
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
@@ -146,7 +129,6 @@ const StateScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setInjuries(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "injuries",
@@ -155,7 +137,7 @@ const StateScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={injuries.toString()}
+                defaultValue={character.injuries.toString()}
               />
             </View>
           </View>
@@ -179,7 +161,7 @@ const StateScreen = (props: any) => {
           >
             Lingering Injuries:
           </DefaultText>
-          <LingeringInjuries />
+          {/* <LingeringInjuries /> */}
 
           <View
             style={
@@ -223,7 +205,6 @@ const StateScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setDestinyPoints(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "destinyPoints",
@@ -232,7 +213,7 @@ const StateScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={destinyPoints.toString()}
+                defaultValue={character.destinyPoints.toString()}
               />
             </View>
           </View>
@@ -273,7 +254,6 @@ const StateScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setCommercePoints(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "commercePoints",
@@ -282,7 +262,7 @@ const StateScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={commercePoints.toString()}
+                defaultValue={character.commercePoints.toString()}
               />
             </View>
           </View>
@@ -334,11 +314,12 @@ const StateScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setEquipment(text);
                 dispatch(setStringStat("equipment", text));
               }}
               multiline={true}
-              defaultValue={equipment != "None" ? equipment : ""}
+              defaultValue={
+                character.equipment != "None" ? character.equipment : ""
+              }
             />
           </View>
         </View>
@@ -349,7 +330,7 @@ const StateScreen = (props: any) => {
 
 const styles = StyleSheet.create({
   screenDarkMode: {
-    backgroundColor: Colors.primaryColorLightMode,
+    backgroundColor: Colors.primaryColorDarkMode,
     flex: 1,
   },
   screenLightMode: {

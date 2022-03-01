@@ -13,15 +13,7 @@ const AttributesScreen = (props: any) => {
 
   const dispatch = useDispatch();
 
-  const [strength, setStrength] = useState(
-    useSelector((state: RootStateOrAny) => state.character.strength)
-  );
-  const [reflex, setReflex] = useState(
-    useSelector((state: RootStateOrAny) => state.character.reflex)
-  );
-  const [intelligence, setIntelligence] = useState(
-    useSelector((state: RootStateOrAny) => state.character.intelligence)
-  );
+  const character = useSelector((state: RootStateOrAny) => state.character);
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
@@ -75,7 +67,6 @@ const AttributesScreen = (props: any) => {
                 : styles.bonusInputTextLightMode
             }
             onChangeText={(text) => {
-              setStrength(isNaN(parseInt(text)) ? 0 : parseInt(text));
               dispatch(
                 setNumberStat(
                   "strength",
@@ -84,7 +75,7 @@ const AttributesScreen = (props: any) => {
               );
             }}
             keyboardType={"number-pad"}
-            defaultValue={strength.toString()}
+            defaultValue={character.strength.toString()}
           />
         </View>
       </View>
@@ -125,7 +116,6 @@ const AttributesScreen = (props: any) => {
                 : styles.bonusInputTextLightMode
             }
             onChangeText={(text) => {
-              setReflex(isNaN(parseInt(text)) ? 0 : parseInt(text));
               dispatch(
                 setNumberStat(
                   "reflex",
@@ -134,7 +124,7 @@ const AttributesScreen = (props: any) => {
               );
             }}
             keyboardType={"number-pad"}
-            defaultValue={reflex.toString()}
+            defaultValue={character.reflex.toString()}
           />
         </View>
       </View>
@@ -175,7 +165,6 @@ const AttributesScreen = (props: any) => {
                 : styles.bonusInputTextLightMode
             }
             onChangeText={(text) => {
-              setIntelligence(isNaN(parseInt(text)) ? 0 : parseInt(text));
               dispatch(
                 setNumberStat(
                   "intelligence",
@@ -184,7 +173,7 @@ const AttributesScreen = (props: any) => {
               );
             }}
             keyboardType={"number-pad"}
-            defaultValue={intelligence.toString()}
+            defaultValue={character.intelligence.toString()}
           />
         </View>
       </View>

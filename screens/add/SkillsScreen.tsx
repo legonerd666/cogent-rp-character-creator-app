@@ -5,17 +5,12 @@ import {
   ScrollView,
   StyleSheet,
   Dimensions,
-  TouchableNativeFeedback,
 } from "react-native";
 import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
-import { v4 as uuid } from "uuid";
 
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
-import Vocation from "../../components/EditVocation";
-import Specialization from "../../components/EditSpecialization";
 import { setNumberStat } from "../../store/actions/currentCharacter";
-import { ISpecialization, IVocation } from "../../constants/characterTemplate";
 
 const SkillsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -26,162 +21,116 @@ const SkillsScreen = (props: any) => {
 
   let character = useSelector((state: RootStateOrAny) => state.character);
 
-  const [endurance, setEndurance] = useState(
-    useSelector((state: RootStateOrAny) => state.character.endurance)
-  );
-
-  const [athletics, setAthletics] = useState(
-    useSelector((state: RootStateOrAny) => state.character.athletics)
-  );
-  const [grip, setGrip] = useState(
-    useSelector((state: RootStateOrAny) => state.character.grip)
-  );
-  const [swim, setSwim] = useState(
-    useSelector((state: RootStateOrAny) => state.character.swim)
-  );
-  const [skillThrow, setSkillThrow] = useState(
-    useSelector((state: RootStateOrAny) => state.character.skillThrow)
-  );
-  const [perception, setPerception] = useState(
-    useSelector((state: RootStateOrAny) => state.character.perception)
-  );
-  const [acrobatics, setAcrobatics] = useState(
-    useSelector((state: RootStateOrAny) => state.character.acrobatics)
-  );
-  const [ridePilot, setRidePilot] = useState(
-    useSelector((state: RootStateOrAny) => state.character.ridePilot)
-  );
-  const [sleightOfHand, setSleightOfHand] = useState(
-    useSelector((state: RootStateOrAny) => state.character.sleightOfHand)
-  );
-  const [stealth, setStealth] = useState(
-    useSelector((state: RootStateOrAny) => state.character.stealth)
-  );
-  const [generalKnowledge, setGeneralKnowledge] = useState(
-    useSelector((state: RootStateOrAny) => state.character.generalKnowledge)
-  );
-  const [deception, setDeception] = useState(
-    useSelector((state: RootStateOrAny) => state.character.deception)
-  );
-  const [infiltration, setInfiltration] = useState(
-    useSelector((state: RootStateOrAny) => state.character.infiltration)
-  );
-  const [persuasion, setPersuasion] = useState(
-    useSelector((state: RootStateOrAny) => state.character.persuasion)
-  );
-  const [survival, setSurvival] = useState(
-    useSelector((state: RootStateOrAny) => state.character.survival)
-  );
   const [vocations, setVocations] = useState(
     useSelector((state: RootStateOrAny) => state.character.vocations)
   );
-  const [vocationComponents, setVocationComponents] = useState(
-    vocations.map((item: IVocation) => {
-      return <Vocation key={item.id} itemData={item} />;
-    })
-  );
+  // const [vocationComponents, setVocationComponents] = useState(
+  //   vocations.map((item: IVocation) => {
+  //     return <Vocation key={item.id} itemData={item} />;
+  //   })
+  // );
   const [specializations, setSpecializations] = useState(
     useSelector((state: RootStateOrAny) => state.character.specializations)
   );
-  const [specializationComponents, setSpecializationComponents] = useState(
-    specializations.map((item: ISpecialization) => {
-      return <Specialization key={item.id} itemData={item} />;
-    })
-  );
+  // const [specializationComponents, setSpecializationComponents] = useState(
+  //   specializations.map((item: ISpecialization) => {
+  //     return <Specialization key={item.id} itemData={item} />;
+  //   })
+  // );
 
-  const Vocations = (props: any) => {
-    return (
-      <View style={styles.customSkill}>
-        {vocationComponents}
-        <View
-          style={
-            Dimensions.get("window").width > 600
-              ? styles.addButtonContainerLarge
-              : styles.addButtonContainer
-          }
-        >
-          <TouchableNativeFeedback
-            onPress={() => {
-              let tempVocations = vocations;
-              tempVocations.push({
-                id: uuid(),
-                name: "",
-                stat: "",
-                bonus: 0,
-              });
-              setVocations(tempVocations);
-              setVocationComponents(
-                vocations.map((item: IVocation) => {
-                  return <Vocation key={item.id} itemData={item} />;
-                })
-              );
-            }}
-          >
-            <View>
-              <DefaultText
-                style={
-                  Dimensions.get("window").width > 600
-                    ? styles.addButtonTextLarge
-                    : styles.addButtonText
-                }
-              >
-                Add New
-              </DefaultText>
-            </View>
-          </TouchableNativeFeedback>
-        </View>
-      </View>
-    );
-  };
+  // const Vocations = (props: any) => {
+  //   return (
+  //     <View style={styles.customSkill}>
+  //       {vocationComponents}
+  //       <View
+  //         style={
+  //           Dimensions.get("window").width > 600
+  //             ? styles.addButtonContainerLarge
+  //             : styles.addButtonContainer
+  //         }
+  //       >
+  //         <TouchableNativeFeedback
+  //           onPress={() => {
+  //             let tempVocations = vocations;
+  //             tempVocations.push({
+  //               id: uuid(),
+  //               name: "",
+  //               stat: "",
+  //               bonus: 0,
+  //             });
+  //             setVocations(tempVocations);
+  //             setVocationComponents(
+  //               vocations.map((item: IVocation) => {
+  //                 return <Vocation key={item.id} itemData={item} />;
+  //               })
+  //             );
+  //           }}
+  //         >
+  //           <View>
+  //             <DefaultText
+  //               style={
+  //                 Dimensions.get("window").width > 600
+  //                   ? styles.addButtonTextLarge
+  //                   : styles.addButtonText
+  //               }
+  //             >
+  //               Add New
+  //             </DefaultText>
+  //           </View>
+  //         </TouchableNativeFeedback>
+  //       </View>
+  //     </View>
+  //   );
+  // };
 
-  const Specializations = (props: any) => {
-    return (
-      <View style={styles.customSkill}>
-        {specializationComponents}
-        <View
-          style={
-            Dimensions.get("window").width > 600
-              ? styles.addButtonContainerLarge
-              : styles.addButtonContainer
-          }
-        >
-          <TouchableNativeFeedback
-            onPress={() => {
-              let tempSpecializations = specializations;
-              tempSpecializations.push({
-                parentName: "",
-                id: uuid(),
-                type: "v",
-                name: "",
-                stat: "",
-                bonus: 0,
-                dmgBonus: 0,
-                armorPen: 0,
-              });
-              setSpecializations(tempSpecializations);
-              setSpecializationComponents(
-                specializations.map((item: ISpecialization) => {
-                  return <Specialization key={item.id} itemData={item} />;
-                })
-              );
-            }}
-          >
-            <View>
-              <DefaultText
-                style={
-                  Dimensions.get("window").width > 600
-                    ? styles.addButtonTextLarge
-                    : styles.addButtonText
-                }
-              >
-                Add New
-              </DefaultText>
-            </View>
-          </TouchableNativeFeedback>
-        </View>
-      </View>
-    );
-  };
+  // const Specializations = (props: any) => {
+  //   return (
+  //     <View style={styles.customSkill}>
+  //       {specializationComponents}
+  //       <View
+  //         style={
+  //           Dimensions.get("window").width > 600
+  //             ? styles.addButtonContainerLarge
+  //             : styles.addButtonContainer
+  //         }
+  //       >
+  //         <TouchableNativeFeedback
+  //           onPress={() => {
+  //             let tempSpecializations = specializations;
+  //             tempSpecializations.push({
+  //               parentName: "",
+  //               id: uuid(),
+  //               type: "v",
+  //               name: "",
+  //               stat: "",
+  //               bonus: 0,
+  //               dmgBonus: 0,
+  //               armorPen: 0,
+  //             });
+  //             setSpecializations(tempSpecializations);
+  //             setSpecializationComponents(
+  //               specializations.map((item: ISpecialization) => {
+  //                 return <Specialization key={item.id} itemData={item} />;
+  //               })
+  //             );
+  //           }}
+  //         >
+  //           <View>
+  //             <DefaultText
+  //               style={
+  //                 Dimensions.get("window").width > 600
+  //                   ? styles.addButtonTextLarge
+  //                   : styles.addButtonText
+  //               }
+  //             >
+  //               Add New
+  //             </DefaultText>
+  //           </View>
+  //         </TouchableNativeFeedback>
+  //       </View>
+  //     </View>
+  //   );
+  // };
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
@@ -263,7 +212,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setAthletics(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "athletics",
@@ -272,7 +220,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={athletics.toString()}
+                defaultValue={character.athletics.toString()}
               />
             </View>
           </View>
@@ -312,7 +260,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setEndurance(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "endurance",
@@ -361,7 +308,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setGrip(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "grip",
@@ -370,7 +316,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={grip.toString()}
+                defaultValue={character.grip.toString()}
               />
             </View>
           </View>
@@ -410,7 +356,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setSwim(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "swim",
@@ -419,7 +364,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={swim.toString()}
+                defaultValue={character.swim.toString()}
               />
             </View>
           </View>
@@ -459,7 +404,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setSkillThrow(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "skillThrow",
@@ -468,7 +412,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={skillThrow.toString()}
+                defaultValue={character.skillThrow.toString()}
               />
             </View>
           </View>
@@ -541,7 +485,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setAcrobatics(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "acrobatics",
@@ -550,7 +493,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={acrobatics.toString()}
+                defaultValue={character.acrobatics.toString()}
               />
             </View>
           </View>
@@ -590,7 +533,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setPerception(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "perception",
@@ -599,7 +541,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={perception.toString()}
+                defaultValue={character.perception.toString()}
               />
             </View>
           </View>
@@ -639,7 +581,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setRidePilot(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "ridePilot",
@@ -648,7 +589,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={ridePilot.toString()}
+                defaultValue={character.ridePilot.toString()}
               />
             </View>
           </View>
@@ -688,7 +629,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setSleightOfHand(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "sleightOfHand",
@@ -697,7 +637,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={sleightOfHand.toString()}
+                defaultValue={character.sleightOfHand.toString()}
               />
             </View>
           </View>
@@ -737,7 +677,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setStealth(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "stealth",
@@ -746,7 +685,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={stealth.toString()}
+                defaultValue={character.stealth.toString()}
               />
             </View>
           </View>
@@ -819,7 +758,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setDeception(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "deception",
@@ -828,7 +766,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={deception.toString()}
+                defaultValue={character.deception.toString()}
               />
             </View>
           </View>
@@ -868,9 +806,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setGeneralKnowledge(
-                    isNaN(parseInt(text)) ? 0 : parseInt(text)
-                  );
                   dispatch(
                     setNumberStat(
                       "generalKnowledge",
@@ -879,7 +814,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={generalKnowledge.toString()}
+                defaultValue={character.generalKnowledge.toString()}
               />
             </View>
           </View>
@@ -919,7 +854,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setInfiltration(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "infiltration",
@@ -928,7 +862,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={infiltration.toString()}
+                defaultValue={character.infiltration.toString()}
               />
             </View>
           </View>
@@ -968,7 +902,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setPersuasion(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "persuasion",
@@ -977,7 +910,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={persuasion.toString()}
+                defaultValue={character.persuasion.toString()}
               />
             </View>
           </View>
@@ -1017,7 +950,6 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setSurvival(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
                     setNumberStat(
                       "survival",
@@ -1026,7 +958,7 @@ const SkillsScreen = (props: any) => {
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={survival.toString()}
+                defaultValue={character.survival.toString()}
               />
             </View>
           </View>
@@ -1050,7 +982,7 @@ const SkillsScreen = (props: any) => {
           >
             Vocations:
           </DefaultText>
-          <Vocations />
+          {/* <Vocations /> */}
 
           <View
             style={
@@ -1072,7 +1004,7 @@ const SkillsScreen = (props: any) => {
             Vocational and Combat Skills:
           </DefaultText>
 
-          <Specializations />
+          {/* <Specializations /> */}
 
           <View
             style={

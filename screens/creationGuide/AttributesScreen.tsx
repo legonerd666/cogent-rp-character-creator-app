@@ -23,10 +23,6 @@ const AttributeScreen = (props: any) => {
 
   const character = useSelector((state: RootStateOrAny) => state.character);
 
-  const attributePoints = useSelector(
-    (state: RootStateOrAny) => state.character.attributePoints
-  );
-
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
       <ScrollView style={{ width: "100%" }}>
@@ -63,7 +59,7 @@ const AttributeScreen = (props: any) => {
               isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
             }
           >
-            Attribute Points: {attributePoints}
+            Attribute Points: {character.attributePoints}
           </DefaultText>
 
           <View style={styles.attribute}>
@@ -113,7 +109,7 @@ const AttributeScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (attributePoints >= 1) {
+                  if (character.attributePoints >= 1) {
                     dispatch(setNumberStat("strength", character.strength + 1));
 
                     dispatch(
@@ -188,7 +184,7 @@ const AttributeScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (attributePoints >= 1) {
+                  if (character.attributePoints >= 1) {
                     dispatch(setNumberStat("reflex", character.reflex + 1));
 
                     dispatch(
@@ -277,7 +273,7 @@ const AttributeScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (attributePoints >= 1) {
+                  if (character.attributePoints >= 1) {
                     dispatch(
                       setNumberStat("intelligence", character.intelligence + 1)
                     );

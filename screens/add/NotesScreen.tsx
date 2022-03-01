@@ -20,12 +20,7 @@ const NotesScreen = (props: any) => {
 
   const dispatch = useDispatch();
 
-  const [notes, setNotes] = useState(
-    useSelector((state: RootStateOrAny) => state.character.notes)
-  );
-  const [bgColor, setBgColor] = useState(
-    useSelector((state: RootStateOrAny) => state.character.bgColor)
-  );
+  const character = useSelector((state: RootStateOrAny) => state.character);
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
@@ -72,11 +67,12 @@ const NotesScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setNotes(text);
                 dispatch(setStringStat("notes", text));
               }}
               multiline={true}
-              defaultValue={notes != "No Notes" ? notes : ""}
+              defaultValue={
+                character.notes != "No Notes" ? character.notes : ""
+              }
             />
           </View>
 
@@ -107,9 +103,8 @@ const NotesScreen = (props: any) => {
             }
           >
             <ColorPicker
-              color={bgColor}
+              color={character.bgColor}
               onColorChangeComplete={(color) => {
-                setBgColor(color);
                 dispatch(setStringStat("bgColor", color));
               }}
               thumbSize={30}

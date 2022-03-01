@@ -11,9 +11,7 @@ const IdentityScreen = (props: any) => {
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
 
-  const [character, setCharacter] = useState(
-    useSelector((state: RootStateOrAny) => state.character)
-  );
+  const character = useSelector((state: RootStateOrAny) => state.character);
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>

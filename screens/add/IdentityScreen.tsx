@@ -20,18 +20,7 @@ const IdentityScreen = (props: any) => {
 
   const dispatch = useDispatch();
 
-  const [disposition, setDisposition] = useState(
-    useSelector((state: RootStateOrAny) => state.character.disposition)
-  );
-  const [history, setHistory] = useState(
-    useSelector((state: RootStateOrAny) => state.character.history)
-  );
-  const [beliefsMorality, setBeliefsMorality] = useState(
-    useSelector((state: RootStateOrAny) => state.character.beliefsMorality)
-  );
-  const [goalsAspirations, setGoalsAspirations] = useState(
-    useSelector((state: RootStateOrAny) => state.character.goalsAspirations)
-  );
+  const character = useSelector((state: RootStateOrAny) => state.character);
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
@@ -92,11 +81,12 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setDisposition(text);
                 dispatch(setStringStat("disposition", text));
               }}
               multiline={true}
-              defaultValue={disposition != "Unknown" ? disposition : ""}
+              defaultValue={
+                character.disposition != "Unknown" ? character.disposition : ""
+              }
             />
           </View>
 
@@ -141,11 +131,12 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setHistory(text);
                 dispatch(setStringStat("history", text));
               }}
               multiline={true}
-              defaultValue={history != "Lost to the ages" ? history : ""}
+              defaultValue={
+                character.history != "Lost to the ages" ? character.history : ""
+              }
             />
           </View>
 
@@ -190,12 +181,13 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setBeliefsMorality(text);
                 dispatch(setStringStat("beliefsMorality", text));
               }}
               multiline={true}
               defaultValue={
-                beliefsMorality != "A mystery" ? beliefsMorality : ""
+                character.beliefsMorality != "A mystery"
+                  ? character.beliefsMorality
+                  : ""
               }
             />
           </View>
@@ -241,12 +233,13 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setGoalsAspirations(text);
                 dispatch(setStringStat("goalsAspirations", text));
               }}
               multiline={true}
               defaultValue={
-                goalsAspirations != "Unknown" ? goalsAspirations : ""
+                character.goalsAspirations != "Unknown"
+                  ? character.goalsAspirations
+                  : ""
               }
             />
           </View>

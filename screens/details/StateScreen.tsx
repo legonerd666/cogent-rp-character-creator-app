@@ -212,7 +212,7 @@ const StateScreen = (props: any) => {
 
 const styles = StyleSheet.create({
   screenDarkMode: {
-    backgroundColor: Colors.primaryColorLightMode,
+    backgroundColor: Colors.primaryColorDarkMode,
     flex: 1,
   },
   screenLightMode: {

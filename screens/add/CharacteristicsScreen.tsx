@@ -20,30 +20,7 @@ const CharacteristicsScreen = (props: any) => {
 
   const dispatch = useDispatch();
 
-  const [name, setName] = useState(
-    useSelector((state: RootStateOrAny) => state.character.name)
-  );
-  const [age, setAge] = useState(
-    useSelector((state: RootStateOrAny) => state.character.age)
-  );
-  const [race, setRace] = useState(
-    useSelector((state: RootStateOrAny) => state.character.race)
-  );
-  const [bodyType, setBodyType] = useState(
-    useSelector((state: RootStateOrAny) => state.character.bodyType)
-  );
-  const [disablingCharacteristics, setDisablingCharacteristics] = useState(
-    useSelector(
-      (state: RootStateOrAny) => state.character.disablingCharacteristics
-    )
-  );
-
-  let loadedVocations = useSelector(
-    (state: RootStateOrAny) => state.character.vocations
-  );
-  let loadedSpecializations = useSelector(
-    (state: RootStateOrAny) => state.character.specializations
-  );
+  const character = useSelector((state: RootStateOrAny) => state.character);
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
@@ -104,10 +81,9 @@ const CharacteristicsScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setName(text);
                 dispatch(setStringStat("name", text));
               }}
-              defaultValue={name != "Unknown" ? name : ""}
+              defaultValue={character.name != "Unknown" ? character.name : ""}
             />
           </View>
 
@@ -152,10 +128,9 @@ const CharacteristicsScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setAge(text);
                 dispatch(setStringStat("age", text));
               }}
-              defaultValue={age != "Unknown" ? age : ""}
+              defaultValue={character.age != "Unknown" ? character.age : ""}
             />
           </View>
 
@@ -200,10 +175,9 @@ const CharacteristicsScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setRace(text);
                 dispatch(setStringStat("race", text));
               }}
-              defaultValue={race != "Unknown" ? race : ""}
+              defaultValue={character.race != "Unknown" ? character.race : ""}
             />
           </View>
 
@@ -248,10 +222,11 @@ const CharacteristicsScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setBodyType(text);
                 dispatch(setStringStat("bodyType", text));
               }}
-              defaultValue={bodyType != "Unknown" ? bodyType : ""}
+              defaultValue={
+                character.bodyType != "Unknown" ? character.bodyType : ""
+              }
             />
           </View>
 
@@ -296,12 +271,11 @@ const CharacteristicsScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                setDisablingCharacteristics(text);
                 dispatch(setStringStat("disablingCharacteristics", text));
               }}
               defaultValue={
-                disablingCharacteristics != "None"
-                  ? disablingCharacteristics
+                character.disablingCharacteristics != "None"
+                  ? character.disablingCharacteristics
                   : ""
               }
             />

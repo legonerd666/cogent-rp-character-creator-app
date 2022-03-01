@@ -22,10 +22,6 @@ const SkillsScreen = (props: any) => {
 
   const character = useSelector((state: RootStateOrAny) => state.character);
 
-  const skillPoints = useSelector(
-    (state: RootStateOrAny) => state.character.skillPoints
-  );
-
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
       <ScrollView style={{ width: "100%" }}>
@@ -65,7 +61,7 @@ const SkillsScreen = (props: any) => {
               isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
             }
           >
-            Skill Points: {skillPoints}
+            Skill Points: {character.skillPoints}
           </DefaultText>
 
           <View
@@ -111,7 +107,12 @@ const SkillsScreen = (props: any) => {
                     dispatch(
                       setNumberStat("athletics", character.athletics - 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -138,11 +139,16 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.athletics <= 3 && skillPoints >= 1) {
+                  if (character.athletics <= 3 && character.skillPoints >= 1) {
                     dispatch(
                       setNumberStat("athletics", character.athletics + 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -178,7 +184,12 @@ const SkillsScreen = (props: any) => {
                     dispatch(
                       setNumberStat("endurance", character.endurance - 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -205,11 +216,16 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.endurance <= 3 && skillPoints >= 1) {
+                  if (character.endurance <= 3 && character.skillPoints >= 1) {
                     dispatch(
                       setNumberStat("endurance", character.endurance + 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -243,7 +259,12 @@ const SkillsScreen = (props: any) => {
                 onPress={() => {
                   if (character.grip >= 0) {
                     dispatch(setNumberStat("grip", character.grip - 1));
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -270,9 +291,14 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.grip <= 3 && skillPoints >= 1) {
+                  if (character.grip <= 3 && character.skillPoints >= 1) {
                     dispatch(setNumberStat("grip", character.grip + 1));
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -306,7 +332,12 @@ const SkillsScreen = (props: any) => {
                 onPress={() => {
                   if (character.swim >= 0) {
                     dispatch(setNumberStat("swim", character.swim - 1));
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -333,9 +364,14 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.swim <= 3 && skillPoints >= 1) {
+                  if (character.swim <= 3 && character.skillPoints >= 1) {
                     dispatch(setNumberStat("swim", character.swim + 1));
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -371,7 +407,12 @@ const SkillsScreen = (props: any) => {
                     dispatch(
                       setNumberStat("skillThrow", character.skillThrow - 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -398,11 +439,16 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.skillThrow <= 3 && skillPoints >= 1) {
+                  if (character.skillThrow <= 3 && character.skillPoints >= 1) {
                     dispatch(
                       setNumberStat("skillThrow", character.skillThrow + 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -464,7 +510,12 @@ const SkillsScreen = (props: any) => {
                     dispatch(
                       setNumberStat("acrobatics", character.acrobatics - 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -491,11 +542,16 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.acrobatics <= 3 && skillPoints >= 1) {
+                  if (character.acrobatics <= 3 && character.skillPoints >= 1) {
                     dispatch(
                       setNumberStat("acrobatics", character.acrobatics + 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -531,7 +587,12 @@ const SkillsScreen = (props: any) => {
                     dispatch(
                       setNumberStat("perception", character.perception - 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -558,11 +619,16 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.perception <= 3 && skillPoints >= 1) {
+                  if (character.perception <= 3 && character.skillPoints >= 1) {
                     dispatch(
                       setNumberStat("perception", character.perception + 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -598,7 +664,12 @@ const SkillsScreen = (props: any) => {
                     dispatch(
                       setNumberStat("ridePilot", character.ridePilot - 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -625,11 +696,16 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.ridePilot <= 3 && skillPoints >= 1) {
+                  if (character.ridePilot <= 3 && character.skillPoints >= 1) {
                     dispatch(
                       setNumberStat("ridePilot", character.ridePilot + 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -668,7 +744,12 @@ const SkillsScreen = (props: any) => {
                         character.sleightOfHand - 1
                       )
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -695,14 +776,22 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.sleightOfHand <= 3 && skillPoints >= 1) {
+                  if (
+                    character.sleightOfHand <= 3 &&
+                    character.skillPoints >= 1
+                  ) {
                     dispatch(
                       setNumberStat(
                         "sleightOfHand",
                         character.sleightOfHand + 1
                       )
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -736,7 +825,12 @@ const SkillsScreen = (props: any) => {
                 onPress={() => {
                   if (character.stealth >= 0) {
                     dispatch(setNumberStat("stealth", character.stealth - 1));
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -763,9 +857,14 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.stealth <= 3 && skillPoints >= 1) {
+                  if (character.stealth <= 3 && character.skillPoints >= 1) {
                     dispatch(setNumberStat("stealth", character.stealth + 1));
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -827,7 +926,12 @@ const SkillsScreen = (props: any) => {
                     dispatch(
                       setNumberStat("deception", character.deception - 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -854,11 +958,16 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.deception <= 3 && skillPoints >= 1) {
+                  if (character.deception <= 3 && character.skillPoints >= 1) {
                     dispatch(
                       setNumberStat("deception", character.deception + 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -897,7 +1006,12 @@ const SkillsScreen = (props: any) => {
                         character.generalKnowledge - 1
                       )
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -924,14 +1038,22 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.generalKnowledge <= 3 && skillPoints >= 1) {
+                  if (
+                    character.generalKnowledge <= 3 &&
+                    character.skillPoints >= 1
+                  ) {
                     dispatch(
                       setNumberStat(
                         "generalKnowledge",
                         character.generalKnowledge + 1
                       )
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -967,7 +1089,12 @@ const SkillsScreen = (props: any) => {
                     dispatch(
                       setNumberStat("infiltration", character.infiltration - 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -994,11 +1121,19 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.infiltration <= 3 && skillPoints >= 1) {
+                  if (
+                    character.infiltration <= 3 &&
+                    character.skillPoints >= 1
+                  ) {
                     dispatch(
                       setNumberStat("infiltration", character.infiltration + 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -1034,7 +1169,12 @@ const SkillsScreen = (props: any) => {
                     dispatch(
                       setNumberStat("persuasion", character.persuasion - 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -1061,11 +1201,16 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.persuasion <= 3 && skillPoints >= 1) {
+                  if (character.persuasion <= 3 && character.skillPoints >= 1) {
                     dispatch(
                       setNumberStat("persuasion", character.persuasion + 1)
                     );
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
@@ -1099,7 +1244,12 @@ const SkillsScreen = (props: any) => {
                 onPress={() => {
                   if (character.survival >= 0) {
                     dispatch(setNumberStat("survival", character.survival - 1));
-                    dispatch(setNumberStat("skillPoints", skillPoints + 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints + 1
+                      )
+                    );
                   }
                 }}
               >
@@ -1126,9 +1276,14 @@ const SkillsScreen = (props: any) => {
               </DefaultText>
               <TouchableNativeFeedback
                 onPress={() => {
-                  if (character.survival <= 3 && skillPoints >= 1) {
+                  if (character.survival <= 3 && character.skillPoints >= 1) {
                     dispatch(setNumberStat("survival", character.survival + 1));
-                    dispatch(setNumberStat("skillPoints", skillPoints - 1));
+                    dispatch(
+                      setNumberStat(
+                        "character.skillPoints",
+                        character.skillPoints - 1
+                      )
+                    );
                   }
                 }}
               >
