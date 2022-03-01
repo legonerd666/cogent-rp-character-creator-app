@@ -13,9 +13,10 @@ import DropDownPicker from "react-native-dropdown-picker";
 import DefaultText from "./DefaultText";
 import Colors from "../constants/Colors";
 import {
-  setMultiFieldStat,
-  setStat as setCharacterStat,
+  setSpecialization,
+  setSpecializations,
 } from "../store/actions/currentCharacter";
+import { ISpecialization } from "../constants/characterTemplate";
 
 const Specialization = (props: any) => {
   const [parentName, setParentName] = useState(props.itemData.parentName);
@@ -37,7 +38,7 @@ const Specialization = (props: any) => {
 
   const setStatHandler = () => {
     dispatch(
-      setMultiFieldStat("specialization", props.itemData.id, {
+      setSpecialization(props.itemData.id, {
         parentName: parentName,
         id: props.itemData.id,
         type: type,
@@ -351,11 +352,11 @@ const Specialization = (props: any) => {
               onPress={() => {
                 let specializations = loadedSpecializations;
                 const specializationToDeleteIndex = specializations.findIndex(
-                  (specializationById: any) =>
+                  (specializationById: ISpecialization) =>
                     specializationById.id === props.itemData.id
                 );
                 specializations.splice(specializationToDeleteIndex, 1);
-                dispatch(setCharacterStat("specializations", specializations));
+                dispatch(setSpecializations(specializations));
                 setDisplay(false);
               }}
             >
@@ -789,11 +790,11 @@ const Specialization = (props: any) => {
               onPress={() => {
                 let specializations = loadedSpecializations;
                 const specializationToDeleteIndex = specializations.findIndex(
-                  (specializationById: any) =>
+                  (specializationById: ISpecialization) =>
                     specializationById.id === props.itemData.id
                 );
                 specializations.splice(specializationToDeleteIndex, 1);
-                dispatch(setCharacterStat("specializations", specializations));
+                dispatch(setSpecializations(specializations));
                 setDisplay(false);
               }}
             >

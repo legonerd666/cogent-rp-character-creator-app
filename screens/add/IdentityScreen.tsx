@@ -11,7 +11,7 @@ import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
-import { setStat } from "../../store/actions/currentCharacter";
+import { setStringStat } from "../../store/actions/currentCharacter";
 
 const IdentityScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -93,7 +93,7 @@ const IdentityScreen = (props: any) => {
               }
               onChangeText={(text) => {
                 setDisposition(text);
-                dispatch(setStat("disposition", text));
+                dispatch(setStringStat("disposition", text));
               }}
               multiline={true}
               defaultValue={disposition != "Unknown" ? disposition : ""}
@@ -142,7 +142,7 @@ const IdentityScreen = (props: any) => {
               }
               onChangeText={(text) => {
                 setHistory(text);
-                dispatch(setStat("history", text));
+                dispatch(setStringStat("history", text));
               }}
               multiline={true}
               defaultValue={history != "Lost to the ages" ? history : ""}
@@ -191,7 +191,7 @@ const IdentityScreen = (props: any) => {
               }
               onChangeText={(text) => {
                 setBeliefsMorality(text);
-                dispatch(setStat("beliefsMorality", text));
+                dispatch(setStringStat("beliefsMorality", text));
               }}
               multiline={true}
               defaultValue={
@@ -242,7 +242,7 @@ const IdentityScreen = (props: any) => {
               }
               onChangeText={(text) => {
                 setGoalsAspirations(text);
-                dispatch(setStat("goalsAspirations", text));
+                dispatch(setStringStat("goalsAspirations", text));
               }}
               multiline={true}
               defaultValue={

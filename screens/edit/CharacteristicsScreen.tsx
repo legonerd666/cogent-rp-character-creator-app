@@ -11,7 +11,7 @@ import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
-import { setStat } from "../../store/actions/currentCharacter";
+import { setStringStat } from "../../store/actions/currentCharacter";
 
 const CharacteristicsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -98,7 +98,7 @@ const CharacteristicsScreen = (props: any) => {
               }
               onChangeText={(text) => {
                 setName(text);
-                dispatch(setStat("name", text));
+                dispatch(setStringStat("name", text));
               }}
               defaultValue={name}
             />
@@ -146,7 +146,7 @@ const CharacteristicsScreen = (props: any) => {
               }
               onChangeText={(text) => {
                 setAge(text);
-                dispatch(setStat("age", text));
+                dispatch(setStringStat("age", text));
               }}
               defaultValue={age}
             />
@@ -194,7 +194,7 @@ const CharacteristicsScreen = (props: any) => {
               }
               onChangeText={(text) => {
                 setRace(text);
-                dispatch(setStat("race", text));
+                dispatch(setStringStat("race", text));
               }}
               defaultValue={race}
             />
@@ -242,7 +242,7 @@ const CharacteristicsScreen = (props: any) => {
               }
               onChangeText={(text) => {
                 setBodyType(text);
-                dispatch(setStat("bodyType", text));
+                dispatch(setStringStat("bodyType", text));
               }}
               defaultValue={bodyType}
             />
@@ -290,7 +290,7 @@ const CharacteristicsScreen = (props: any) => {
               }
               onChangeText={(text) => {
                 setDisablingCharacteristics(text);
-                dispatch(setStat("disablingCharacteristics", text));
+                dispatch(setStringStat("disablingCharacteristics", text));
               }}
               defaultValue={disablingCharacteristics}
             />

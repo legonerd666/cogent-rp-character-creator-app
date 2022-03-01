@@ -7,6 +7,7 @@ import Colors from "../../constants/Colors";
 import Vocation from "../../components/Vocation";
 import BoldText from "../../components/BoldText";
 import Specialization from "../../components/Specialization";
+import { ISpecialization, IVocation } from "../../constants/characterTemplate";
 
 const SkillsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -15,7 +16,7 @@ const SkillsScreen = (props: any) => {
 
   const character = useSelector((state: RootStateOrAny) => state.character);
 
-  const vocationComponents = character.vocations.map((item: any) => {
+  const vocationComponents = character.vocations.map((item: IVocation) => {
     return <Vocation key={item.id} itemData={item} />;
   });
 
@@ -23,7 +24,7 @@ const SkillsScreen = (props: any) => {
     useSelector((state: RootStateOrAny) => state.character.specializations)
   );
   const [specializationComponents, setSpecializationComponents] = useState(
-    specializations.map((item: any) => {
+    specializations.map((item: ISpecialization) => {
       return <Specialization key={item.id} itemData={item} />;
     })
   );

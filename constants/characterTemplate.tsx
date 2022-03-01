@@ -1,4 +1,29 @@
 import { v4 as uuid } from "uuid";
+
+export interface IVocation {
+  id: string;
+  name: string;
+  stat: string;
+  bonus: number;
+}
+
+export interface ISpecialization {
+  parentName: string;
+  id: string;
+  type: string;
+  name: string;
+  stat: string;
+  bonus: number;
+  dmgBonus: number;
+  armorPen: number;
+}
+
+export interface IInjury {
+  id: string;
+  name: string;
+  penalty: number;
+}
+
 export interface ICharacter {
   id: string;
   name: string;
@@ -28,34 +53,10 @@ export interface ICharacter {
   infiltration: number;
   persuasion: number;
   survival: number;
-  vocations: [
-    {
-      id: string;
-      name: string;
-      stat: string;
-      bonus: number;
-    }
-  ];
-  specializations: [
-    {
-      parentName: string;
-      id: string;
-      type: string;
-      name: string;
-      stat: string;
-      bonus: number;
-      dmgBonus: number;
-      armorPen: number;
-    }
-  ];
+  vocations: IVocation[];
+  specializations: ISpecialization[];
   injuries: number;
-  lingeringInjuries: [
-    {
-      id: string;
-      name: string;
-      penalty: number;
-    }
-  ];
+  lingeringInjuries: IInjury[];
   destinyPoints: number;
   commercePoints: number;
   equipment: string;

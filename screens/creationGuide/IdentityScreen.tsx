@@ -10,7 +10,7 @@ import {
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
-import { setStat } from "../../store/actions/currentCharacter";
+import { setStringStat } from "../../store/actions/currentCharacter";
 import { Ionicons } from "@expo/vector-icons";
 
 const IdentityScreen = (props: any) => {
@@ -105,7 +105,7 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                dispatch(setStat("disposition", text));
+                dispatch(setStringStat("disposition", text));
               }}
               multiline={true}
               defaultValue={
@@ -172,7 +172,7 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                dispatch(setStat("history", text));
+                dispatch(setStringStat("history", text));
               }}
               multiline={true}
               defaultValue={
@@ -241,7 +241,7 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                dispatch(setStat("beliefsMorality", text));
+                dispatch(setStringStat("beliefsMorality", text));
               }}
               multiline={true}
               defaultValue={
@@ -312,7 +312,7 @@ const IdentityScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
               onChangeText={(text) => {
-                dispatch(setStat("goalsAspirations", text));
+                dispatch(setStringStat("goalsAspirations", text));
               }}
               multiline={true}
               defaultValue={

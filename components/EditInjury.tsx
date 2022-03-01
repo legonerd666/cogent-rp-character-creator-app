@@ -10,10 +10,8 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 import DefaultText from "./DefaultText";
 import Colors from "../constants/Colors";
-import {
-  setMultiFieldStat,
-  setStat as setCharacterStat,
-} from "../store/actions/currentCharacter";
+import { setInjuries, setInjury } from "../store/actions/currentCharacter";
+import { IInjury } from "../constants/characterTemplate";
 
 const Injury = (props: any) => {
   const [name, setName] = useState(props.itemData.name);
@@ -30,7 +28,7 @@ const Injury = (props: any) => {
 
   const setStatHandler = () => {
     dispatch(
-      setMultiFieldStat("injury", props.itemData.id, {
+      setInjury(props.itemData.id, {
         id: props.itemData.id,
         name: name,
         penalty: penalty,
@@ -91,7 +89,7 @@ const Injury = (props: any) => {
               onChangeText={async (text) => {
                 await setName(text);
                 dispatch(
-                  setMultiFieldStat("injury", props.itemData.id, {
+                  setInjury(props.itemData.id, {
                     id: props.itemData.id,
                     name: name,
                     penalty: penalty,
@@ -140,7 +138,7 @@ const Injury = (props: any) => {
               onChangeText={async (text) => {
                 await setPenalty(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 dispatch(
-                  setMultiFieldStat("injury", props.itemData.id, {
+                  setInjury(props.itemData.id, {
                     id: props.itemData.id,
                     name: name,
                     penalty: penalty,
@@ -163,10 +161,10 @@ const Injury = (props: any) => {
             onPress={() => {
               let injuries = loadedInjuries;
               const injuryToDeleteIndex = injuries.findIndex(
-                (injuryById: any) => injuryById.id === props.itemData.id
+                (injuryById: IInjury) => injuryById.id === props.itemData.id
               );
               injuries.splice(injuryToDeleteIndex, 1);
-              dispatch(setCharacterStat("lingeringInjuries", injuries));
+              dispatch(setInjuries(injuries));
               setDisplay(false);
             }}
           >

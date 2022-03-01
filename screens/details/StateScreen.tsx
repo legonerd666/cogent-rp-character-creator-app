@@ -6,6 +6,7 @@ import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Injury from "../../components/Injury";
 import BoldText from "../../components/BoldText";
+import { IInjury } from "../../constants/characterTemplate";
 
 const StateScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -14,7 +15,7 @@ const StateScreen = (props: any) => {
 
   const character = useSelector((state: RootStateOrAny) => state.character);
 
-  const injuryComponents = character.lingeringInjuries.map((item: any) => {
+  const injuryComponents = character.lingeringInjuries.map((item: IInjury) => {
     return <Injury key={item.id} itemData={item} />;
   });
 

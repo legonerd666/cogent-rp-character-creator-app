@@ -13,14 +13,11 @@ import { Alert } from "react-native";
 import DataManipulation from "../functions/DataManipulation";
 import CharacterEditNavigator from "./CharacterEditNavigator";
 import CharacterAddNavigator from "./AddCharacterNavigator";
-import {
-  newCurrentCharacter,
-  setStat,
-} from "../store/actions/currentCharacter";
+import { newCurrentCharacter } from "../store/actions/currentCharacter";
 import IdentityScreen from "../screens/creationGuide/IdentityScreen";
 import AttributesScreen from "../screens/creationGuide/AttributesScreen";
 import SkillsScreen from "../screens/creationGuide/SkillsScreen";
-import blankCharacter from "../constants/characterTemplate";
+import blankCharacter, { ICharacter } from "../constants/characterTemplate";
 
 const Stack = createStackNavigator();
 
@@ -79,7 +76,8 @@ export default function CharacterNavigator() {
             const newCharacters = dataManipulation.getData();
 
             const characterToReplaceIndex = newCharacters.findIndex(
-              (characterById: any) => characterById.id === currentCharacter.id
+              (characterById: ICharacter) =>
+                characterById.id === currentCharacter.id
             );
             newCharacters[characterToReplaceIndex] = currentCharacter;
             dataManipulation.setData(newCharacters);

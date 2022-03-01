@@ -17,10 +17,7 @@ import CustomHeaderButton from "../components/HeaderButton";
 import Colors from "../constants/Colors";
 import { toggleMode } from "../store/actions/mode";
 import BoldText from "../components/BoldText";
-import {
-  newCurrentCharacter,
-  setStat,
-} from "../store/actions/currentCharacter";
+import { newCurrentCharacter } from "../store/actions/currentCharacter";
 import { ICharacter } from "../constants/characterTemplate";
 import blankCharacter from "../constants/characterTemplate";
 

@@ -11,7 +11,7 @@ import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
-import { setStat } from "../../store/actions/currentCharacter";
+import { setStringStat } from "../../store/actions/currentCharacter";
 
 const NotesScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -73,7 +73,7 @@ const NotesScreen = (props: any) => {
               }
               onChangeText={(text) => {
                 setNotes(text);
-                dispatch(setStat("notes", text));
+                dispatch(setStringStat("notes", text));
               }}
               multiline={true}
               defaultValue={notes != "No Notes" ? notes : ""}
@@ -110,7 +110,7 @@ const NotesScreen = (props: any) => {
               color={bgColor}
               onColorChangeComplete={(color) => {
                 setBgColor(color);
-                dispatch(setStat("bgColor", color));
+                dispatch(setStringStat("bgColor", color));
               }}
               thumbSize={30}
               sliderSize={40}

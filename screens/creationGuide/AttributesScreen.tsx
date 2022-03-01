@@ -11,7 +11,7 @@ import {
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
-import { setStat } from "../../store/actions/currentCharacter";
+import { setNumberStat } from "../../store/actions/currentCharacter";
 import { Ionicons } from "@expo/vector-icons";
 
 const AttributeScreen = (props: any) => {
@@ -80,9 +80,12 @@ const AttributeScreen = (props: any) => {
               <TouchableNativeFeedback
                 onPress={() => {
                   if (character.strength >= 1) {
-                    dispatch(setStat("strength", character.strength - 1));
+                    dispatch(setNumberStat("strength", character.strength - 1));
                     dispatch(
-                      setStat("attributePoints", character.attributePoints + 1)
+                      setNumberStat(
+                        "attributePoints",
+                        character.attributePoints + 1
+                      )
                     );
                   }
                 }}
@@ -111,10 +114,13 @@ const AttributeScreen = (props: any) => {
               <TouchableNativeFeedback
                 onPress={() => {
                   if (attributePoints >= 1) {
-                    dispatch(setStat("strength", character.strength + 1));
+                    dispatch(setNumberStat("strength", character.strength + 1));
 
                     dispatch(
-                      setStat("attributePoints", character.attributePoints - 1)
+                      setNumberStat(
+                        "attributePoints",
+                        character.attributePoints - 1
+                      )
                     );
                   }
                 }}
@@ -148,10 +154,13 @@ const AttributeScreen = (props: any) => {
               <TouchableNativeFeedback
                 onPress={() => {
                   if (character.reflex >= 1) {
-                    dispatch(setStat("reflex", character.reflex - 1));
+                    dispatch(setNumberStat("reflex", character.reflex - 1));
 
                     dispatch(
-                      setStat("attributePoints", character.attributePoints + 1)
+                      setNumberStat(
+                        "attributePoints",
+                        character.attributePoints + 1
+                      )
                     );
                   }
                 }}
@@ -180,10 +189,13 @@ const AttributeScreen = (props: any) => {
               <TouchableNativeFeedback
                 onPress={() => {
                   if (attributePoints >= 1) {
-                    dispatch(setStat("reflex", character.reflex + 1));
+                    dispatch(setNumberStat("reflex", character.reflex + 1));
 
                     dispatch(
-                      setStat("attributePoints", character.attributePoints - 1)
+                      setNumberStat(
+                        "attributePoints",
+                        character.attributePoints - 1
+                      )
                     );
                   }
                 }}
@@ -224,16 +236,19 @@ const AttributeScreen = (props: any) => {
                   } else {
                     if (character.intelligence >= 1) {
                       dispatch(
-                        setStat("intelligence", character.intelligence - 1)
+                        setNumberStat(
+                          "intelligence",
+                          character.intelligence - 1
+                        )
                       );
                       dispatch(
-                        setStat(
+                        setNumberStat(
                           "attributePoints",
                           character.attributePoints + 1
                         )
                       );
                       dispatch(
-                        setStat("skillPoints", character.skillPoints - 3)
+                        setNumberStat("skillPoints", character.skillPoints - 3)
                       );
                     }
                   }
@@ -264,14 +279,19 @@ const AttributeScreen = (props: any) => {
                 onPress={() => {
                   if (attributePoints >= 1) {
                     dispatch(
-                      setStat("intelligence", character.intelligence + 1)
+                      setNumberStat("intelligence", character.intelligence + 1)
                     );
 
                     dispatch(
-                      setStat("attributePoints", character.attributePoints - 1)
+                      setNumberStat(
+                        "attributePoints",
+                        character.attributePoints - 1
+                      )
                     );
 
-                    dispatch(setStat("skillPoints", character.skillPoints + 3));
+                    dispatch(
+                      setNumberStat("skillPoints", character.skillPoints + 3)
+                    );
                   }
                 }}
               >

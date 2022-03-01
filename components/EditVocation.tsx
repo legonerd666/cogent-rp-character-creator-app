@@ -11,10 +11,8 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 import DefaultText from "./DefaultText";
 import Colors from "../constants/Colors";
-import {
-  setMultiFieldStat,
-  setStat as setCharacterStat,
-} from "../store/actions/currentCharacter";
+import { setVocation, setVocations } from "../store/actions/currentCharacter";
+import { IVocation } from "../constants/characterTemplate";
 
 const Vocation = (props: any) => {
   const [stat, setStat] = useState(props.itemData.stat);
@@ -32,7 +30,7 @@ const Vocation = (props: any) => {
 
   const setStatHandler = () => {
     dispatch(
-      setMultiFieldStat("vocation", props.itemData.id, {
+      setVocation(props.itemData.id, {
         id: props.itemData.id,
         name: name,
         stat: stat,
@@ -81,7 +79,7 @@ const Vocation = (props: any) => {
               onChangeText={async (text) => {
                 await setName(text);
                 dispatch(
-                  setMultiFieldStat("vocation", props.itemData.id, {
+                  setVocation(props.itemData.id, {
                     id: props.itemData.id,
                     name: name,
                     stat: stat,
@@ -114,7 +112,7 @@ const Vocation = (props: any) => {
               onPress={async () => {
                 await setStat("str");
                 dispatch(
-                  setMultiFieldStat("vocation", props.itemData.id, {
+                  setVocation(props.itemData.id, {
                     id: props.itemData.id,
                     name: name,
                     stat: stat,
@@ -155,7 +153,7 @@ const Vocation = (props: any) => {
               onPress={async () => {
                 await setStat("ref");
                 dispatch(
-                  setMultiFieldStat("vocation", props.itemData.id, {
+                  setVocation(props.itemData.id, {
                     id: props.itemData.id,
                     name: name,
                     stat: stat,
@@ -196,7 +194,7 @@ const Vocation = (props: any) => {
               onPress={async () => {
                 await setStat("int");
                 dispatch(
-                  setMultiFieldStat("vocation", props.itemData.id, {
+                  setVocation(props.itemData.id, {
                     id: props.itemData.id,
                     name: name,
                     stat: stat,
@@ -255,7 +253,7 @@ const Vocation = (props: any) => {
               onChangeText={async (text) => {
                 await setBonus(isNaN(parseInt(text)) ? 0 : parseInt(text));
                 dispatch(
-                  setMultiFieldStat("vocation", props.itemData.id, {
+                  setVocation(props.itemData.id, {
                     id: props.itemData.id,
                     name: name,
                     stat: stat,
@@ -280,10 +278,11 @@ const Vocation = (props: any) => {
             onPress={() => {
               let vocations = loadedVocations;
               const vocationToDeleteIndex = vocations.findIndex(
-                (vocationById: any) => vocationById.id === props.itemData.id
+                (vocationById: IVocation) =>
+                  vocationById.id === props.itemData.id
               );
               vocations.splice(vocationToDeleteIndex, 1);
-              dispatch(setCharacterStat("vocations", vocations));
+              dispatch(setVocations(vocations));
               setDisplay(false);
             }}
           >

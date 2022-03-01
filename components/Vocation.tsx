@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { RootStateOrAny, useSelector } from "react-redux";
 

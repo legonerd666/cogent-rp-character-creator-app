@@ -11,6 +11,7 @@ import SkillsScreen from "../screens/edit/SkillsScreen";
 import StateScreen from "../screens/edit/StateScreen";
 import NotesScreen from "../screens/edit/NotesScreen";
 import IdentityScreen from "../screens/edit/IdentityScreen";
+import { ICharacter } from "../constants/characterTemplate";
 
 const Tab = createBottomTabNavigator();
 
@@ -45,7 +46,7 @@ const CharacterEditNavigator = () => {
             const newCharacters = dataManipulation.getData();
 
             const characterToReplaceIndex = newCharacters.findIndex(
-              (characterById: any) => characterById.id === characterId
+              (characterById: ICharacter) => characterById.id === characterId
             );
             newCharacters[characterToReplaceIndex] = currentCharacter;
             dataManipulation.setData(newCharacters);

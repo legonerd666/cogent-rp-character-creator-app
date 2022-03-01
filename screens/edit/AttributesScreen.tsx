@@ -4,7 +4,7 @@ import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
-import { setStat } from "../../store/actions/currentCharacter";
+import { setNumberStat } from "../../store/actions/currentCharacter";
 
 const AttributesScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -77,7 +77,10 @@ const AttributesScreen = (props: any) => {
             onChangeText={(text) => {
               setStrength(isNaN(parseInt(text)) ? 0 : parseInt(text));
               dispatch(
-                setStat("strength", isNaN(parseInt(text)) ? 0 : parseInt(text))
+                setNumberStat(
+                  "strength",
+                  isNaN(parseInt(text)) ? 0 : parseInt(text)
+                )
               );
             }}
             keyboardType={"number-pad"}
@@ -124,7 +127,10 @@ const AttributesScreen = (props: any) => {
             onChangeText={(text) => {
               setReflex(isNaN(parseInt(text)) ? 0 : parseInt(text));
               dispatch(
-                setStat("reflex", isNaN(parseInt(text)) ? 0 : parseInt(text))
+                setNumberStat(
+                  "reflex",
+                  isNaN(parseInt(text)) ? 0 : parseInt(text)
+                )
               );
             }}
             keyboardType={"number-pad"}
@@ -171,7 +177,7 @@ const AttributesScreen = (props: any) => {
             onChangeText={(text) => {
               setIntelligence(isNaN(parseInt(text)) ? 0 : parseInt(text));
               dispatch(
-                setStat(
+                setNumberStat(
                   "intelligence",
                   isNaN(parseInt(text)) ? 0 : parseInt(text)
                 )

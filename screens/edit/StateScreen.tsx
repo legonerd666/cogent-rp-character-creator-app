@@ -13,7 +13,11 @@ import { v4 as uuid } from "uuid";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Injury from "../../components/EditInjury";
-import { setStat } from "../../store/actions/currentCharacter";
+import {
+  setNumberStat,
+  setStringStat,
+} from "../../store/actions/currentCharacter";
+import { IInjury } from "../../constants/characterTemplate";
 
 const StateScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -29,10 +33,9 @@ const StateScreen = (props: any) => {
   const [injuries, setInjuries] = useState(
     useSelector((state: RootStateOrAny) => state.character.injuries)
   );
-  const [lingeringInjuries, setLingeringInjuries]: any =
-    useState(loadedInjuries);
+  const [lingeringInjuries, setLingeringInjuries] = useState(loadedInjuries);
   const [injuryComponents, setInjuryComponents] = useState(
-    lingeringInjuries.map((item: any) => {
+    lingeringInjuries.map((item: IInjury) => {
       return <Injury key={item.id} itemData={item} />;
     })
   );
@@ -67,7 +70,7 @@ const StateScreen = (props: any) => {
               });
               setLingeringInjuries(tempInjuries);
               setInjuryComponents(
-                lingeringInjuries.map((item: any) => {
+                lingeringInjuries.map((item: IInjury) => {
                   return <Injury key={item.id} itemData={item} />;
                 })
               );
@@ -145,7 +148,7 @@ const StateScreen = (props: any) => {
                 onChangeText={(text) => {
                   setInjuries(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "injuries",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -222,7 +225,7 @@ const StateScreen = (props: any) => {
                 onChangeText={(text) => {
                   setDestinyPoints(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "destinyPoints",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -272,7 +275,7 @@ const StateScreen = (props: any) => {
                 onChangeText={(text) => {
                   setCommercePoints(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "commercePoints",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -332,7 +335,7 @@ const StateScreen = (props: any) => {
               }
               onChangeText={(text) => {
                 setquipment(text);
-                dispatch(setStat("equipment", text));
+                dispatch(setStringStat("equipment", text));
               }}
               defaultValue={equipment}
               multiline={true}

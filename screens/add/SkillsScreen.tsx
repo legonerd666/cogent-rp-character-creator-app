@@ -14,7 +14,8 @@ import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import Vocation from "../../components/EditVocation";
 import Specialization from "../../components/EditSpecialization";
-import { setStat } from "../../store/actions/currentCharacter";
+import { setNumberStat } from "../../store/actions/currentCharacter";
+import { ISpecialization, IVocation } from "../../constants/characterTemplate";
 
 const SkillsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -23,13 +24,12 @@ const SkillsScreen = (props: any) => {
 
   const dispatch = useDispatch();
 
-  let loadedVocations = useSelector(
-    (state: RootStateOrAny) => state.character.vocations
-  );
+  let character = useSelector((state: RootStateOrAny) => state.character);
 
-  const [endurance, setndurance] = useState(
+  const [endurance, setEndurance] = useState(
     useSelector((state: RootStateOrAny) => state.character.endurance)
   );
+
   const [athletics, setAthletics] = useState(
     useSelector((state: RootStateOrAny) => state.character.athletics)
   );
@@ -76,7 +76,7 @@ const SkillsScreen = (props: any) => {
     useSelector((state: RootStateOrAny) => state.character.vocations)
   );
   const [vocationComponents, setVocationComponents] = useState(
-    vocations.map((item: any) => {
+    vocations.map((item: IVocation) => {
       return <Vocation key={item.id} itemData={item} />;
     })
   );
@@ -84,7 +84,7 @@ const SkillsScreen = (props: any) => {
     useSelector((state: RootStateOrAny) => state.character.specializations)
   );
   const [specializationComponents, setSpecializationComponents] = useState(
-    specializations.map((item: any) => {
+    specializations.map((item: ISpecialization) => {
       return <Specialization key={item.id} itemData={item} />;
     })
   );
@@ -111,7 +111,7 @@ const SkillsScreen = (props: any) => {
               });
               setVocations(tempVocations);
               setVocationComponents(
-                vocations.map((item: any) => {
+                vocations.map((item: IVocation) => {
                   return <Vocation key={item.id} itemData={item} />;
                 })
               );
@@ -160,7 +160,7 @@ const SkillsScreen = (props: any) => {
               });
               setSpecializations(tempSpecializations);
               setSpecializationComponents(
-                specializations.map((item: any) => {
+                specializations.map((item: ISpecialization) => {
                   return <Specialization key={item.id} itemData={item} />;
                 })
               );
@@ -265,7 +265,7 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setAthletics(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "athletics",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -312,16 +312,16 @@ const SkillsScreen = (props: any) => {
                     : styles.bonusInputTextLightMode
                 }
                 onChangeText={(text) => {
-                  setndurance(isNaN(parseInt(text)) ? 0 : parseInt(text));
+                  setEndurance(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "endurance",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
                   );
                 }}
                 keyboardType={"number-pad"}
-                defaultValue={endurance.toString()}
+                defaultValue={character.endurance.toString()}
               />
             </View>
           </View>
@@ -363,7 +363,10 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setGrip(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat("grip", isNaN(parseInt(text)) ? 0 : parseInt(text))
+                    setNumberStat(
+                      "grip",
+                      isNaN(parseInt(text)) ? 0 : parseInt(text)
+                    )
                   );
                 }}
                 keyboardType={"number-pad"}
@@ -409,7 +412,10 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setSwim(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat("swim", isNaN(parseInt(text)) ? 0 : parseInt(text))
+                    setNumberStat(
+                      "swim",
+                      isNaN(parseInt(text)) ? 0 : parseInt(text)
+                    )
                   );
                 }}
                 keyboardType={"number-pad"}
@@ -455,7 +461,7 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setSkillThrow(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "skillThrow",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -537,7 +543,7 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setAcrobatics(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "acrobatics",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -586,7 +592,7 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setPerception(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "perception",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -635,7 +641,7 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setRidePilot(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "ridePilot",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -684,7 +690,7 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setSleightOfHand(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "sleightOfHand",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -733,7 +739,7 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setStealth(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "stealth",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -815,7 +821,7 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setDeception(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "deception",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -866,7 +872,7 @@ const SkillsScreen = (props: any) => {
                     isNaN(parseInt(text)) ? 0 : parseInt(text)
                   );
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "generalKnowledge",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -915,7 +921,7 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setInfiltration(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "infiltration",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -964,7 +970,7 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setPersuasion(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "persuasion",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )
@@ -1013,7 +1019,7 @@ const SkillsScreen = (props: any) => {
                 onChangeText={(text) => {
                   setSurvival(isNaN(parseInt(text)) ? 0 : parseInt(text));
                   dispatch(
-                    setStat(
+                    setNumberStat(
                       "survival",
                       isNaN(parseInt(text)) ? 0 : parseInt(text)
                     )

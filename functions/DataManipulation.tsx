@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { ICharacter } from "../constants/characterTemplate";
 
 class dataManipulation {
   saveData = async () => {
@@ -41,11 +42,11 @@ class dataManipulation {
   getData = () => {
     return this.data;
   };
-  setData = (newData: any[]) => {
+  setData = (newData: ICharacter[]) => {
     this.data = newData;
   };
 
-  data: any[] = [];
+  data: ICharacter[] = [];
 }
 
 export default dataManipulation;

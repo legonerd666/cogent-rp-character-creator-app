@@ -16,7 +16,7 @@ import DefaultText from "../components/DefaultText";
 import Colors from "../constants/Colors";
 import DataManipulation from "../functions/DataManipulation";
 import { newCurrentCharacter } from "../store/actions/currentCharacter";
-import blankCharacter from "../constants/characterTemplate";
+import blankCharacter, { ICharacter } from "../constants/characterTemplate";
 import CustomHeaderButton from "../components/HeaderButton";
 
 const CharactersScreen = (props: any) => {
@@ -65,10 +65,6 @@ const CharactersScreen = (props: any) => {
           await dispatch(newCurrentCharacter(itemData.item));
           props.navigation.navigate("CharacterDetails", {
             screen: "Characteristics",
-            params: {
-              characterId: itemData.item.id,
-              characterName: itemData.item.name,
-            },
           });
         }}
       />
@@ -80,9 +76,9 @@ const CharactersScreen = (props: any) => {
       setFilteredCharacters(dataManipulation.getData);
       return;
     }
-    const tempCharacters: any[] = [];
+    const tempCharacters: ICharacter[] = [];
 
-    dataManipulation.getData().forEach((character: any) => {
+    dataManipulation.getData().forEach((character: ICharacter) => {
       if (character.name.toLowerCase().includes(text.toLowerCase())) {
         tempCharacters.push(character);
       }
@@ -303,22 +299,6 @@ const CharactersScreen = (props: any) => {
     </View>
   );
 };
-
-// CharactersScreen.navigationOptions = (navigationData: any) => {
-//   return {
-//     headerRight: () => (
-//       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-//         <Item
-//           title="Add New"
-//           iconName="add"
-//           onPress={() => {
-//             navigationData.navigation.navigate("Add");
-//           }}
-//         />
-//       </HeaderButtons>
-//     ),
-//   };
-// };
 
 const styles = StyleSheet.create({
   screenDarkMode: {
