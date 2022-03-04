@@ -108,10 +108,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("athletics", character.athletics - 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -144,10 +141,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("athletics", character.athletics + 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -185,10 +179,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("endurance", character.endurance - 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -221,10 +212,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("endurance", character.endurance + 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -260,10 +248,7 @@ const SkillsScreen = (props: any) => {
                   if (character.grip >= 0) {
                     dispatch(setNumberStat("grip", character.grip - 1));
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -294,10 +279,7 @@ const SkillsScreen = (props: any) => {
                   if (character.grip <= 3 && character.skillPoints >= 1) {
                     dispatch(setNumberStat("grip", character.grip + 1));
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -333,10 +315,7 @@ const SkillsScreen = (props: any) => {
                   if (character.swim >= 0) {
                     dispatch(setNumberStat("swim", character.swim - 1));
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -367,10 +346,7 @@ const SkillsScreen = (props: any) => {
                   if (character.swim <= 3 && character.skillPoints >= 1) {
                     dispatch(setNumberStat("swim", character.swim + 1));
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -408,10 +384,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("skillThrow", character.skillThrow - 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -444,10 +417,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("skillThrow", character.skillThrow + 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -511,10 +481,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("acrobatics", character.acrobatics - 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -547,10 +514,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("acrobatics", character.acrobatics + 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -588,10 +552,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("perception", character.perception - 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -624,10 +585,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("perception", character.perception + 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -665,10 +623,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("ridePilot", character.ridePilot - 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -701,10 +656,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("ridePilot", character.ridePilot + 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -745,10 +697,7 @@ const SkillsScreen = (props: any) => {
                       )
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -787,10 +736,7 @@ const SkillsScreen = (props: any) => {
                       )
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -826,10 +772,7 @@ const SkillsScreen = (props: any) => {
                   if (character.stealth >= 0) {
                     dispatch(setNumberStat("stealth", character.stealth - 1));
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -860,10 +803,7 @@ const SkillsScreen = (props: any) => {
                   if (character.stealth <= 3 && character.skillPoints >= 1) {
                     dispatch(setNumberStat("stealth", character.stealth + 1));
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -927,10 +867,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("deception", character.deception - 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -963,10 +900,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("deception", character.deception + 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -1007,10 +941,7 @@ const SkillsScreen = (props: any) => {
                       )
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -1049,10 +980,7 @@ const SkillsScreen = (props: any) => {
                       )
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -1090,10 +1018,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("infiltration", character.infiltration - 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -1129,10 +1054,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("infiltration", character.infiltration + 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -1170,10 +1092,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("persuasion", character.persuasion - 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -1206,10 +1125,7 @@ const SkillsScreen = (props: any) => {
                       setNumberStat("persuasion", character.persuasion + 1)
                     );
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -1245,10 +1161,7 @@ const SkillsScreen = (props: any) => {
                   if (character.survival >= 0) {
                     dispatch(setNumberStat("survival", character.survival - 1));
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints + 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints + 1)
                     );
                   }
                 }}
@@ -1279,10 +1192,7 @@ const SkillsScreen = (props: any) => {
                   if (character.survival <= 3 && character.skillPoints >= 1) {
                     dispatch(setNumberStat("survival", character.survival + 1));
                     dispatch(
-                      setNumberStat(
-                        "character.skillPoints",
-                        character.skillPoints - 1
-                      )
+                      setNumberStat("skillPoints", character.skillPoints - 1)
                     );
                   }
                 }}
@@ -1312,7 +1222,7 @@ const SkillsScreen = (props: any) => {
           </DefaultText>
           <TouchableNativeFeedback
             onPress={() => {
-              props.navigation.navigate("Skills");
+              props.navigation.navigate("Vocations");
             }}
           >
             <View style={styles.nextButton}>

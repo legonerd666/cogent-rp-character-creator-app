@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   View,
   StyleSheet,
-  ScrollView,
   TouchableNativeFeedback,
   Dimensions,
   TextInput,
@@ -18,6 +17,8 @@ import {
   setVocations,
 } from "../../store/actions/currentCharacter";
 import { RadioButton } from "react-native-paper";
+import { FlatList } from "react-native-gesture-handler";
+import { v4 as uuid } from "uuid";
 
 const VocationsScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -28,324 +29,392 @@ const VocationsScreen = (props: any) => {
 
   const character = useSelector((state: RootStateOrAny) => state.character);
 
-  const Vocations = character.vocations.map((vocation: IVocation) => {
-    <View style={styles.vocation}>
-      <View style={styles.header}>
+  let totalVocationBonus = 0;
+  character.vocations.forEach((tempVocation: IVocation) => {
+    totalVocationBonus += tempVocation.bonus;
+  });
+
+  const renderVocation = (vocation: any) => {
+    vocation = vocation.item;
+    return (
+      <View style={styles.vocation}>
+        <View style={styles.header}>
+          <View
+            style={
+              Dimensions.get("window").width > 600
+                ? isDarkMode
+                  ? styles.inputContainerLargeDarkMode
+                  : styles.inputContainerLargeLightMode
+                : isDarkMode
+                ? styles.inputContainerDarkMode
+                : styles.inputContainerLightMode
+            }
+          >
+            <TextInput
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.inputTextLargeDarkMode
+                    : styles.inputTextLargeLightMode
+                  : isDarkMode
+                  ? styles.inputTextDarkMode
+                  : styles.inputTextLightMode
+              }
+              placeholder="Enter Vocation Name..."
+              placeholderTextColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              onChangeText={(text: string) => {
+                vocation.name = text;
+                dispatch(setVocation(vocation.id, vocation));
+              }}
+              defaultValue={vocation.name}
+            />
+          </View>
+        </View>
+        <View style={styles.checkboxes}>
+          <View style={styles.checkbox}>
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.textLargeDarkMode
+                    : styles.textLargeLightMode
+                  : isDarkMode
+                  ? styles.textDarkMode
+                  : styles.textLightMode
+              }
+            >
+              Str:
+            </DefaultText>
+            <RadioButton
+              value="str"
+              status={vocation.stat === "str" ? "checked" : "unchecked"}
+              onPress={() => {
+                vocation.stat = "str";
+                dispatch(setVocation(vocation.id, vocation));
+              }}
+              color={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              uncheckedColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+            />
+          </View>
+
+          <View style={styles.checkbox}>
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.textLargeDarkMode
+                    : styles.textLargeLightMode
+                  : isDarkMode
+                  ? styles.textDarkMode
+                  : styles.textLightMode
+              }
+            >
+              Ref:
+            </DefaultText>
+            <RadioButton
+              value="ref"
+              status={vocation.stat === "ref" ? "checked" : "unchecked"}
+              onPress={() => {
+                vocation.stat = "ref";
+                dispatch(setVocation(vocation.id, vocation));
+              }}
+              color={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              uncheckedColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+            />
+          </View>
+
+          <View style={styles.checkbox}>
+            <DefaultText
+              style={
+                Dimensions.get("window").width > 600
+                  ? isDarkMode
+                    ? styles.textLargeDarkMode
+                    : styles.textLargeLightMode
+                  : isDarkMode
+                  ? styles.textDarkMode
+                  : styles.textLightMode
+              }
+            >
+              Int:
+            </DefaultText>
+            <RadioButton
+              value="int"
+              status={vocation.stat === "int" ? "checked" : "unchecked"}
+              onPress={() => {
+                vocation.stat = "int";
+                dispatch(setVocation(vocation.id, vocation));
+              }}
+              color={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+              uncheckedColor={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+            />
+          </View>
+        </View>
+        <View style={styles.bonus}>
+          <DefaultText
+            style={
+              isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
+            }
+          >
+            Bonus:
+          </DefaultText>
+          <View style={styles.buttons}>
+            <TouchableNativeFeedback
+              onPress={() => {
+                if (vocation.bonus >= 1 && totalVocationBonus >= 2) {
+                  vocation.bonus = vocation.bonus - 1;
+                  dispatch(setVocation(vocation.id, vocation));
+
+                  dispatch(
+                    setNumberStat("skillPoints", character.skillPoints + 1)
+                  );
+                }
+              }}
+            >
+              <View>
+                <Ionicons
+                  name="remove"
+                  size={32}
+                  color={
+                    isDarkMode
+                      ? Colors.accentColorDarkMode
+                      : Colors.accentColorLightMode
+                  }
+                />
+              </View>
+            </TouchableNativeFeedback>
+            <DefaultText
+              style={
+                isDarkMode
+                  ? styles.textBlockDarkMode
+                  : styles.textBlockLightMode
+              }
+            >
+              {vocation.bonus}
+            </DefaultText>
+            <TouchableNativeFeedback
+              onPress={() => {
+                if (character.skillPoints >= 1 && vocation.bonus <= 3) {
+                  vocation.bonus = vocation.bonus + 1;
+                  dispatch(setVocation(vocation.id, vocation));
+
+                  dispatch(
+                    setNumberStat("skillPoints", character.skillPoints - 1)
+                  );
+                }
+              }}
+            >
+              <View>
+                <Ionicons
+                  name="add"
+                  size={32}
+                  color={
+                    isDarkMode
+                      ? Colors.accentColorDarkMode
+                      : Colors.accentColorLightMode
+                  }
+                />
+              </View>
+            </TouchableNativeFeedback>
+          </View>
+        </View>
+
         <View
           style={
             Dimensions.get("window").width > 600
-              ? isDarkMode
-                ? styles.inputContainerLargeDarkMode
-                : styles.inputContainerLargeLightMode
-              : isDarkMode
-              ? styles.inputContainerDarkMode
-              : styles.inputContainerLightMode
+              ? styles.deleteButtonContainerLarge
+              : styles.deleteButtonContainer
           }
         >
-          <TextInput
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.inputTextLargeDarkMode
-                  : styles.inputTextLargeLightMode
-                : isDarkMode
-                ? styles.inputTextDarkMode
-                : styles.inputTextLightMode
-            }
-            placeholder="Enter Vocation Name..."
-            placeholderTextColor={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-            onChangeText={(text: string) => {
-              vocation.name = text;
-              dispatch(setVocation(vocation.id, vocation));
+          <TouchableNativeFeedback
+            onPress={() => {
+              if (character.vocations.length > 1) {
+                const vocationToDeleteIndex = character.vocations.findIndex(
+                  (vocationById: IVocation) => vocationById.id === vocation.id
+                );
+                character.vocations.splice(vocationToDeleteIndex, 1);
+
+                totalVocationBonus = 0;
+                character.vocations.forEach((tempVocation: IVocation) => {
+                  totalVocationBonus += tempVocation.bonus;
+                });
+
+                if (totalVocationBonus < 1) {
+                  var newVocation = character.vocations[0];
+                  newVocation.bonus = 1;
+                  dispatch(setVocation(newVocation.id, newVocation));
+                }
+              }
             }}
-            defaultValue={vocation.name}
-          />
+          >
+            <View>
+              <DefaultText
+                style={
+                  Dimensions.get("window").width > 600
+                    ? styles.deleteButtonTextLarge
+                    : styles.deleteButtonText
+                }
+              >
+                Delete
+              </DefaultText>
+            </View>
+          </TouchableNativeFeedback>
         </View>
       </View>
-      <View style={styles.checkboxes}>
-        <View style={styles.checkbox}>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.textLargeDarkMode
-                  : styles.textLargeLightMode
-                : isDarkMode
-                ? styles.textDarkMode
-                : styles.textLightMode
-            }
-          >
-            Str:
-          </DefaultText>
-          <RadioButton
-            value="str"
-            status={vocation.stat === "str" ? "checked" : "unchecked"}
-            onPress={() => {
-              vocation.stat = "str";
-              dispatch(setVocation(vocation.id, vocation));
-            }}
-            color={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-            uncheckedColor={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-          />
-        </View>
+    );
+  };
 
-        <View style={styles.checkbox}>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.textLargeDarkMode
-                  : styles.textLargeLightMode
-                : isDarkMode
-                ? styles.textDarkMode
-                : styles.textLightMode
-            }
-          >
-            Ref:
-          </DefaultText>
-          <RadioButton
-            value="ref"
-            status={vocation.stat === "ref" ? "checked" : "unchecked"}
-            onPress={() => {
-              vocation.stat = "ref";
-              dispatch(setVocation(vocation.id, vocation));
-            }}
-            color={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-            uncheckedColor={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-          />
-        </View>
-
-        <View style={styles.checkbox}>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.textLargeDarkMode
-                  : styles.textLargeLightMode
-                : isDarkMode
-                ? styles.textDarkMode
-                : styles.textLightMode
-            }
-          >
-            Int:
-          </DefaultText>
-          <RadioButton
-            value="int"
-            status={vocation.stat === "int" ? "checked" : "unchecked"}
-            onPress={() => {
-              vocation.stat = "int";
-              dispatch(setVocation(vocation.id, vocation));
-            }}
-            color={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-            uncheckedColor={
-              isDarkMode
-                ? Colors.accentColorDarkMode
-                : Colors.accentColorLightMode
-            }
-          />
-        </View>
-      </View>
-      <View style={styles.bonus}>
+  const renderHeader = () => {
+    return (
+      <View style={styles.container}>
         <DefaultText
           style={
             isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
           }
         >
-          Bonus:
+          Time to pick your vocations!
         </DefaultText>
-        <View style={styles.buttons}>
-          <TouchableNativeFeedback
-            onPress={() => {
-              if (vocation.bonus >= 1) {
-                vocation.bonus = vocation.bonus - 1;
-                dispatch(setVocation(vocation.id, vocation));
+        <DefaultText
+          style={
+            isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
+          }
+        >
+          By default, in One-Shots or short games, player characters will be
+          given 2 Attribute points they may assign to their character during
+          character creation. If you are playing in a campaign it is recommended
+          to use less as you will gain more as your game progresses.
+        </DefaultText>
+        <DefaultText
+          style={
+            isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
+          }
+        >
+          Pick which attribute(s) you'd like to increase, keep in mind 0 is
+          average, 1 is trained professional, and 2 is world class in a given
+          attribute or skill (for more visit cogentroleplay.com/rules)
+        </DefaultText>
+        <DefaultText
+          style={
+            isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
+          }
+        >
+          Skill Points: {character.skillPoints}
+        </DefaultText>
 
-                dispatch(
-                  setNumberStat("skillPoints", character.skillPoints + 1)
-                );
-              }
-            }}
-          >
-            <View>
-              <Ionicons
-                name="remove"
-                size={32}
-                color={
-                  isDarkMode
-                    ? Colors.accentColorDarkMode
-                    : Colors.accentColorLightMode
-                }
-              />
-            </View>
-          </TouchableNativeFeedback>
-          <DefaultText
-            style={
-              isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
-            }
-          >
-            {vocation.bonus}
-          </DefaultText>
-          <TouchableNativeFeedback
-            onPress={() => {
-              if (character.skillPoints >= 1) {
-                vocation.bonus = vocation.bonus + 1;
-                dispatch(setVocation(vocation.id, vocation));
-
-                dispatch(
-                  setNumberStat("skillPoints", character.skillPoints - 1)
-                );
-              }
-            }}
-          >
-            <View>
-              <Ionicons
-                name="add"
-                size={32}
-                color={
-                  isDarkMode
-                    ? Colors.accentColorDarkMode
-                    : Colors.accentColorLightMode
-                }
-              />
-            </View>
-          </TouchableNativeFeedback>
-        </View>
+        <View
+          style={isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode}
+        ></View>
       </View>
+    );
+  };
 
-      <View
-        style={
-          Dimensions.get("window").width > 600
-            ? styles.deleteButtonContainerLarge
-            : styles.deleteButtonContainer
-        }
-      >
+  const renderFooter = () => {
+    return (
+      <View style={styles.container}>
+        <View
+          style={isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode}
+        ></View>
         <TouchableNativeFeedback
           onPress={() => {
-            let vocations = character.vocations;
-            const vocationToDeleteIndex = vocations.findIndex(
-              (vocationById: IVocation) => vocationById.id === vocation.id
-            );
-            vocations.splice(vocationToDeleteIndex, 1);
-            dispatch(setVocations(vocations));
+            character.vocations.push({
+              id: uuid(),
+              name: "",
+              stat: "",
+              bonus: 0,
+            });
+            dispatch(setVocations(character.vocations));
           }}
         >
-          <View>
+          <View style={styles.addButtonContainer}>
+            <DefaultText style={styles.addButtonText}>New</DefaultText>
+          </View>
+        </TouchableNativeFeedback>
+        <DefaultText
+          style={
+            isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
+          }
+        >
+          When you are satisfied with your vocations click next and you get to
+          pick your vocational and combat skills!
+        </DefaultText>
+        <TouchableNativeFeedback
+          onPress={() => {
+            props.navigation.navigate("Vocation");
+          }}
+        >
+          <View style={styles.nextButton}>
             <DefaultText
               style={
-                Dimensions.get("window").width > 600
-                  ? styles.deleteButtonTextLarge
-                  : styles.deleteButtonText
+                isDarkMode
+                  ? styles.textBlockDarkMode
+                  : styles.textBlockLightMode
               }
             >
-              Delete
+              Next
             </DefaultText>
+            <Ionicons
+              name="arrow-forward-outline"
+              size={20}
+              color={
+                isDarkMode
+                  ? Colors.accentColorDarkMode
+                  : Colors.accentColorLightMode
+              }
+            />
           </View>
         </TouchableNativeFeedback>
       </View>
+    );
+  };
+
+  const renderSeparator = () => {
+    return (
       <View
         style={isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode}
       ></View>
-    </View>;
-  });
+    );
+  };
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
-      <ScrollView style={{ width: "100%" }}>
-        <View style={styles.container}>
-          <DefaultText
-            style={
-              isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
-            }
-          >
-            Time to pick your vocations!
-          </DefaultText>
-          <DefaultText
-            style={
-              isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
-            }
-          >
-            By default, in One-Shots or short games, player characters will be
-            given 2 Attribute points they may assign to their character during
-            character creation. If you are playing in a campaign it is
-            recommended to use less as you will gain more as your game
-            progresses.
-          </DefaultText>
-          <DefaultText
-            style={
-              isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
-            }
-          >
-            Pick which attribute(s) you'd like to increase, keep in mind 0 is
-            average, 1 is trained professional, and 2 is world class in a given
-            attribute or skill (for more visit cogentroleplay.com/rules)
-          </DefaultText>
-          <DefaultText
-            style={
-              isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
-            }
-          >
-            Skill Points: {character.skillPoints}
-          </DefaultText>
-          <DefaultText
-            style={
-              isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
-            }
-          >
-            When you are satisfied with your vocations click next and you get to
-            pick your vocational and combat skills!
-          </DefaultText>
-          <TouchableNativeFeedback
-            onPress={() => {
-              props.navigation.navigate("Vocation");
-            }}
-          >
-            <View style={styles.nextButton}>
-              <DefaultText
-                style={
-                  isDarkMode
-                    ? styles.textBlockDarkMode
-                    : styles.textBlockLightMode
-                }
-              >
-                Next
-              </DefaultText>
-              <Ionicons
-                name="arrow-forward-outline"
-                size={20}
-                color={
-                  isDarkMode
-                    ? Colors.accentColorDarkMode
-                    : Colors.accentColorLightMode
-                }
-              />
-            </View>
-          </TouchableNativeFeedback>
-        </View>
-      </ScrollView>
+      <View style={{ width: "100%" }}>
+        <FlatList
+          renderItem={(item) => renderVocation(item)}
+          data={character.vocations}
+          extraData={character.vocations}
+          ListHeaderComponent={renderHeader}
+          ListFooterComponent={renderFooter}
+          ItemSeparatorComponent={renderSeparator}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
     </View>
   );
 };
@@ -379,13 +448,6 @@ const styles = StyleSheet.create({
     color: Colors.accentColorLightMode,
     marginVertical: 10,
   },
-
-  //   attribute: {
-  //     flexDirection: "row",
-  //     alignItems: "center",
-  //     justifyContent: "space-between",
-  //     width: "70%",
-  //   },
 
   buttons: {
     flexDirection: "row",
@@ -544,6 +606,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  addButtonContainer: {
+    padding: 8,
+    backgroundColor: "blue",
+    borderRadius: 10,
+  },
+  addButtonText: {
+    color: Colors.accentColorDarkMode,
   },
 });
 
