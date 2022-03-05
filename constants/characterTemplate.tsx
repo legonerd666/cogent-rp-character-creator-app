@@ -103,12 +103,6 @@ function blankCharacter(): ICharacter {
         stat: "",
         bonus: 1,
       },
-      {
-        id: uuid(),
-        name: "",
-        stat: "",
-        bonus: 0,
-      },
     ],
     specializations: [
       {
