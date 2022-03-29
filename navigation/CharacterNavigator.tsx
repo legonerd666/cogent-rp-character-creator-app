@@ -19,6 +19,7 @@ import AttributesScreen from "../screens/creationGuide/AttributesScreen";
 import SkillsScreen from "../screens/creationGuide/SkillsScreen";
 import blankCharacter, { ICharacter } from "../constants/characterTemplate";
 import VocationsScreen from "../screens/creationGuide/VocationsScreen";
+import SpecializationsScreen from "../screens/creationGuide/SpecializationsScreen";
 
 const Stack = createStackNavigator();
 
@@ -213,6 +214,7 @@ export default function CharacterNavigator() {
       <Stack.Screen name="Attributes" component={AttributesScreen} />
       <Stack.Screen name="Skills" component={SkillsScreen} />
       <Stack.Screen name="Vocations" component={VocationsScreen} />
+      <Stack.Screen name="Specializations" component={SpecializationsScreen} />
     </Stack.Navigator>
   );
 }
