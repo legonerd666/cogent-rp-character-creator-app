@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -10,15 +10,9 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  ICharacter,
-  IVocation,
-  ISpecialization,
-} from "../../constants/characterTemplate";
+import { ICharacter, IVocation } from "../../constants/characterTemplate";
 import {
   setNumberStat,
-  setSpecialization,
-  setSpecializations,
   setVocation,
   setVocations,
 } from "../../store/actions/currentCharacter";
@@ -314,19 +308,29 @@ const VocationsScreen = (props: any) => {
             isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
           }
         >
-          By default, in One-Shots or short games, player characters will be
-          given 2 Attribute points they may assign to their character during
-          character creation. If you are playing in a campaign it is recommended
-          to use less as you will gain more as your game progresses.
+          Vocations represent the path your character has walked up until the
+          beginning of the game. They may continue to travel down that path, or
+          may change going forward, but these vocations reflect the life they
+          led and the career they chose.
         </DefaultText>
         <DefaultText
           style={
             isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
           }
         >
-          Pick which attribute(s) you'd like to increase, keep in mind 0 is
-          average, 1 is trained professional, and 2 is world class in a given
-          attribute or skill (for more visit cogentroleplay.com/rules)
+          By default you will have 1 vocation with a singlular free point in it,
+          this is mandatory, if you want your character to be unemployed you can
+          simply name it "Drifter" or "Murderer" or something else suitable.
+        </DefaultText>
+        <DefaultText
+          style={
+            isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
+          }
+        >
+          Vocations are similar to classes in other rp systems, so when choosing
+          try to name it something specific but not overly specific, eg. "Chef"
+          not "Cooking" or "God", and make sure to confirm vocation choices with
+          your narrator/dm/storyteller (for more visit cogentroleplay.com/rules)
         </DefaultText>
         <DefaultText
           style={
@@ -370,8 +374,10 @@ const VocationsScreen = (props: any) => {
             isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
           }
         >
-          When you are satisfied with your vocations, vocational skills, and
-          combat skills click next and you'll get to pick your equipment!
+          When you are satisfied with your vocations click next and you'll get
+          to pick your specializations within your vocations! If you forget the
+          name of the vocation you want it under you can always return to this
+          page.
         </DefaultText>
         <TouchableNativeFeedback
           onPress={() => {

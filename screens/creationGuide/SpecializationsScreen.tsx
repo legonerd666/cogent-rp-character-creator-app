@@ -10,17 +10,11 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  ICharacter,
-  IVocation,
-  ISpecialization,
-} from "../../constants/characterTemplate";
+import { ICharacter, ISpecialization } from "../../constants/characterTemplate";
 import {
   setNumberStat,
   setSpecialization,
   setSpecializations,
-  setVocation,
-  setVocations,
 } from "../../store/actions/currentCharacter";
 import { RadioButton } from "react-native-paper";
 import { FlatList } from "react-native-gesture-handler";
@@ -348,7 +342,9 @@ const VocationsScreen = (props: any) => {
                 onPress={() => {
                   if (character.skillPoints >= 1) {
                     specialization.bonus += 1;
-                    dispatch(setVocation(specialization.id, specialization));
+                    dispatch(
+                      setSpecialization(specialization.id, specialization)
+                    );
 
                     dispatch(
                       setNumberStat("skillPoints", character.skillPoints - 1)
@@ -739,7 +735,9 @@ const VocationsScreen = (props: any) => {
               onPress={() => {
                 if (character.skillPoints >= 1) {
                   specialization.bonus += 1;
-                  dispatch(setVocation(specialization.id, specialization));
+                  dispatch(
+                    setSpecialization(specialization.id, specialization)
+                  );
 
                   dispatch(
                     setNumberStat("skillPoints", character.skillPoints - 1)
@@ -805,7 +803,7 @@ const VocationsScreen = (props: any) => {
             <TouchableNativeFeedback
               onPress={() => {
                 specialization.dmgBonus += 1;
-                dispatch(setVocation(specialization.id, specialization));
+                dispatch(setSpecialization(specialization.id, specialization));
               }}
             >
               <View>
@@ -865,7 +863,7 @@ const VocationsScreen = (props: any) => {
             <TouchableNativeFeedback
               onPress={() => {
                 specialization.armorPen += 1;
-                dispatch(setVocation(specialization.id, specialization));
+                dispatch(setSpecialization(specialization.id, specialization));
               }}
             >
               <View>
@@ -926,26 +924,30 @@ const VocationsScreen = (props: any) => {
             isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
           }
         >
-          Time to pick your vocational skills and combat skills!
+          Time to pick your specializations!
         </DefaultText>
         <DefaultText
           style={
             isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
           }
         >
-          By default, in One-Shots or short games, player characters will be
-          given 2 Attribute points they may assign to their character during
-          character creation. If you are playing in a campaign it is recommended
-          to use less as you will gain more as your game progresses.
+          Specializations are split into 2 categories: Vocational and Combat
+          skills. Vocational skills represent a facet of a vocation that doesn't
+          do damage. eg. "Chef" might have the vocational skill "Cooking". In
+          contrast, Combat Skills can do damage and unless your setting includes
+          magic, are restricted to specific categories. eg. "Chef" might have
+          the combat skill "Small Weapons" to represent their skill with knives
+          in the kitchen.
         </DefaultText>
         <DefaultText
           style={
             isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
           }
         >
-          Pick which attribute(s) you'd like to increase, keep in mind 0 is
-          average, 1 is trained professional, and 2 is world class in a given
-          attribute or skill (for more visit cogentroleplay.com/rules)
+          Unless your narrator says otherwise, each vocation can have up to 4
+          specializations under it. Also make sure your specializations make
+          sense within the confines of its governing vocation. (for more visit
+          cogentroleplay.com/rules)
         </DefaultText>
         <DefaultText
           style={
@@ -993,8 +995,8 @@ const VocationsScreen = (props: any) => {
               isDarkMode ? styles.textBlockDarkMode : styles.textBlockLightMode
             }
           >
-            When you are satisfied with your vocations, vocational skills, and
-            combat skills click next and you'll get to pick your equipment!
+            When you are satisfied with your specializations click next and
+            you'll get to pick your equipment!
           </DefaultText>
           <TouchableNativeFeedback
             onPress={() => {
