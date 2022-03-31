@@ -12,10 +12,15 @@ import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
 
 import DefaultText from "../../components/DefaultText";
-import { IVocation } from "../../constants/characterTemplate";
+import EditableSpecialization from "../../components/EditableSpecialization";
+import EditableSpecialiation from "../../components/EditableSpecialization";
+import EditableVocation from "../../components/EditableVocation";
+import Specialization from "../../components/Specialization";
+import { ICharacter, IVocation } from "../../constants/characterTemplate";
 import Colors from "../../constants/Colors";
 import {
   setNumberStat,
+  setSpecializations,
   setVocation,
   setVocations,
 } from "../../store/actions/currentCharacter";
@@ -27,226 +32,16 @@ const SkillsScreen = (props: any) => {
 
   const dispatch = useDispatch();
 
-  let character = useSelector((state: RootStateOrAny) => state.character);
+  let character: ICharacter = useSelector(
+    (state: RootStateOrAny) => state.character
+  );
 
-  const renderVocation = (vocationData: any) => {
-    const vocation = vocationData.item;
-    return (
-      <View style={styles.vocation}>
-        <View style={styles.header}>
-          <View
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.inputContainerLargeDarkMode
-                  : styles.inputContainerLargeLightMode
-                : isDarkMode
-                ? styles.inputContainerDarkMode
-                : styles.inputContainerLightMode
-            }
-          >
-            <TextInput
-              style={
-                Dimensions.get("window").width > 600
-                  ? isDarkMode
-                    ? styles.inputTextLargeDarkMode
-                    : styles.inputTextLargeLightMode
-                  : isDarkMode
-                  ? styles.inputTextDarkMode
-                  : styles.inputTextLightMode
-              }
-              placeholder="Enter Vocation Name..."
-              placeholderTextColor={
-                isDarkMode
-                  ? Colors.accentColorDarkMode
-                  : Colors.accentColorLightMode
-              }
-              onChangeText={(text: string) => {
-                vocation.name = text;
-                dispatch(setVocation(vocation.id, vocation));
-              }}
-              defaultValue={vocation.name}
-            />
-          </View>
-        </View>
-        <View style={styles.checkboxes}>
-          <View style={styles.checkbox}>
-            <DefaultText
-              style={
-                Dimensions.get("window").width > 600
-                  ? isDarkMode
-                    ? styles.textLargeDarkMode
-                    : styles.textLargeLightMode
-                  : isDarkMode
-                  ? styles.textDarkMode
-                  : styles.textLightMode
-              }
-            >
-              Str:
-            </DefaultText>
-            <RadioButton
-              value="str"
-              status={vocation.stat === "str" ? "checked" : "unchecked"}
-              onPress={() => {
-                vocation.stat = "str";
-                dispatch(setVocation(vocation.id, vocation));
-              }}
-              color={
-                isDarkMode
-                  ? Colors.accentColorDarkMode
-                  : Colors.accentColorLightMode
-              }
-              uncheckedColor={
-                isDarkMode
-                  ? Colors.accentColorDarkMode
-                  : Colors.accentColorLightMode
-              }
-            />
-          </View>
+  const renderVocation = (vocations: any) => {
+    return <EditableVocation item={vocations.item} />;
+  };
 
-          <View style={styles.checkbox}>
-            <DefaultText
-              style={
-                Dimensions.get("window").width > 600
-                  ? isDarkMode
-                    ? styles.textLargeDarkMode
-                    : styles.textLargeLightMode
-                  : isDarkMode
-                  ? styles.textDarkMode
-                  : styles.textLightMode
-              }
-            >
-              Ref:
-            </DefaultText>
-            <RadioButton
-              value="ref"
-              status={vocation.stat === "ref" ? "checked" : "unchecked"}
-              onPress={() => {
-                vocation.stat = "ref";
-                dispatch(setVocation(vocation.id, vocation));
-              }}
-              color={
-                isDarkMode
-                  ? Colors.accentColorDarkMode
-                  : Colors.accentColorLightMode
-              }
-              uncheckedColor={
-                isDarkMode
-                  ? Colors.accentColorDarkMode
-                  : Colors.accentColorLightMode
-              }
-            />
-          </View>
-
-          <View style={styles.checkbox}>
-            <DefaultText
-              style={
-                Dimensions.get("window").width > 600
-                  ? isDarkMode
-                    ? styles.textLargeDarkMode
-                    : styles.textLargeLightMode
-                  : isDarkMode
-                  ? styles.textDarkMode
-                  : styles.textLightMode
-              }
-            >
-              Int:
-            </DefaultText>
-            <RadioButton
-              value="int"
-              status={vocation.stat === "int" ? "checked" : "unchecked"}
-              onPress={() => {
-                vocation.stat = "int";
-                dispatch(setVocation(vocation.id, vocation));
-              }}
-              color={
-                isDarkMode
-                  ? Colors.accentColorDarkMode
-                  : Colors.accentColorLightMode
-              }
-              uncheckedColor={
-                isDarkMode
-                  ? Colors.accentColorDarkMode
-                  : Colors.accentColorLightMode
-              }
-            />
-          </View>
-        </View>
-        <View style={styles.stat}>
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.statTitleLargeDarkMode
-                  : styles.statTitleLargeLightMode
-                : isDarkMode
-                ? styles.statTitleDarkMode
-                : styles.statTitleLightMode
-            }
-          >
-            Bonus:
-          </DefaultText>
-          <View
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.bonusInputContainerLargeDarkMode
-                  : styles.bonusInputContainerLargeLightMode
-                : isDarkMode
-                ? styles.bonusInputContainerDarkMode
-                : styles.bonusInputContainerLightMode
-            }
-          >
-            <TextInput
-              style={
-                Dimensions.get("window").width > 600
-                  ? isDarkMode
-                    ? styles.bonusInputTextLargeDarkMode
-                    : styles.bonusInputTextLargeLightMode
-                  : isDarkMode
-                  ? styles.bonusInputTextDarkMode
-                  : styles.bonusInputTextLightMode
-              }
-              onChangeText={(text) => {
-                vocation.bonus = isNaN(parseInt(text)) ? 0 : parseInt(text);
-                dispatch(setVocation(vocation.id, vocation));
-              }}
-              keyboardType={"number-pad"}
-              defaultValue={vocation.bonus.toString()}
-            />
-          </View>
-        </View>
-        <View
-          style={
-            Dimensions.get("window").width > 600
-              ? styles.deleteButtonContainerLarge
-              : styles.deleteButtonContainer
-          }
-        >
-          <TouchableNativeFeedback
-            onPress={() => {
-              const vocationToDeleteIndex = character.vocations.findIndex(
-                (vocationById: IVocation) => vocationById.id === vocation.id
-              );
-              character.vocations.splice(vocationToDeleteIndex, 1);
-              dispatch(setVocations(character.vocations));
-            }}
-          >
-            <View>
-              <DefaultText
-                style={
-                  Dimensions.get("window").width > 600
-                    ? styles.deleteButtonTextLarge
-                    : styles.deleteButtonText
-                }
-              >
-                Delete
-              </DefaultText>
-            </View>
-          </TouchableNativeFeedback>
-        </View>
-      </View>
-    );
+  const renderSpecialization = (specializations: any) => {
+    return <EditableSpecialization item={specializations.item} />;
   };
 
   const renderVocationHeader = () => {
@@ -1095,9 +890,14 @@ const SkillsScreen = (props: any) => {
       </View>
     );
   };
+
   const renderVocationFooter = () => {
     return (
       <View style={styles.container}>
+        <View
+          style={isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode}
+        ></View>
+
         <TouchableNativeFeedback
           onPress={() => {
             character.vocations.push({
@@ -1131,7 +931,16 @@ const SkillsScreen = (props: any) => {
           Vocational and Combat Skills:
         </DefaultText>
 
-        {/* <Specializations /> */}
+        <View style={{ width: "100%" }}>
+          <FlatList
+            renderItem={(item) => renderSpecialization(item)}
+            data={character.specializations}
+            extraData={character.specializations}
+            ListFooterComponent={renderSpecializationFooter}
+            ItemSeparatorComponent={renderSeparator}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
 
         <View
           style={isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode}
@@ -1140,16 +949,33 @@ const SkillsScreen = (props: any) => {
     );
   };
 
-  const renderSpecialization = (specializationData: any) => {
-    const specialization = specializationData.item;
-    return;
-  };
-
-  const renderSpecializationHeader = () => {
-    return;
-  };
   const renderSpecializationFooter = () => {
-    return;
+    return (
+      <View style={styles.container}>
+        <View
+          style={isDarkMode ? styles.dividerDarkMode : styles.dividerLightMode}
+        ></View>
+        <TouchableNativeFeedback
+          onPress={() => {
+            character.specializations.push({
+              parentName: "",
+              id: uuid(),
+              type: "v",
+              name: "",
+              stat: "",
+              bonus: 0,
+              dmgBonus: 0,
+              armorPen: 0,
+            });
+            dispatch(setSpecializations(character.specializations));
+          }}
+        >
+          <View style={styles.addButtonContainer}>
+            <DefaultText style={styles.addButtonText}>New</DefaultText>
+          </View>
+        </TouchableNativeFeedback>
+      </View>
+    );
   };
 
   const renderSeparator = () => {
