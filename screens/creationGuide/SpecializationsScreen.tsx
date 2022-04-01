@@ -120,7 +120,7 @@ const VocationsScreen = (props: any) => {
           </DefaultText>
           <TouchableNativeFeedback
             onPress={() => {
-              props.navigation.navigate("Vocation");
+              props.navigation.navigate("Equipment");
             }}
           >
             <View style={styles.nextButton}>
