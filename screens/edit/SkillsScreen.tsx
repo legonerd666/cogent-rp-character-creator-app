@@ -19,7 +19,7 @@ import {
   setVocation,
   setVocations,
 } from "../../store/actions/currentCharacter";
-import { ISpecialization, IVocation } from "../../constants/characterTemplate";
+import { IVocation } from "../../constants/characterTemplate";
 import { RadioButton } from "react-native-paper";
 
 const SkillsScreen = (props: any) => {

@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { View, ScrollView, StyleSheet, Dimensions } from "react-native";
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Dimensions,
+  TouchableNativeFeedback,
+} from "react-native";
 import { useSelector, RootStateOrAny } from "react-redux";
 import BoldText from "../../components/BoldText";
 
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
 
 const NotesScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -54,6 +61,32 @@ const NotesScreen = (props: any) => {
         >
           {character.notes}
         </DefaultText>
+        <TouchableNativeFeedback
+          onPress={() => {
+            props.navigation.navigate("Export");
+          }}
+        >
+          <View style={styles.exportButton}>
+            <View>
+              <DefaultText
+                style={isDarkMode ? styles.infoDarkMode : styles.infoLightMode}
+              >
+                Export Character
+              </DefaultText>
+            </View>
+            <View>
+              <Ionicons
+                name="cloud-upload-outline"
+                size={20}
+                color={
+                  isDarkMode
+                    ? Colors.accentColorDarkMode
+                    : Colors.accentColorLightMode
+                }
+              />
+            </View>
+          </View>
+        </TouchableNativeFeedback>
       </ScrollView>
     </View>
   );
@@ -140,6 +173,12 @@ const styles = StyleSheet.create({
   sectionContainerLargeLightMode: {
     justifyContent: "center",
     alignItems: "center",
+  },
+  exportButton: {
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "flex-end",
+    marginTop: 50,
   },
 });
 

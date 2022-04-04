@@ -1,22 +1,11 @@
 import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableNativeFeedback,
-  Dimensions,
-  TextInput,
-} from "react-native";
+import { View, StyleSheet, TouchableNativeFeedback } from "react-native";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { ICharacter, IVocation } from "../../constants/characterTemplate";
-import {
-  setNumberStat,
-  setVocation,
-  setVocations,
-} from "../../store/actions/currentCharacter";
-import { RadioButton } from "react-native-paper";
+import { setVocations } from "../../store/actions/currentCharacter";
 import { FlatList } from "react-native-gesture-handler";
 import { v4 as uuid } from "uuid";
 import EditableVocation from "../../components/EditableVocation";

@@ -10,7 +10,6 @@ import {
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import Colors from "../../constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
 import { ICharacter } from "../../constants/characterTemplate";
 import { setStringStat } from "../../store/actions/currentCharacter";
 import ColorPicker from "react-native-wheel-color-picker";
