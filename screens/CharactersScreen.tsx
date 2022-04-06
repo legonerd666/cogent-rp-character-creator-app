@@ -6,6 +6,7 @@ import {
   TouchableNativeFeedback,
   StyleSheet,
   Dimensions,
+  Alert,
 } from "react-native";
 import AppLoading from "expo-app-loading";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
@@ -66,6 +67,33 @@ const CharactersScreen = (props: any) => {
           props.navigation.navigate("CharacterDetails", {
             screen: "Characteristics",
           });
+        }}
+        onLongPress={() => {
+          Alert.alert(
+            "Delete Character?",
+            "Are you sure you want to delete this character?\nIt will be permanently deleted from your characters.",
+            [
+              {
+                text: "Cancel",
+                onPress: () => {},
+                style: "cancel",
+              },
+              {
+                text: "Delete",
+                onPress: async () => {
+                  await dataManipulation.storeLoadedData();
+                  const newCharacters = dataManipulation.getData();
+                  const characterToDeleteIndex = newCharacters.findIndex(
+                    (characterById) => characterById.id === itemData.item.id
+                  );
+                  newCharacters.splice(characterToDeleteIndex, 1);
+                  dataManipulation.setData(newCharacters);
+                  dataManipulation.saveData();
+                  props.navigation.popToTop();
+                },
+              },
+            ]
+          );
         }}
       />
     );

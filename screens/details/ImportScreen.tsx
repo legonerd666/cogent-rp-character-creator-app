@@ -5,19 +5,27 @@ import {
   ScrollView,
   StyleSheet,
   TextInput,
+  TouchableNativeFeedback,
   View,
 } from "react-native";
-import { RootStateOrAny, useSelector } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+import { v4 as uuid } from "uuid";
 import DefaultText from "../../components/DefaultText";
-import { ICharacter } from "../../constants/characterTemplate";
+import blankCharacter, { ICharacter } from "../../constants/characterTemplate";
 import Colors from "../../constants/Colors";
+import DataManipulation from "../../functions/DataManipulation";
+import { newCurrentCharacter } from "../../store/actions/currentCharacter";
 
 const ImportScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
 
   const [isDarkMode] = useState(mode === "dark" ? true : false);
 
-  const [importedCharacter, setImportedCharacter] = useState({});
+  var importedCharacter: ICharacter;
+
+  const dataManipulation = new DataManipulation();
+
+  const dispatch = useDispatch();
 
   return (
     <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
@@ -54,14 +62,13 @@ const ImportScreen = (props: any) => {
               multiline={true}
               onChangeText={(text) => {
                 try {
-                  setImportedCharacter(JSON.parse(text));
+                  importedCharacter = JSON.parse(text);
                 } catch (error) {
                   Alert.alert(
                     "Invalid Character",
                     "The character you are trying to import isn't a valid character."
                   );
                 }
-                console.log(text);
               }}
               placeholder="Paste Character Here..."
               placeholderTextColor={
@@ -70,6 +77,59 @@ const ImportScreen = (props: any) => {
                   : Colors.accentColorLightMode
               }
             />
+          </View>
+
+          <View style={styles.buttonContainer}>
+            <TouchableNativeFeedback
+              onPress={async () => {
+                await dataManipulation.storeLoadedData();
+                const newCharacters = dataManipulation.getData();
+
+                if (
+                  newCharacters.find(
+                    (character) => character.id === importedCharacter.id
+                  )
+                ) {
+                  Alert.alert(
+                    "Duplicate Detected",
+                    "You seem to be trying to import a duplicate character, are you sure you want to import it?",
+                    [
+                      {
+                        text: "Cancel",
+                        onPress: () => {},
+                        style: "cancel",
+                      },
+                      {
+                        text: "Import",
+                        onPress: () => {
+                          importedCharacter.id = uuid();
+
+                          newCharacters.push(importedCharacter);
+
+                          dataManipulation.setData(newCharacters);
+                          dataManipulation.saveData();
+
+                          dispatch(newCurrentCharacter(blankCharacter()));
+                          props.navigation.popToTop();
+                        },
+                      },
+                    ]
+                  );
+                } else {
+                  newCharacters.push(importedCharacter);
+
+                  dataManipulation.setData(newCharacters);
+                  dataManipulation.saveData();
+
+                  dispatch(newCurrentCharacter(blankCharacter()));
+                  props.navigation.popToTop();
+                }
+              }}
+            >
+              <View style={styles.button}>
+                <DefaultText>Import</DefaultText>
+              </View>
+            </TouchableNativeFeedback>
           </View>
         </View>
       </ScrollView>
@@ -168,6 +228,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: 20,
   },
+  buttonContainer: {},
+  button: {},
 });
 
 export default ImportScreen;

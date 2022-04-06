@@ -7,7 +7,10 @@ import DefaultText from "./DefaultText";
 const CharacterGridTile = (props: any) => {
   return (
     <View style={styles.gridItem}>
-      <TouchableNativeFeedback onPress={props.onSelect}>
+      <TouchableNativeFeedback
+        onPress={props.onSelect}
+        onLongPress={props.onLongPress}
+      >
         <View
           style={{ ...styles.container, ...{ backgroundColor: props.bgcolor } }}
         >
