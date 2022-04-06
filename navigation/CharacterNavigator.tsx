@@ -8,7 +8,8 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import CustomHeaderButton from "../components/HeaderButton";
-import { Alert } from "react-native";
+import { Alert, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 import DataManipulation from "../functions/DataManipulation";
 import CharacterEditNavigator from "./CharacterEditNavigator";
@@ -24,6 +25,8 @@ import EquipmentScreen from "../screens/creationGuide/EquipmentScreen";
 import NotesScreen from "../screens/creationGuide/Notes";
 import ExportScreen from "../screens/details/ExportScreen";
 import ImportScreen from "../screens/details/ImportScreen";
+import ModalDropdown from "react-native-modal-dropdown";
+import DefaultText from "../components/DefaultText";
 
 const Stack = createStackNavigator();
 
@@ -169,22 +172,26 @@ export default function CharacterNavigator() {
         options={({ navigation }) => ({
           headerTitle: "Add New",
           headerRight: () => (
-            <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-              <Item
-                title="Helper"
-                iconName="help"
-                onPress={() => {
+            <ModalDropdown
+              style={{ marginRight: 10 }}
+              dropdownStyle={{ height: 107 }}
+              options={["Import", "Assisted Creation", "Save"]}
+              onSelect={(index: string, option: string) => {
+                if (option === "Import") {
+                  navigation.navigate("Import");
+                } else if (option === "Assisted Creation") {
                   navigation.navigate("Identity");
-                }}
-              />
-              <Item
-                title="Save"
-                iconName="save-sharp"
-                onPress={() => {
+                } else {
                   newSaveHandler(navigation);
-                }}
+                }
+              }}
+            >
+              <Ionicons
+                name="menu-outline"
+                size={40}
+                color={Colors.accentColorLightMode}
               />
-            </HeaderButtons>
+            </ModalDropdown>
           ),
         })}
       />
