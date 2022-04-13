@@ -20,6 +20,7 @@ import BoldText from "../components/BoldText";
 import { newCurrentCharacter } from "../store/actions/currentCharacter";
 import { ICharacter } from "../constants/characterTemplate";
 import blankCharacter from "../constants/characterTemplate";
+import * as styleOptions from "../constants/styles";
 
 const HomeScreen = (props: any) => {
   React.useLayoutEffect(() => {
@@ -102,6 +103,10 @@ const HomeScreen = (props: any) => {
     );
   }
 
+  const styles = isDarkMode
+    ? styleOptions.darkModeStandard
+    : styleOptions.lightModeStandard;
+
   return (
     <TouchableNativeFeedback
       onPress={() => {
@@ -110,85 +115,14 @@ const HomeScreen = (props: any) => {
         props.navigation.navigate("Characters");
       }}
     >
-      <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
-        <BoldText
-          style={
-            Dimensions.get("window").width > 600
-              ? isDarkMode
-                ? styles.largeIntroDarkMode
-                : styles.largeIntroLightMode
-              : isDarkMode
-              ? styles.introDarkMode
-              : styles.introLightMode
-          }
-        >
+      <View style={styles.screenItemsCenter}>
+        <BoldText style={styles.text}>
           Cogent Roleplay Character Creator
         </BoldText>
-        <DefaultText
-          style={
-            Dimensions.get("window").width > 600
-              ? isDarkMode
-                ? styles.largeNoticeDarkMode
-                : styles.largeNoticeLightMode
-              : isDarkMode
-              ? styles.noticeDarkMode
-              : styles.noticeLightMode
-          }
-        >
-          (Tap to Open)
-        </DefaultText>
+        <DefaultText style={styles.smallNotice}>(Tap to Open)</DefaultText>
       </View>
     </TouchableNativeFeedback>
   );
 };
-
-const styles = StyleSheet.create({
-  screenDarkMode: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: Colors.primaryColorDarkMode,
-  },
-  screenLightMode: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: Colors.primaryColorLightMode,
-  },
-  largeNoticeDarkMode: {
-    color: Colors.accentColorDarkMode,
-    fontSize: 30,
-  },
-  largeNoticeLightMode: {
-    color: Colors.accentColorLightMode,
-    fontSize: 30,
-  },
-  noticeDarkMode: {
-    color: Colors.accentColorDarkMode,
-    fontSize: 10,
-  },
-  noticeLightMode: {
-    color: Colors.accentColorLightMode,
-    fontSize: 10,
-  },
-  largeIntroDarkMode: {
-    color: Colors.accentColorDarkMode,
-    fontSize: 50,
-    textAlign: "center",
-  },
-  largeIntroLightMode: {
-    color: Colors.accentColorLightMode,
-    fontSize: 50,
-    textAlign: "center",
-  },
-  introDarkMode: {
-    color: Colors.accentColorDarkMode,
-    textAlign: "center",
-  },
-  introLightMode: {
-    color: Colors.accentColorLightMode,
-    textAlign: "center",
-  },
-});
 
 export default HomeScreen;

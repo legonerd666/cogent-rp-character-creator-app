@@ -17,8 +17,6 @@ const DefaultText = (props: any) => {
 const styles = StyleSheet.create({
   text: {
     fontFamily: "lora",
-    fontSize: 20,
-    color: Colors.accentColorDarkMode,
   },
 });
 

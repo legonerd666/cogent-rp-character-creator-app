@@ -17,8 +17,6 @@ const BoldText = (props: any) => {
 const styles = StyleSheet.create({
   text: {
     fontFamily: "lora-bold",
-    fontSize: 20,
-    color: Colors.accentColorDarkMode,
   },
 });
 
