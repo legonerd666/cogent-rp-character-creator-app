@@ -89,8 +89,8 @@ const lightMode = StyleSheet.create({
     backgroundColor: Colors.dividerColorLightMode,
   },
   addButtonContainer: {
-    backgroundColor: Colors.textBoxColorDarkMode,
-    borderColor: Colors.accentColorDarkMode,
+    backgroundColor: Colors.textBoxColorLightMode,
+    borderColor: Colors.accentColorLightMode,
   },
 });
 
@@ -235,6 +235,6 @@ export const lightModeStandard = {
   addButton: {
     ...standard.text,
     ...standard.addButton,
-    ...lightMode.invertedText,
+    ...lightMode.text,
   },
 };
