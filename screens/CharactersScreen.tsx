@@ -19,6 +19,8 @@ import DataManipulation from "../functions/DataManipulation";
 import { newCurrentCharacter } from "../store/actions/currentCharacter";
 import blankCharacter, { ICharacter } from "../constants/characterTemplate";
 import CustomHeaderButton from "../components/HeaderButton";
+import * as styleOptions from "../constants/styles";
+import BoldText from "../components/BoldText";
 
 const CharactersScreen = (props: any) => {
   React.useLayoutEffect(() => {
@@ -116,13 +118,7 @@ const CharactersScreen = (props: any) => {
   };
 
   const renderSeparator = () => {
-    return (
-      <View
-        style={
-          isDarkMode ? styles.separatorDarkMode : styles.separatorLightMode
-        }
-      />
-    );
+    return <View style={styles.separator} />;
   };
 
   useEffect(() => {
@@ -142,27 +138,15 @@ const CharactersScreen = (props: any) => {
     );
   }
 
+  const styles = isDarkMode
+    ? styleOptions.darkModeStandard
+    : styleOptions.lightModeStandard;
+
   if (dataManipulation.getData().length == 0) {
     return (
-      <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
-        <View
-          style={
-            Dimensions.get("window").width > 600
-              ? styles.noticeContainerLarge
-              : styles.noticeContainer
-          }
-        >
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.noticeLargeDarkMode
-                  : styles.noticeLargeLightMode
-                : isDarkMode
-                ? styles.noticeDarkMode
-                : styles.noticeLightMode
-            }
-          >
+      <View style={styles.screenItemsTop}>
+        <View style={styles.fullScreenNoticeContainer}>
+          <DefaultText style={styles.standardNotice}>
             You don't seem to have any characters, how about making a new one?
           </DefaultText>
           <TouchableNativeFeedback
@@ -170,22 +154,8 @@ const CharactersScreen = (props: any) => {
               props.navigation.navigate("Add");
             }}
           >
-            <View
-              style={
-                Dimensions.get("window").width > 600
-                  ? styles.addButtonContainerLarge
-                  : styles.addButtonContainer
-              }
-            >
-              <DefaultText
-                style={
-                  Dimensions.get("window").width > 600
-                    ? styles.addButtonTextLarge
-                    : styles.addButtonText
-                }
-              >
-                Add New
-              </DefaultText>
+            <View style={styles.addButtonContainer}>
+              <BoldText style={styles.addButton}>New</BoldText>
             </View>
           </TouchableNativeFeedback>
         </View>
@@ -195,18 +165,8 @@ const CharactersScreen = (props: any) => {
 
   if (filteredCharacters.length == 0) {
     return (
-      <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
-        <View
-          style={
-            Dimensions.get("window").width > 600
-              ? isDarkMode
-                ? styles.searchBarContainerLargeDarkMode
-                : styles.searchBarContainerLargeLightMode
-              : isDarkMode
-              ? styles.searchBarContainerDarkMode
-              : styles.searchBarContainerLightMode
-          }
-        >
+      <View style={styles.screenItemsTop}>
+        <View style={styles.searchBarContainer}>
           <TextInput
             placeholder="Filter by Name..."
             onChangeText={(text) => {
@@ -219,35 +179,11 @@ const CharactersScreen = (props: any) => {
                 ? Colors.accentColorDarkMode
                 : Colors.accentColorLightMode
             }
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.largeTextInputDarkMode
-                  : styles.largeTextInputLightMode
-                : isDarkMode
-                ? styles.textInputDarkMode
-                : styles.textInputLightMode
-            }
+            style={styles.textInput}
           />
         </View>
-        <View
-          style={
-            Dimensions.get("window").width > 600
-              ? styles.noticeContainerLarge
-              : styles.noticeContainer
-          }
-        >
-          <DefaultText
-            style={
-              Dimensions.get("window").width > 600
-                ? isDarkMode
-                  ? styles.noticeLargeDarkMode
-                  : styles.noticeLargeLightMode
-                : isDarkMode
-                ? styles.noticeDarkMode
-                : styles.noticeLightMode
-            }
-          >
+        <View style={styles.fullScreenNoticeContainer}>
+          <DefaultText style={styles.standardNotice}>
             You don't seem to have any characters that match your search, how
             about making a new character or checking your search for typos?
           </DefaultText>
@@ -256,22 +192,8 @@ const CharactersScreen = (props: any) => {
               props.navigation.navigate("Add");
             }}
           >
-            <View
-              style={
-                Dimensions.get("window").width > 600
-                  ? styles.addButtonContainerLarge
-                  : styles.addButtonContainer
-              }
-            >
-              <DefaultText
-                style={
-                  Dimensions.get("window").width > 600
-                    ? styles.addButtonTextLarge
-                    : styles.addButtonText
-                }
-              >
-                Add New
-              </DefaultText>
+            <View style={styles.addButtonContainer}>
+              <BoldText style={styles.addButton}>New</BoldText>
             </View>
           </TouchableNativeFeedback>
         </View>
@@ -280,18 +202,8 @@ const CharactersScreen = (props: any) => {
   }
 
   return (
-    <View style={isDarkMode ? styles.screenDarkMode : styles.screenLightMode}>
-      <View
-        style={
-          Dimensions.get("window").width > 600
-            ? isDarkMode
-              ? styles.searchBarContainerLargeDarkMode
-              : styles.searchBarContainerLargeLightMode
-            : isDarkMode
-            ? styles.searchBarContainerDarkMode
-            : styles.searchBarContainerLightMode
-        }
-      >
+    <View style={styles.screenItemsTop}>
+      <View style={styles.searchBarContainer}>
         <TextInput
           placeholder="Filter by Name..."
           onChangeText={(text) => {
@@ -304,15 +216,7 @@ const CharactersScreen = (props: any) => {
               ? Colors.accentColorDarkMode
               : Colors.accentColorLightMode
           }
-          style={
-            Dimensions.get("window").width > 600
-              ? isDarkMode
-                ? styles.largeTextInputDarkMode
-                : styles.largeTextInputLightMode
-              : isDarkMode
-              ? styles.textInputDarkMode
-              : styles.textInputLightMode
-          }
+          style={styles.textInput}
         />
       </View>
       <View style={styles.list}>
@@ -327,95 +231,5 @@ const CharactersScreen = (props: any) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  list: {
-    width: "80%",
-    alignSelf: "center",
-    paddingBottom: 80,
-  },
-  separatorDarkMode: {
-    height: 1,
-    width: "90%",
-    backgroundColor: Colors.dividerColorDarkMode,
-    alignSelf: "center",
-  },
-  separatorLightMode: {
-    height: 1,
-    width: "90%",
-    backgroundColor: Colors.dividerColorLightMode,
-    alignSelf: "center",
-  },
-  largeTextInputDarkMode: {
-    fontSize: 25,
-    marginLeft: 20,
-    color: Colors.accentColorDarkMode,
-  },
-  largeTextInputLightMode: {
-    fontSize: 25,
-    marginLeft: 20,
-    color: Colors.accentColorLightMode,
-  },
-  textInputDarkMode: {
-    color: Colors.accentColorDarkMode,
-  },
-  textInputLightMode: {
-    color: Colors.accentColorLightMode,
-  },
-  noticeLargeDarkMode: {
-    textAlign: "center",
-    fontSize: 40,
-    color: Colors.accentColorDarkMode,
-    marginVertical: 10,
-  },
-  noticeLargeLightMode: {
-    textAlign: "center",
-    fontSize: 40,
-    color: Colors.accentColorLightMode,
-    marginVertical: 10,
-  },
-  noticeDarkMode: {
-    textAlign: "center",
-    color: Colors.accentColorDarkMode,
-    marginVertical: 10,
-  },
-  noticeLightMode: {
-    textAlign: "center",
-    color: Colors.accentColorLightMode,
-    marginVertical: 10,
-  },
-  noticeContainerLarge: {
-    justifyContent: "center",
-    alignItems: "center",
-    flex: 1,
-    marginHorizontal: 200,
-    width: "80%",
-  },
-  noticeContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    flex: 1,
-    marginHorizontal: 50,
-  },
-  addButtonContainerLarge: {
-    backgroundColor: "#107aeb",
-    borderRadius: 10,
-    elevation: 3,
-    padding: 5,
-    marginTop: 10,
-  },
-  addButtonContainer: {
-    backgroundColor: "#107aeb",
-    borderRadius: 10,
-    elevation: 3,
-    padding: 5,
-    marginTop: 10,
-    overflow: "hidden",
-  },
-  addButtonTextLarge: {
-    fontSize: 40,
-  },
-  addButtonText: {},
-});
 
 export default CharactersScreen;

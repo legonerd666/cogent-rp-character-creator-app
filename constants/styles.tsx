@@ -24,6 +24,30 @@ const general = StyleSheet.create({
     marginVertical: 10,
     elevation: 5,
   },
+  list: {
+    width: "80%",
+    alignSelf: "center",
+  },
+  separator: {
+    height: 1,
+    width: "90%",
+    alignSelf: "center",
+  },
+  fullScreenNoticeContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 1,
+  },
+  centeredText: {
+    textAlign: "center",
+  },
+  addButtonContainer: {
+    borderRadius: 10,
+    elevation: 3,
+    padding: 5,
+    marginTop: 10,
+    borderWidth: 3,
+  },
 });
 
 const darkMode = StyleSheet.create({
@@ -33,8 +57,18 @@ const darkMode = StyleSheet.create({
   text: {
     color: Colors.accentColorDarkMode,
   },
+  invertedText: {
+    color: Colors.primaryColorLightMode,
+  },
   textBox: {
     backgroundColor: Colors.textBoxColorDarkMode,
+  },
+  separator: {
+    backgroundColor: Colors.dividerColorDarkMode,
+  },
+  addButtonContainer: {
+    backgroundColor: Colors.textBoxColorDarkMode,
+    borderColor: Colors.accentColorDarkMode,
   },
 });
 
@@ -45,8 +79,18 @@ const lightMode = StyleSheet.create({
   text: {
     color: Colors.accentColorLightMode,
   },
+  invertedText: {
+    color: Colors.primaryColorLightMode,
+  },
   textBox: {
     backgroundColor: Colors.textBoxColorLightMode,
+  },
+  separator: {
+    backgroundColor: Colors.dividerColorLightMode,
+  },
+  addButtonContainer: {
+    backgroundColor: Colors.textBoxColorDarkMode,
+    borderColor: Colors.accentColorDarkMode,
   },
 });
 
@@ -63,6 +107,16 @@ const standard = StyleSheet.create({
   searchBarContainer: {
     height: 50,
     width: "73%",
+  },
+  list: {
+    paddingBottom: 80,
+  },
+  fullScreenNoticeContainer: {
+    marginHorizontal: 50,
+  },
+  addButton: {
+    paddingHorizontal: 5,
+    paddingVertical: 3,
   },
 });
 
@@ -81,6 +135,12 @@ export const darkModeStandard = {
 
   smallNotice: { ...darkMode.text, ...standard.extraSmallText },
 
+  standardNotice: {
+    ...darkMode.text,
+    ...standard.text,
+    ...general.centeredText,
+  },
+
   text: { ...darkMode.text, ...standard.text },
 
   settingContainer: { ...general.settingContainer },
@@ -89,6 +149,36 @@ export const darkModeStandard = {
     ...general.searchBarContainer,
     ...darkMode.textBox,
     ...standard.searchBarContainer,
+  },
+
+  list: {
+    ...general.list,
+    ...standard.list,
+  },
+
+  separator: {
+    ...general.separator,
+    ...darkMode.separator,
+  },
+
+  textInput: {
+    ...darkMode.textBox,
+  },
+
+  fullScreenNoticeContainer: {
+    ...general.fullScreenNoticeContainer,
+    ...standard.fullScreenNoticeContainer,
+  },
+
+  addButtonContainer: {
+    ...general.addButtonContainer,
+    ...darkMode.addButtonContainer,
+  },
+
+  addButton: {
+    ...standard.text,
+    ...standard.addButton,
+    ...darkMode.invertedText,
   },
 };
 
@@ -103,6 +193,11 @@ export const lightModeStandard = {
 
   smallNotice: { ...lightMode.text, ...standard.extraSmallText },
 
+  standardNotice: {
+    ...lightMode.text,
+    ...standard.text,
+  },
+
   text: { ...lightMode.text, ...standard.text },
 
   settingContainer: { ...general.settingContainer },
@@ -111,5 +206,35 @@ export const lightModeStandard = {
     ...general.searchBarContainer,
     ...lightMode.textBox,
     ...standard.searchBarContainer,
+  },
+
+  list: {
+    ...general.list,
+    ...standard.list,
+  },
+
+  separator: {
+    ...general.separator,
+    ...lightMode.separator,
+  },
+
+  textInput: {
+    ...lightMode.textBox,
+  },
+
+  fullScreenNoticeContainer: {
+    ...general.fullScreenNoticeContainer,
+    ...standard.fullScreenNoticeContainer,
+  },
+
+  addButtonContainer: {
+    ...general.addButtonContainer,
+    ...lightMode.addButtonContainer,
+  },
+
+  addButton: {
+    ...standard.text,
+    ...standard.addButton,
+    ...lightMode.invertedText,
   },
 };

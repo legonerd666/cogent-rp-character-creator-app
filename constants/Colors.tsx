@@ -1,7 +1,7 @@
 export default {
   primaryColorDarkMode: "#10101f",
   accentColorDarkMode: "#fff",
-  textBoxColorDarkMode: "#242424",
+  textBoxColorDarkMode: "#5f5f5f",
   dividerColorDarkMode: "#BDC0BD",
 
   primaryColorLightMode: "#fff",
