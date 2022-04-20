@@ -64,6 +64,7 @@ const CharactersScreen = (props: any) => {
       <CharacterGridTile
         name={itemData.item.name}
         bgcolor={itemData.item.bgColor}
+        border={styles.contrastingBorder}
         onSelect={async () => {
           await dispatch(newCurrentCharacter(itemData.item));
           props.navigation.navigate("CharacterDetails", {
@@ -146,7 +147,7 @@ const CharactersScreen = (props: any) => {
     return (
       <View style={styles.screenItemsTop}>
         <View style={styles.fullScreenNoticeContainer}>
-          <DefaultText style={styles.standardNotice}>
+          <DefaultText style={styles.centeredStandardText}>
             You don't seem to have any characters, how about making a new one?
           </DefaultText>
           <TouchableNativeFeedback
@@ -183,7 +184,7 @@ const CharactersScreen = (props: any) => {
           />
         </View>
         <View style={styles.fullScreenNoticeContainer}>
-          <DefaultText style={styles.standardNotice}>
+          <DefaultText style={styles.centeredStandardText}>
             You don't seem to have any characters that match your search, how
             about making a new character or checking your search for typos?
           </DefaultText>

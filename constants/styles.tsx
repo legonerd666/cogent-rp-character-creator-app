@@ -48,6 +48,19 @@ const general = StyleSheet.create({
     marginTop: 10,
     borderWidth: 3,
   },
+  border: {
+    borderWidth: 3,
+  },
+  stat: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "70%",
+  },
+  bonusInputContainer: {
+    justifyContent: "center",
+    borderRadius: 50,
+  },
 });
 
 const darkMode = StyleSheet.create({
@@ -58,7 +71,7 @@ const darkMode = StyleSheet.create({
     color: Colors.accentColorDarkMode,
   },
   invertedText: {
-    color: Colors.primaryColorLightMode,
+    color: Colors.accentColorLightMode,
   },
   textBox: {
     backgroundColor: Colors.textBoxColorDarkMode,
@@ -69,6 +82,12 @@ const darkMode = StyleSheet.create({
   addButtonContainer: {
     backgroundColor: Colors.textBoxColorDarkMode,
     borderColor: Colors.accentColorDarkMode,
+  },
+  contrastingBorder: {
+    borderColor: Colors.accentColorDarkMode,
+  },
+  textInputBackground: {
+    backgroundColor: Colors.textBoxColorDarkMode,
   },
 });
 
@@ -91,6 +110,12 @@ const lightMode = StyleSheet.create({
   addButtonContainer: {
     backgroundColor: Colors.textBoxColorLightMode,
     borderColor: Colors.accentColorLightMode,
+  },
+  contrastingBorder: {
+    borderColor: Colors.accentColorLightMode,
+  },
+  textInputBackground: {
+    backgroundColor: Colors.textBoxColorLightMode,
   },
 });
 
@@ -118,6 +143,17 @@ const standard = StyleSheet.create({
     paddingHorizontal: 5,
     paddingVertical: 3,
   },
+  attributeScreenSpacing: {
+    paddingBottom: 150,
+  },
+  title: {
+    marginBottom: 30,
+  },
+  bonusInputContainer: {
+    width: 50,
+    height: 50,
+    marginVertical: 5,
+  },
 });
 
 const sevenInch = StyleSheet.create({});
@@ -131,11 +167,18 @@ export const darkModeStandard = {
     ...general.screenItemsCenter,
   },
 
+  screenItemsCenterBottomPadded: {
+    ...darkMode.screen,
+    ...general.screen,
+    ...general.screenItemsCenter,
+    ...standard.attributeScreenSpacing,
+  },
+
   screenItemsTop: { ...darkMode.screen, ...general.screen },
 
   smallNotice: { ...darkMode.text, ...standard.extraSmallText },
 
-  standardNotice: {
+  centeredStandardText: {
     ...darkMode.text,
     ...standard.text,
     ...general.centeredText,
@@ -178,7 +221,28 @@ export const darkModeStandard = {
   addButton: {
     ...standard.text,
     ...standard.addButton,
-    ...darkMode.invertedText,
+    ...darkMode.text,
+  },
+
+  contrastingBorder: {
+    ...general.border,
+    ...darkMode.contrastingBorder,
+  },
+
+  title: {
+    ...standard.largeText,
+    ...darkMode.text,
+    ...standard.title,
+  },
+
+  stat: {
+    ...general.stat,
+  },
+
+  bonusInputContainer: {
+    ...general.bonusInputContainer,
+    ...darkMode.textInputBackground,
+    ...standard.bonusInputContainer,
   },
 };
 
@@ -189,16 +253,30 @@ export const lightModeStandard = {
     ...general.screenItemsCenter,
   },
 
+  screenItemsCenterBottomPadded: {
+    ...lightMode.screen,
+    ...general.screen,
+    ...general.screenItemsCenter,
+    ...standard.attributeScreenSpacing,
+  },
+
   screenItemsTop: { ...lightMode.screen, ...general.screen },
 
   smallNotice: { ...lightMode.text, ...standard.extraSmallText },
 
-  standardNotice: {
+  centeredStandardText: {
     ...lightMode.text,
     ...standard.text,
+    ...general.centeredText,
   },
 
   text: { ...lightMode.text, ...standard.text },
+
+  title: {
+    ...standard.largeText,
+    ...lightMode.text,
+    ...standard.title,
+  },
 
   settingContainer: { ...general.settingContainer },
 
@@ -236,5 +314,20 @@ export const lightModeStandard = {
     ...standard.text,
     ...standard.addButton,
     ...lightMode.text,
+  },
+
+  contrastingBorder: {
+    ...general.border,
+    ...lightMode.contrastingBorder,
+  },
+
+  bonusInputContainer: {
+    ...general.bonusInputContainer,
+    ...lightMode.textInputBackground,
+    ...standard.bonusInputContainer,
+  },
+
+  stat: {
+    ...general.stat,
   },
 };

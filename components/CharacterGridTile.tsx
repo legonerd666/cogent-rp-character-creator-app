@@ -12,7 +12,11 @@ const CharacterGridTile = (props: any) => {
         onLongPress={props.onLongPress}
       >
         <View
-          style={{ ...styles.container, ...{ backgroundColor: props.bgcolor } }}
+          style={{
+            ...styles.container,
+            ...{ backgroundColor: props.bgcolor },
+            ...props.border,
+          }}
         >
           <DefaultText style={styles.text} numberOfLines={1}>
             {props.name}
