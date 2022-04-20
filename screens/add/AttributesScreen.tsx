@@ -5,6 +5,7 @@ import { useSelector, RootStateOrAny, useDispatch } from "react-redux";
 import DefaultText from "../../components/DefaultText";
 import { setNumberStat } from "../../store/actions/currentCharacter";
 import * as styleOptions from "../../constants/styles";
+import BoldText from "../../components/BoldText";
 
 const AttributesScreen = (props: any) => {
   const mode = useSelector((state: RootStateOrAny) => state.mode.mode);
@@ -21,7 +22,7 @@ const AttributesScreen = (props: any) => {
 
   return (
     <View style={styles.screenItemsCenterBottomPadded}>
-      <DefaultText style={styles.title}>Attributes:</DefaultText>
+      <BoldText style={styles.title}>Attributes:</BoldText>
 
       <View style={styles.stat}>
         <DefaultText style={styles.centeredStandardText}>Strength:</DefaultText>

@@ -33,6 +33,13 @@ const general = StyleSheet.create({
     width: "90%",
     alignSelf: "center",
   },
+  smallSeparator: {
+    height: 1,
+    width: "70%",
+    alignSelf: "center",
+    marginBottom: 40,
+    marginTop: 30,
+  },
   fullScreenNoticeContainer: {
     justifyContent: "center",
     alignItems: "center",
@@ -47,6 +54,7 @@ const general = StyleSheet.create({
     padding: 5,
     marginTop: 10,
     borderWidth: 3,
+    alignSelf: "center",
   },
   border: {
     borderWidth: 3,
@@ -56,10 +64,28 @@ const general = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "70%",
+    alignSelf: "center",
   },
   bonusInputContainer: {
     justifyContent: "center",
     borderRadius: 50,
+  },
+  inputContainer: {
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+  multilineInputContainer: {
+    width: "70%",
+    justifyContent: "flex-start",
+    paddingLeft: 10,
+    marginVertical: 15,
+    padding: 8,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+    alignSelf: "center",
+  },
+  colorPicker: {
+    alignSelf: "center",
   },
 });
 
@@ -123,6 +149,9 @@ const standard = StyleSheet.create({
   extraSmallText: {
     fontSize: 10,
   },
+  smallText: {
+    fontSize: 15,
+  },
   text: {
     fontSize: 20,
   },
@@ -139,6 +168,9 @@ const standard = StyleSheet.create({
   fullScreenNoticeContainer: {
     marginHorizontal: 50,
   },
+  addButtonContainer: {
+    width: 80,
+  },
   addButton: {
     paddingHorizontal: 5,
     paddingVertical: 3,
@@ -147,12 +179,33 @@ const standard = StyleSheet.create({
     paddingBottom: 150,
   },
   title: {
-    marginBottom: 30,
+    marginBottom: 15,
   },
   bonusInputContainer: {
     width: 50,
     height: 50,
     marginVertical: 5,
+  },
+  inputContainer: {
+    width: "70%",
+    height: 50,
+    paddingLeft: 10,
+    marginBottom: 15,
+    borderRadius: 20,
+  },
+  multilineInputContainer: {
+    height: 300,
+  },
+
+  colorPicker: {
+    height: 200,
+    width: "70%",
+    marginBottom: 100,
+  },
+
+  skillSection: {
+    margin: 15,
+    marginTop: 23,
   },
 });
 
@@ -186,6 +239,8 @@ export const darkModeStandard = {
 
   text: { ...darkMode.text, ...standard.text },
 
+  smallText: { ...darkMode.text, ...standard.smallText },
+
   settingContainer: { ...general.settingContainer },
 
   searchBarContainer: {
@@ -204,6 +259,11 @@ export const darkModeStandard = {
     ...darkMode.separator,
   },
 
+  smallSeparator: {
+    ...general.smallSeparator,
+    ...darkMode.separator,
+  },
+
   textInput: {
     ...darkMode.textBox,
   },
@@ -216,9 +276,11 @@ export const darkModeStandard = {
   addButtonContainer: {
     ...general.addButtonContainer,
     ...darkMode.addButtonContainer,
+    ...standard.addButtonContainer,
   },
 
   addButton: {
+    ...general.centeredText,
     ...standard.text,
     ...standard.addButton,
     ...darkMode.text,
@@ -233,6 +295,7 @@ export const darkModeStandard = {
     ...standard.largeText,
     ...darkMode.text,
     ...standard.title,
+    ...general.centeredText,
   },
 
   stat: {
@@ -243,6 +306,27 @@ export const darkModeStandard = {
     ...general.bonusInputContainer,
     ...darkMode.textInputBackground,
     ...standard.bonusInputContainer,
+  },
+
+  inputContainer: {
+    ...general.inputContainer,
+    ...darkMode.textInputBackground,
+    ...standard.inputContainer,
+  },
+
+  multilineInputContainer: {
+    ...general.multilineInputContainer,
+    ...darkMode.textInputBackground,
+    ...standard.multilineInputContainer,
+  },
+
+  colorPicker: {
+    ...standard.colorPicker,
+    ...general.colorPicker,
+  },
+
+  skillSection: {
+    ...standard.skillSection,
   },
 };
 
@@ -272,10 +356,13 @@ export const lightModeStandard = {
 
   text: { ...lightMode.text, ...standard.text },
 
+  smallText: { ...lightMode.text, ...standard.smallText },
+
   title: {
     ...standard.largeText,
     ...lightMode.text,
     ...standard.title,
+    ...general.centeredText,
   },
 
   settingContainer: { ...general.settingContainer },
@@ -296,6 +383,11 @@ export const lightModeStandard = {
     ...lightMode.separator,
   },
 
+  smallSeparator: {
+    ...general.smallSeparator,
+    ...lightMode.separator,
+  },
+
   textInput: {
     ...lightMode.textBox,
   },
@@ -308,9 +400,11 @@ export const lightModeStandard = {
   addButtonContainer: {
     ...general.addButtonContainer,
     ...lightMode.addButtonContainer,
+    ...standard.addButtonContainer,
   },
 
   addButton: {
+    ...general.centeredText,
     ...standard.text,
     ...standard.addButton,
     ...lightMode.text,
@@ -329,5 +423,26 @@ export const lightModeStandard = {
 
   stat: {
     ...general.stat,
+  },
+
+  inputContainer: {
+    ...general.inputContainer,
+    ...lightMode.textInputBackground,
+    ...standard.inputContainer,
+  },
+
+  multilineInputContainer: {
+    ...general.multilineInputContainer,
+    ...lightMode.textInputBackground,
+    ...standard.multilineInputContainer,
+  },
+
+  colorPicker: {
+    ...standard.colorPicker,
+    ...general.colorPicker,
+  },
+
+  skillSection: {
+    ...standard.skillSection,
   },
 };
