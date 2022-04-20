@@ -1,5 +1,7 @@
 import { v4 as uuid } from "uuid";
 
+export type skilltype = "v" | "c";
+
 export interface IVocation {
   id: string;
   name: string;
@@ -10,7 +12,7 @@ export interface IVocation {
 export interface ISpecialization {
   parentName: string;
   id: string;
-  type: string;
+  type: skilltype;
   name: string;
   stat: string;
   bonus: number;
